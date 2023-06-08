@@ -61,7 +61,7 @@ public class ProfileView extends javax.swing.JPanel {
 
         jButton5.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
 
-        jButton6.putClientProperty("FlatLaf.style",
+        btnLogout.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #F51D24;"
                 + "hoverBackground: darken(#F51D24,5%);"
@@ -112,7 +112,7 @@ public class ProfileView extends javax.swing.JPanel {
         jPasswordField2 = new javax.swing.JPasswordField();
         jLabel20 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(246, 246, 248));
 
@@ -466,10 +466,10 @@ public class ProfileView extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        jButton6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/sign out-fff.png"))); // NOI18N
-        jButton6.setText("Cerrar sesión");
-        jButton6.setIconTextGap(10);
+        btnLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/sign out-fff.png"))); // NOI18N
+        btnLogout.setText("Cerrar sesión");
+        btnLogout.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -478,7 +478,7 @@ public class ProfileView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -494,7 +494,7 @@ public class ProfileView extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -515,10 +515,10 @@ public class ProfileView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnLogout;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
