@@ -7,24 +7,24 @@ public class PasswordResetView extends javax.swing.JFrame {
 
         jPanel1.setVisible(false);
 
-        jPasswordField1.putClientProperty("JTextField.placeholderText", "Introduce la nueva contraseña");
+        pwdNewPass.putClientProperty("JTextField.placeholderText", "Introduce la nueva contraseña");
 
-        jLabel4.setVisible(false);
+        lblNewPassErrorMessage.setVisible(false);
 
-        jPasswordField2.putClientProperty("JTextField.placeholderText", "Confirmar la nueva contraseña");
-        jPasswordField2.putClientProperty("FlatLaf.style",
+        pwdConfirmPass.putClientProperty("JTextField.placeholderText", "Confirmar la nueva contraseña");
+        pwdConfirmPass.putClientProperty("FlatLaf.style",
                 "showRevealButton: false;"
         );
 
-        jLabel5.setVisible(false);
+        lblConfirmPassErrorMenssage.setVisible(false);
 
-        jButton1.putClientProperty("FlatLaf.style",
+        btnRestore.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #1D90F5;"
                 + "hoverBackground: darken(#1D90F5,5%);"
         );
 
-        jButton2.putClientProperty("FlatLaf.style",
+        btnCancel.putClientProperty("FlatLaf.style",
                 "foreground: #000;"
                 + "background: #FFF;"
                 + "borderColor: #DCDCDC;"
@@ -38,29 +38,29 @@ public class PasswordResetView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblCredentialsErrorMessage = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pwdNewPass = new javax.swing.JPasswordField();
+        lblNewPassErrorMessage = new javax.swing.JLabel();
+        pwdConfirmPass = new javax.swing.JPasswordField();
+        lblConfirmPassErrorMenssage = new javax.swing.JLabel();
+        btnRestore = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 29, 36));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/warning.png"))); // NOI18N
-        jLabel1.setText("Error message");
-        jLabel1.setIconTextGap(10);
+        lblCredentialsErrorMessage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblCredentialsErrorMessage.setForeground(new java.awt.Color(255, 255, 255));
+        lblCredentialsErrorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCredentialsErrorMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/warning.png"))); // NOI18N
+        lblCredentialsErrorMessage.setText("Error message");
+        lblCredentialsErrorMessage.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,12 +68,12 @@ public class PasswordResetView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                .addComponent(lblCredentialsErrorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(lblCredentialsErrorMessage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -88,23 +88,23 @@ public class PasswordResetView extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("<html><center>Se ha enviado un código de verificación a su<br>dirección de correo electrónico.</center></html>");
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pwdNewPass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel4.setText("Error message");
+        lblNewPassErrorMessage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblNewPassErrorMessage.setForeground(new java.awt.Color(245, 29, 36));
+        lblNewPassErrorMessage.setText("Error message");
 
-        jPasswordField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pwdConfirmPass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel5.setText("Error message");
+        lblConfirmPassErrorMenssage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblConfirmPassErrorMenssage.setForeground(new java.awt.Color(245, 29, 36));
+        lblConfirmPassErrorMenssage.setText("Error message");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setText("Restablecer");
+        btnRestore.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnRestore.setText("Restablecer");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton2.setText("Cancelar");
+        btnCancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCancel.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,15 +123,15 @@ public class PasswordResetView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblConfirmPassErrorMenssage))
+                                    .addComponent(pwdConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(15, 15, 15))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -143,8 +143,8 @@ public class PasswordResetView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel4))
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblNewPassErrorMessage))
+                    .addComponent(pwdNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75))
         );
         jPanel2Layout.setVerticalGroup(
@@ -157,17 +157,17 @@ public class PasswordResetView extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel3)
                 .addGap(20, 20, 20)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pwdNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel4)
+                .addComponent(lblNewPassErrorMessage)
                 .addGap(10, 10, 10)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pwdConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel5)
+                .addComponent(lblConfirmPassErrorMenssage)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -194,17 +194,17 @@ public class PasswordResetView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton btnCancel;
+    public javax.swing.JButton btnRestore;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public javax.swing.JLabel jLabel4;
-    public javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JPasswordField jPasswordField1;
-    public javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JLabel lblConfirmPassErrorMenssage;
+    public javax.swing.JLabel lblCredentialsErrorMessage;
+    public javax.swing.JLabel lblNewPassErrorMessage;
+    public javax.swing.JPasswordField pwdConfirmPass;
+    public javax.swing.JPasswordField pwdNewPass;
     // End of variables declaration//GEN-END:variables
 }

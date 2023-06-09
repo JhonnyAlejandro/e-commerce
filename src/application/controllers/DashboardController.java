@@ -83,6 +83,7 @@ public class DashboardController {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 ProfileView profile = new ProfileView();
+                new ProfileController(view,profile);
 
                 view.jLabel3.setText("Perfil");
 
