@@ -6,17 +6,18 @@ import application.views.HomeView;
 import application.views.ProfileView;
 import application.views.ProvidersView;
 import application.views.UsersView;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 import utilities.ManipulateText;
+import utilities.PerformActions;
 import utilities.Session;
 
 public class DashboardController {
 
     DashboardView view = new DashboardView();
+    HomeView home = new HomeView();
     ManipulateText manipulateText = new ManipulateText();
+    PerformActions performActions = new PerformActions();
 
     public DashboardController() {
         view.jLabel2.setText("Hola " + manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName()));
@@ -27,27 +28,19 @@ public class DashboardController {
     }
 
     private void start() {
+        performActions.changePanel(view.jPanel3, home);
+
         view.setVisible(true);
-    }
-
-    private void changePanel(JPanel panel) {
-        panel.setBounds(0, 0, 800, 600);
-
-        view.jPanel3.removeAll();
-        view.jPanel3.add(panel, BorderLayout.CENTER);
-        view.jPanel3.revalidate();
-        view.jPanel3.repaint();
     }
 
     private void events() {
         view.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                HomeView home = new HomeView();
 
                 view.jLabel3.setText("Bienvenido de nuevo");
 
-                changePanel(home);
+                performActions.changePanel(view.jPanel3, home);
             }
         });
 
@@ -58,7 +51,7 @@ public class DashboardController {
 
                 view.jLabel3.setText("Calendario");
 
-                changePanel(calendar);
+                performActions.changePanel(view.jPanel3, calendar);
             }
         });
 
@@ -69,7 +62,9 @@ public class DashboardController {
 
                 view.jLabel3.setText("Usuarios");
 
-                changePanel(users);
+                performActions.changePanel(view.jPanel3, users);
+
+                new UsersController(users);
             }
         });
 
@@ -80,7 +75,7 @@ public class DashboardController {
 
                 view.jLabel3.setText("Proveedores");
 
-                changePanel(providers);
+                performActions.changePanel(view.jPanel3, providers);
             }
         });
 
@@ -91,7 +86,7 @@ public class DashboardController {
 
                 view.jLabel3.setText("Perfil");
 
-                changePanel(profile);
+                performActions.changePanel(view.jPanel3, profile);
             }
         });
     }
