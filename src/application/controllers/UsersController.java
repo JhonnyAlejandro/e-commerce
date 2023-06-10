@@ -1,6 +1,6 @@
 package application.controllers;
 
-import application.views.UserFormView;
+import application.views.UsersFormView;
 import application.views.UsersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +21,7 @@ public class UsersController {
         view.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                UserFormView userForm = new UserFormView();
+                UsersFormView userForm = new UsersFormView();
 
                 performActions.changePanel(view.jPanel1, userForm);
             }

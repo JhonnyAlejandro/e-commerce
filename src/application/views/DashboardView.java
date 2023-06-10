@@ -6,9 +6,9 @@ public class DashboardView extends javax.swing.JFrame {
         initComponents();
 
         jButton1.putClientProperty("FlatLaf.style",
-                "foreground: #646675;"
-                + "background: #FFF;"
-                + "hoverBackground: darken(#FFF,5%);"
+                "foreground: #FFF;"
+                + "background: #1D90F5;"
+                + "hoverBackground: darken(#1D90F5,5%);"
         );
 
         jButton2.putClientProperty("FlatLaf.style",

@@ -8,6 +8,7 @@ import application.views.ProvidersView;
 import application.views.UsersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import utilities.ManipulateText;
 import utilities.PerformActions;
 import utilities.Session;
@@ -18,6 +19,8 @@ public class DashboardController {
     HomeView home = new HomeView();
     ManipulateText manipulateText = new ManipulateText();
     PerformActions performActions = new PerformActions();
+
+    private JButton originalButton;
 
     public DashboardController() {
         view.jLabel2.setText("Hola " + manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName()));
@@ -33,6 +36,24 @@ public class DashboardController {
         view.setVisible(true);
     }
 
+    private void changeButtonColor(JButton buttonPressed) {
+        if (originalButton != null) {
+            originalButton.putClientProperty("FlatLaf.style",
+                    "foreground: #646675;"
+                    + "background: #FFF;"
+                    + "hoverBackground: darken(#FFF,5%);"
+            );
+        }
+
+        buttonPressed.putClientProperty("FlatLaf.style",
+                "foreground: #FFF;"
+                + "background: #1D90F5;"
+                + "hoverBackground: darken(#1D90F5,5%);"
+        );
+
+        originalButton = buttonPressed;
+    }
+
     private void events() {
         view.jButton1.addActionListener(new ActionListener() {
             @Override
@@ -41,6 +62,8 @@ public class DashboardController {
                 view.jLabel3.setText("Bienvenido de nuevo");
 
                 performActions.changePanel(view.jPanel3, home);
+
+                changeButtonColor(view.jButton1);
             }
         });
 
@@ -52,6 +75,8 @@ public class DashboardController {
                 view.jLabel3.setText("Calendario");
 
                 performActions.changePanel(view.jPanel3, calendar);
+
+                changeButtonColor(view.jButton2);
             }
         });
 
@@ -63,6 +88,8 @@ public class DashboardController {
                 view.jLabel3.setText("Usuarios");
 
                 performActions.changePanel(view.jPanel3, users);
+
+                changeButtonColor(view.jButton3);
 
                 new UsersController(users);
             }
@@ -76,6 +103,10 @@ public class DashboardController {
                 view.jLabel3.setText("Proveedores");
 
                 performActions.changePanel(view.jPanel3, providers);
+
+                changeButtonColor(view.jButton4);
+
+                new ProvidersController(providers);
             }
         });
 
@@ -83,7 +114,7 @@ public class DashboardController {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 ProfileView profile = new ProfileView();
-                new ProfileController(view,profile);
+                new ProfileController(view, profile);
 
                 view.jLabel3.setText("Perfil");
 

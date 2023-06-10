@@ -1,5 +1,5 @@
 package application.controllers;
 
-public class UserFormController {
+public class UsersFormController {
 
 }
