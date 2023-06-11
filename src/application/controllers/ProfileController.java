@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.prefs.Preferences;
 import application.views.ProfileView;
 import application.views.DashboardView;
+import utilities.Session;
 import utilities.Validations;
 
 public class ProfileController {
@@ -21,6 +22,8 @@ public class ProfileController {
         this.view = view;
         this.viewDash = viewDash;
         events();
+        setPersonal();
+        setAddress();
     }
 
     public void events() {
@@ -168,6 +171,20 @@ public class ProfileController {
         view.txtCity.setEnabled(true);
         view.txtDepartment.setEnabled(true);
         view.txtAddress.setEnabled(true);
+    }
+    
+    public void setPersonal(){
+        view.txtFirstName.setText(Session.userModel.getFirstName());
+        view.txtLastName.setText(Session.userModel.getLastName());
+        view.txtEmail.setText(Session.userModel.getEmail());
+        view.txtPhone.setText(Session.userModel.getPhone());
+//        view.cmbRole.setSelectedItem();
+    }
+    
+    public void setAddress(){
+        view.txtAddress.setText(Session.userModel.getAddress());
+        view.txtCity.setText(Session.userModel.getCity());
+        view.txtDepartment.setText(Session.userModel.getDepartment());
     }
 
 }
