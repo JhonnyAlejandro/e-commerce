@@ -11,39 +11,39 @@ public class ProfileView extends javax.swing.JPanel {
                 "arc: 20;"
         );
 
-        jToggleButton1.putClientProperty("FlatLaf.style",
+        tbtEditPersonal.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #1D90F5;"
                 + "hoverBackground: darken(#1D90F5,5%);"
         );
 
-        jButton1.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
+        btnSavePersonal.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
 
-        jLabel3.setVisible(false);
+        lblErrorFirstName.setVisible(false);
 
-        jLabel5.setVisible(false);
+        lblErrorLastName.setVisible(false);
 
-        jLabel7.setVisible(false);
+        lblErrorEmail.setVisible(false);
 
-        jLabel9.setVisible(false);
+        lblErrorPhone.setVisible(false);
 
         jPanel3.putClientProperty("FlatLaf.style",
                 "arc: 20;"
         );
 
-        jToggleButton2.putClientProperty("FlatLaf.style",
+        tbtEditAddress.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #1D90F5;"
                 + "hoverBackground: darken(#1D90F5,5%);"
         );
 
-        jButton2.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
+        btnSaveAddress.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
 
-        jLabel13.setVisible(false);
+        lblErrorDepartment.setVisible(false);
 
-        jLabel15.setVisible(false);
+        lblErrorCity.setVisible(false);
 
-        jLabel17.setVisible(false);
+        lblErrorAddress.setVisible(false);
 
         jPanel4.putClientProperty("FlatLaf.style",
                 "arc: 20;"
@@ -76,35 +76,35 @@ public class ProfileView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        tbtEditPersonal = new javax.swing.JToggleButton();
+        btnSavePersonal = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        lblErrorFirstName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        lblErrorLastName = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblErrorEmail = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        lblErrorPhone = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbRole = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jButton2 = new javax.swing.JButton();
+        tbtEditAddress = new javax.swing.JToggleButton();
+        btnSaveAddress = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        txtDepartment = new javax.swing.JTextField();
+        lblErrorDepartment = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+        txtCity = new javax.swing.JTextField();
+        lblErrorCity = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        lblErrorAddress = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
@@ -127,68 +127,68 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setText("Información personal");
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png"))); // NOI18N
-        jToggleButton1.setText("Editar");
-        jToggleButton1.setIconTextGap(10);
+        tbtEditPersonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tbtEditPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png"))); // NOI18N
+        tbtEditPersonal.setText("Editar");
+        tbtEditPersonal.setIconTextGap(10);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.setEnabled(false);
-        jButton1.setIconTextGap(10);
+        btnSavePersonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnSavePersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
+        btnSavePersonal.setText("Guardar");
+        btnSavePersonal.setEnabled(false);
+        btnSavePersonal.setIconTextGap(10);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(126, 126, 146));
         jLabel2.setText("Nombre");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField1.setEnabled(false);
+        txtFirstName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtFirstName.setEnabled(false);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel3.setText("Error message");
+        lblErrorFirstName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorFirstName.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorFirstName.setText("Error message");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(126, 126, 146));
         jLabel4.setText("Apellido");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField2.setEnabled(false);
+        txtLastName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtLastName.setEnabled(false);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel5.setText("Error message");
+        lblErrorLastName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorLastName.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorLastName.setText("Error message");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(126, 126, 146));
         jLabel6.setText("Dirección de correo electrónico");
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField3.setEnabled(false);
+        txtEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtEmail.setEnabled(false);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel7.setText("Error message");
+        lblErrorEmail.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorEmail.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorEmail.setText("Error message");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(126, 126, 146));
         jLabel8.setText("Número de celular/teléfono");
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField4.setEnabled(false);
+        txtPhone.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtPhone.setEnabled(false);
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel9.setText("Error message");
+        lblErrorPhone.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorPhone.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorPhone.setText("Error message");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(126, 126, 146));
         jLabel10.setText("Rol");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setEnabled(false);
+        cmbRole.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbRole.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,49 +197,46 @@ public class ProfileView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel6))))
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4)))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblErrorFirstName)
+                                    .addComponent(jLabel6))))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7))))
-                                .addGap(16, 16, 16)
+                                    .addComponent(lblErrorLastName)
+                                    .addComponent(jLabel4)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLabel10)))))
-                        .addGap(15, 15, 15))
+                                    .addComponent(lblErrorPhone)
+                                    .addComponent(jLabel8)
+                                    .addComponent(lblErrorEmail))))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel10))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tbtEditPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                        .addComponent(btnSavePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,36 +244,36 @@ public class ProfileView extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSavePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbtEditPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(lblErrorFirstName)
+                    .addComponent(lblErrorLastName))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel7)
+                .addComponent(lblErrorEmail)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel10))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addComponent(jLabel9)
+                .addComponent(lblErrorPhone)
                 .addGap(20, 20, 20))
         );
 
@@ -285,49 +282,49 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel11.setText("Dirección");
 
-        jToggleButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png"))); // NOI18N
-        jToggleButton2.setText("Editar");
-        jToggleButton2.setIconTextGap(10);
+        tbtEditAddress.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tbtEditAddress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png"))); // NOI18N
+        tbtEditAddress.setText("Editar");
+        tbtEditAddress.setIconTextGap(10);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
-        jButton2.setText("Guardar");
-        jButton2.setEnabled(false);
-        jButton2.setIconTextGap(10);
+        btnSaveAddress.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnSaveAddress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
+        btnSaveAddress.setText("Guardar");
+        btnSaveAddress.setEnabled(false);
+        btnSaveAddress.setIconTextGap(10);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(126, 126, 146));
         jLabel12.setText("Departamento");
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField5.setEnabled(false);
+        txtDepartment.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtDepartment.setEnabled(false);
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel13.setText("Error message");
+        lblErrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorDepartment.setText("Error message");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(126, 126, 146));
         jLabel14.setText("Ciudad");
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField6.setEnabled(false);
+        txtCity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtCity.setEnabled(false);
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel15.setText("Error message");
+        lblErrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorCity.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorCity.setText("Error message");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(126, 126, 146));
         jLabel16.setText("Dirección de residencia");
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField7.setEnabled(false);
+        txtAddress.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtAddress.setEnabled(false);
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel17.setText("Error message");
+        lblErrorAddress.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblErrorAddress.setForeground(new java.awt.Color(245, 29, 36));
+        lblErrorAddress.setText("Error message");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -339,62 +336,58 @@ public class ProfileView extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tbtEditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
+                        .addComponent(btnSaveAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
+                                    .addComponent(lblErrorDepartment)
                                     .addComponent(jLabel16))))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(jLabel15))))
-                        .addGap(15, 15, 15))
+                                    .addComponent(lblErrorCity)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel17))
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))))
+                        .addGap(5, 5, 5)
+                        .addComponent(lblErrorAddress))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbtEditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel14))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel15))
+                    .addComponent(lblErrorDepartment)
+                    .addComponent(lblErrorCity))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel16)
                 .addGap(5, 5, 5)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel17)
+                .addComponent(lblErrorAddress)
                 .addGap(20, 20, 20))
         );
 
@@ -516,30 +509,23 @@ public class ProfileView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnLogout;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton btnSaveAddress;
+    public javax.swing.JButton btnSavePersonal;
+    public javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     public javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -547,14 +533,21 @@ public class ProfileView extends javax.swing.JPanel {
     public javax.swing.JPasswordField jPasswordField1;
     public javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    public javax.swing.JLabel lblErrorAddress;
+    public javax.swing.JLabel lblErrorCity;
+    public javax.swing.JLabel lblErrorDepartment;
+    public javax.swing.JLabel lblErrorEmail;
+    public javax.swing.JLabel lblErrorFirstName;
+    public javax.swing.JLabel lblErrorLastName;
+    public javax.swing.JLabel lblErrorPhone;
+    public javax.swing.JToggleButton tbtEditAddress;
+    public javax.swing.JToggleButton tbtEditPersonal;
+    public javax.swing.JTextField txtAddress;
+    public javax.swing.JTextField txtCity;
+    public javax.swing.JTextField txtDepartment;
+    public javax.swing.JTextField txtEmail;
+    public javax.swing.JTextField txtFirstName;
+    public javax.swing.JTextField txtLastName;
+    public javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }
