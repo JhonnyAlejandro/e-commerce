@@ -3,7 +3,6 @@ package database;
 import application.models.RolesModel;
 import application.models.UsersModel;
 import application.models.UsersModel;
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import configuration.Configuration;
 import configuration.DatabaseConnection;
 import java.sql.ResultSet;
@@ -29,7 +28,7 @@ public class QueriesUsers {
                 users.setIdUsers(result.getInt("id"));
                 users.setFirstName(result.getString("first_name"));
                 users.setLastName(result.getString("last_name"));
-                users.setAdress(result.getString("address"));
+                users.setAddress(result.getString("address"));
                 users.setCity(result.getString("city"));
                 users.setDepartment(result.getString("department"));
                 users.setEmail(result.getString("email"));
@@ -60,7 +59,7 @@ public class QueriesUsers {
         String pwHash = BCrypt.hashpw(pass, BCrypt.gensalt());
 
         String sql = "INSERT INTO users (first_name, last_name, address, city, department, phone, email,password, state, created_at, updated_at,roles_id) "
-                + "VALUES ('" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getAdress() + "', '"
+                + "VALUES ('" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getAddress() + "', '"
                 + user.getCity() + "', '" + user.getDepartment() + "', '" + user.getPhone() + "', '" + user.getEmail()
                 + "', '" + pwHash + "','" + 1 + "','" + timestamp + "','" + timestamp + "','" + user.getRol() + "')";
 
@@ -96,7 +95,7 @@ public class QueriesUsers {
             sql = "UPDATE users SET "
                     + "first_name = '" + user.getFirstName() + "', "
                     + "last_name = '" + user.getLastName() + "', "
-                    + "address = '" + user.getAdress() + "', "
+                    + "address = '" + user.getAddress() + "', "
                     + "city = '" + user.getCity() + "', "
                     + "department = '" + user.getDepartment() + "', "
                     + "phone = '" + user.getPhone() + "', "
@@ -113,7 +112,7 @@ public class QueriesUsers {
             sql = "UPDATE users SET "
                     + "first_name = '" + user.getFirstName() + "', "
                     + "last_name = '" + user.getLastName() + "', "
-                    + "address = '" + user.getAdress() + "', "
+                    + "address = '" + user.getAddress() + "', "
                     + "city = '" + user.getCity() + "', "
                     + "department = '" + user.getDepartment() + "', "
                     + "phone = '" + user.getPhone() + "', "
@@ -180,7 +179,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
@@ -201,7 +200,7 @@ public class QueriesUsers {
 
         DatabaseConnection connection = new DatabaseConnection();
 
-        String sql = "SELECT * from users WHERE state=1 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK);";
+        String sql = "SELECT * from users WHERE state = 1 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK);";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
@@ -209,7 +208,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
@@ -236,7 +235,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
@@ -262,7 +261,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
@@ -288,7 +287,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
@@ -306,7 +305,7 @@ public class QueriesUsers {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT * FROM users WHERE  created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+        String sql = "SELECT * FROM users WHERE state = 1  created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
         try {
@@ -315,7 +314,7 @@ public class QueriesUsers {
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
-                user.setAdress(result.getString("address"));
+                user.setAddress(result.getString("address"));
                 user.setCity(result.getString("city"));
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));

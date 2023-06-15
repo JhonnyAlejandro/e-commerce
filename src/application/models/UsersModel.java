@@ -1,6 +1,6 @@
 package application.models;
 
-public class UsersModel {
+public class UsersModel extends RolesModel{
 
     private int idUsers;
     private String firstName;
@@ -40,7 +40,7 @@ public class UsersModel {
         return idUsers;
     }
 
-    public void setId(int idUsers) {
+    public void setIdUsers(int idUsers) {
         this.idUsers = idUsers;
     }
 
@@ -116,4 +116,11 @@ public class UsersModel {
         this.state = state;
     }
 
+     public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
 }

@@ -11,7 +11,7 @@ public class UsersFormView extends javax.swing.JPanel {
 
         txtFirstNameAdd.putClientProperty("JTextField.placeholderText", "Nombre");
 
-        blerrorName.setVisible(false);
+        lblerrorName.setVisible(false);
 
         txtLastNameAdd.putClientProperty("JTextField.placeholderText", "Apellido");
 
@@ -27,7 +27,7 @@ public class UsersFormView extends javax.swing.JPanel {
                 "arc: 20;"
         );
 
-        jLabel5.setVisible(false);
+        lblerrorPhone.setVisible(false);
 
         txtDepartmentAdd.putClientProperty("JTextField.placeholderText", "Departamento");
 
@@ -47,7 +47,7 @@ public class UsersFormView extends javax.swing.JPanel {
                 + "hoverBackground: darken(#1D90F5,5%);"
         );
 
-        jButton2.putClientProperty("FlatLaf.style",
+        btnSaveChange.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #F5821D;"
                 + "hoverBackground: darken(#F5821D,5%);"
@@ -66,15 +66,15 @@ public class UsersFormView extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         txtFirstNameAdd = new javax.swing.JTextField();
-        blerrorName = new javax.swing.JLabel();
+        lblerrorName = new javax.swing.JLabel();
         txtLastNameAdd = new javax.swing.JTextField();
         lblerrorLastName = new javax.swing.JLabel();
         txtEmailAdd = new javax.swing.JTextField();
         lblerrorEmail = new javax.swing.JLabel();
         txtPhoneAdd = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblerrorPhone = new javax.swing.JLabel();
         cmbRoles = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         txtDepartmentAdd = new javax.swing.JTextField();
@@ -84,7 +84,7 @@ public class UsersFormView extends javax.swing.JPanel {
         txtAdressAdd = new javax.swing.JTextField();
         lblerrorAdress = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSaveChange = new javax.swing.JButton();
         btnAddCancel = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(246, 246, 248));
@@ -93,8 +93,8 @@ public class UsersFormView extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setText("Agregar/Editar usuario");
+        lblTitle.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblTitle.setText("Agregar/Editar usuario");
 
         txtFirstNameAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         txtFirstNameAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +103,9 @@ public class UsersFormView extends javax.swing.JPanel {
             }
         });
 
-        blerrorName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        blerrorName.setForeground(new java.awt.Color(245, 29, 36));
-        blerrorName.setText("Error message");
+        lblerrorName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorName.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorName.setText("Error message");
 
         txtLastNameAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
@@ -121,12 +121,11 @@ public class UsersFormView extends javax.swing.JPanel {
 
         txtPhoneAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel5.setText("Error message");
+        lblerrorPhone.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorPhone.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorPhone.setText("Error message");
 
         cmbRoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRolesActionPerformed(evt);
@@ -146,7 +145,7 @@ public class UsersFormView extends javax.swing.JPanel {
                             .addComponent(txtFirstNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(blerrorName)))
+                                .addComponent(lblerrorName)))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLastNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,25 +158,25 @@ public class UsersFormView extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
+                                    .addComponent(lblerrorPhone)
                                     .addComponent(lblerrorEmail))))
                         .addGap(16, 16, 16)
                         .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
+                    .addComponent(lblTitle))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFirstNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLastNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(blerrorName)
+                    .addComponent(lblerrorName)
                     .addComponent(lblerrorLastName))
                 .addGap(15, 15, 15)
                 .addComponent(txtEmailAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +187,7 @@ public class UsersFormView extends javax.swing.JPanel {
                     .addComponent(txtPhoneAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addComponent(jLabel5)
+                .addComponent(lblerrorPhone)
                 .addGap(20, 20, 20))
         );
 
@@ -265,10 +264,10 @@ public class UsersFormView extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
-        jButton2.setText("Guardar cambios");
-        jButton2.setIconTextGap(10);
+        btnSaveChange.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnSaveChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
+        btnSaveChange.setText("Guardar cambios");
+        btnSaveChange.setIconTextGap(10);
 
         btnAddCancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnAddCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/cancel-fff.png"))); // NOI18N
@@ -285,7 +284,7 @@ public class UsersFormView extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSaveChange, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(btnAddCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +301,7 @@ public class UsersFormView extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveChange, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -338,21 +337,21 @@ public class UsersFormView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel blerrorName;
     public javax.swing.JButton btnAdd;
     public javax.swing.JButton btnAddCancel;
+    public javax.swing.JButton btnSaveChange;
     public javax.swing.JComboBox<String> cmbRoles;
-    public javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblerrorAdress;
-    private javax.swing.JLabel lblerrorCity;
-    private javax.swing.JLabel lblerrorDepartment;
-    private javax.swing.JLabel lblerrorEmail;
-    private javax.swing.JLabel lblerrorLastName;
+    public javax.swing.JLabel lblTitle;
+    public javax.swing.JLabel lblerrorAdress;
+    public javax.swing.JLabel lblerrorCity;
+    public javax.swing.JLabel lblerrorDepartment;
+    public javax.swing.JLabel lblerrorEmail;
+    public javax.swing.JLabel lblerrorLastName;
+    public javax.swing.JLabel lblerrorName;
+    public javax.swing.JLabel lblerrorPhone;
     public javax.swing.JTextField txtAdressAdd;
     public javax.swing.JTextField txtCityAdd;
     public javax.swing.JTextField txtDepartmentAdd;
