@@ -2,23 +2,46 @@ package application.models;
 
 public class UsersModel {
 
-    private int id;
+    private int idUsers;
     private String firstName;
     private String lastName;
+    private String email;
     private String address;
     private String city;
     private String department;
     private String phone;
-    private String email;
-    private char[] password;
     private int state;
+    private char[] password;
+    private int rol;
 
-    public int getId() {
-        return id;
+    //private String dateCreate;
+    //private String dateUpdate;
+    public UsersModel(int idUsers, String firstName, String lastName, String email, String adress, String city,
+            String department, String phone, int state, char[] password, int rol, int idRoles, String nameRol) {
+        super(idRoles, nameRol);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = adress;
+        this.city = city;
+        this.department = department;
+        this.phone = phone;
+        this.state = state;
+        this.password = password;
+        this.rol = rol;
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public UsersModel() {
+
+    }
+
+    public int getIdUsers() {
+        return idUsers;
+    }
+
+    public void setId(int idUsers) {
+        this.idUsers = idUsers;
     }
 
     public String getFirstName() {
@@ -92,7 +115,5 @@ public class UsersModel {
     public void setState(int state) {
         this.state = state;
     }
-    
-    
 
 }
