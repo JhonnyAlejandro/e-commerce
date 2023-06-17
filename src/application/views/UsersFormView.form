@@ -284,7 +284,10 @@
                   <Font name="Segoe UI Semibold" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="Seleccione un rol"/>
+                    <StringItem index="1" value=" "/>
+                  </StringArray>
                 </Property>
               </Properties>
               <Events>
@@ -478,6 +481,9 @@
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="iconTextGap" type="int" value="10"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCancelActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>

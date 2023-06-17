@@ -200,7 +200,7 @@ public class QueriesUsers {
 
         DatabaseConnection connection = new DatabaseConnection();
 
-        String sql = "SELECT * from users WHERE state = 1 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK);";
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
@@ -213,6 +213,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
                 usersList.add(user);
 
             }
@@ -227,7 +229,7 @@ public class QueriesUsers {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT * FROM users WHERE state = 1 AND DATE(created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
@@ -240,6 +242,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -253,7 +257,7 @@ public class QueriesUsers {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT * FROM users WHERE state = 1 AND DATE(created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
@@ -266,6 +270,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -279,7 +285,7 @@ public class QueriesUsers {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT * FROM users WHERE state = 1 AND DATE(created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
@@ -292,6 +298,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -305,7 +313,7 @@ public class QueriesUsers {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT * FROM users WHERE state = 1  created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1   AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
         try {
@@ -319,6 +327,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
                 usersList.add(user);
             }
         } catch (Exception e) {

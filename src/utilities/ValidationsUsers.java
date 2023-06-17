@@ -56,7 +56,12 @@ public class ValidationsUsers {
 
     public boolean addressCheck(String data5) {
 
-        Pattern pattern = Pattern.compile("^[a-zA-Z\\s-]+$");
+        Pattern pattern = Pattern.compile("^(?:Calle|Carrera|Avenida|Transversal|Diagonal|Manzana|Kilómetro"
+                + "|Vereda|Vía|Autopista|Pasaje|Peaje|Circular|Glorieta|Anillo|Callejón|Lote|CALLE|calle|carrera"
+                + "|CARRERA|AVENIDA|avenida|cll|cl|CLL|CL|AV|Av|av|cra|CRA|DIAGONAL|diagonal|diag|dg|DG|AK|ak|Ak|ac|AC|Ac"
+                + "|ap|Ap|AP|TV|Tv|tv|Transv|TRANSVERSAL|transversal|manzana|MANZANA|KILOMETRO|kilometro|km|Km|KM|VEREDA"
+                + "|vereda|VIA|via|aut|autopista|AUT|AUTOPISTA|PASAJE|pasaje|glorieta|GLORIETA|PEAJE|peaje|circular"
+                + "|CIRCULAR|ANILLO|anillo|callejon|CALLEJON|lote|LOTE)\\s*\\d+(?:[-\\s]?[A-Za-z0-9]+\\s*)(?:\\w+\\s)?$");
         Matcher matcher = pattern.matcher(data5);
 
         if (matcher.find()) {

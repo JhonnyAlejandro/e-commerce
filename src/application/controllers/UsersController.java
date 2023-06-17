@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import utilities.PerformActions;
 import database.QueriesUsers;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class UsersController {
         events();
         loadTable();
         filterListener();
+        editUserForm();
     }
 
     private void filterListener() {
@@ -53,7 +56,7 @@ public class UsersController {
             case "Ultimo año":
                 filteredUsersList = queries.consultUsersLastYear();
                 break;
-            case "Más de un año":
+            case "Mas de un año":
                 filteredUsersList = queries.consultUsersMoreThanYear();
                 break;
             default:
@@ -69,7 +72,7 @@ public class UsersController {
         model.setRowCount(0); // Limpiar la tabla
 
         for (UsersModel user : usersList) {
-            Object[] row = new Object[8];
+            Object[] row = new Object[9];
             // Rellenar los datos del usuario en la fila
             row[0] = user.getIdUsers();
             row[1] = user.getFirstName();
@@ -79,6 +82,7 @@ public class UsersController {
             row[5] = user.getAddress();
             row[6] = user.getEmail();
             row[7] = user.getPhone();
+            row[8] = user.getNameRol();
 
             model.addRow(row); // Agregar la fila a la tabla
         }
@@ -110,6 +114,21 @@ public class UsersController {
             model.addRow(row);
 
         }
+    }
+
+    private void editUserForm() {
+        view.tblUsers.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+
+                UsersFormView usersEdit = new UsersFormView();
+                editUsersController ctrEdit = new editUsersController(usersEdit, view);
+                performActions.changePanel(view.jPanel1, usersEdit);
+
+            }
+        });
+
     }
 
     private void events() {
