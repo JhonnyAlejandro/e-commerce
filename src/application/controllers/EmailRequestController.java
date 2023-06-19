@@ -50,7 +50,7 @@ public class EmailRequestController {
             public void actionPerformed(ActionEvent event) {
                 if (validations.validateEmptyField(view.txtEmail.getText())) {
                     view.txtEmail.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
+                                "borderColor: #F51D24;"
                     );
 
                     view.lblEmailErrorMessage.setText("Ingresa tu dirección de correo electrónico*");
@@ -65,7 +65,7 @@ public class EmailRequestController {
                         view.lblEmailErrorMessage.setVisible(true);
                     } else {
                         view.txtEmail.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
+                                "borderColor: #F51D24;"
                         );
                         
                         view.lblEmailErrorMessage.setVisible(false);
@@ -125,7 +125,7 @@ public class EmailRequestController {
                         } else {
                             view.lblCredentialsErrorMessage.setText("correo no encotrado en la base de datos");
                             view.jPanel1.setVisible(true);
-                            view.txtEmail.putClientProperty("JComponent.outline", "error");
+                          
                         }
 
                         

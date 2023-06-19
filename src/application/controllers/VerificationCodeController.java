@@ -53,8 +53,10 @@ public class VerificationCodeController {
                         } else {
                             view.lblCodeErrorMessage.setText("Codigo incorrecto");
                             view.jPanel1.setVisible(true);
-                            view.txtCode.putClientProperty("JComponent.outline", "error");
-                        }
+                            view.txtCode.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+                       }
                     }
                 }
             }

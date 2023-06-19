@@ -98,7 +98,7 @@ public class LoginController {
                 }
 
                 if (successfulEmailCredential == true && successfulPasswordCredential == true) {
-                    if (queries.authentication(model)) {
+                    if (queries.authentication(model,view)) {
                         checkEnable();
                         new DashboardController();
                         view.dispose();
