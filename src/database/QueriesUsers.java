@@ -195,12 +195,42 @@ public class QueriesUsers {
         return usersList;
     }
 
+    
     public ArrayList<UsersModel> consultUsersLastWeek() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
 
         DatabaseConnection connection = new DatabaseConnection();
 
         String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                UsersModel user = new UsersModel();
+                user.setIdUsers(result.getInt("id"));
+                user.setFirstName(result.getString("first_name"));
+                user.setLastName(result.getString("last_name"));
+                user.setAddress(result.getString("address"));
+                user.setCity(result.getString("city"));
+                user.setDepartment(result.getString("department"));
+                user.setEmail(result.getString("email"));
+                user.setPhone(result.getString("phone"));
+                user.setRol(result.getInt("roles_id"));
+                user.setNameRol(result.getString("name"));
+                usersList.add(user);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return usersList;
+    }
+    public ArrayList<UsersModel> consultUsersOneDay() {
+        ArrayList<UsersModel> usersList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+
+        String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {

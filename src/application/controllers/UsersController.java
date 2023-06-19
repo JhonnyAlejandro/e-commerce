@@ -44,6 +44,10 @@ public class UsersController {
             case "Todos":
                 filteredUsersList = queries.consultUsers();
                 break;
+
+            case "Hoy":
+                filteredUsersList = queries.consultUsersOneDay();
+                break;
             case "Ultima semana":
                 filteredUsersList = queries.consultUsersLastWeek();
                 break;
@@ -59,6 +63,7 @@ public class UsersController {
             case "Mas de un año":
                 filteredUsersList = queries.consultUsersMoreThanYear();
                 break;
+
             default:
                 filteredUsersList = new ArrayList<UsersModel>();
                 break;

@@ -23,11 +23,13 @@ public class UsersFormView extends javax.swing.JPanel {
 
         txtPhoneAdd.putClientProperty("JTextField.placeholderText", "Número de celular/teléfono");
 
+        lblerrorPhone.setVisible(false);
+
+        lblerrorRol.setVisible(false);
+
         jPanel3.putClientProperty("FlatLaf.style",
                 "arc: 20;"
         );
-
-        lblerrorPhone.setVisible(false);
 
         txtDepartmentAdd.putClientProperty("JTextField.placeholderText", "Departamento");
 
@@ -76,6 +78,7 @@ public class UsersFormView extends javax.swing.JPanel {
         txtPhoneAdd = new javax.swing.JTextField();
         lblerrorPhone = new javax.swing.JLabel();
         cmbRoles = new javax.swing.JComboBox<>();
+        lblerrorRol = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtDepartmentAdd = new javax.swing.JTextField();
         lblerrorDepartment = new javax.swing.JLabel();
@@ -126,12 +129,16 @@ public class UsersFormView extends javax.swing.JPanel {
         lblerrorPhone.setText("Error message");
 
         cmbRoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un rol", " " }));
+        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un rol" }));
         cmbRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRolesActionPerformed(evt);
             }
         });
+
+        lblerrorRol.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorRol.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorRol.setText("Error message");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,7 +169,11 @@ public class UsersFormView extends javax.swing.JPanel {
                                     .addComponent(lblerrorPhone)
                                     .addComponent(lblerrorEmail))))
                         .addGap(16, 16, 16)
-                        .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(lblerrorRol))
+                            .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblTitle))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -188,7 +199,9 @@ public class UsersFormView extends javax.swing.JPanel {
                     .addComponent(txtPhoneAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addComponent(lblerrorPhone)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblerrorPhone)
+                    .addComponent(lblerrorRol))
                 .addGap(20, 20, 20))
         );
 
@@ -362,6 +375,7 @@ public class UsersFormView extends javax.swing.JPanel {
     public javax.swing.JLabel lblerrorLastName;
     public javax.swing.JLabel lblerrorName;
     public javax.swing.JLabel lblerrorPhone;
+    public javax.swing.JLabel lblerrorRol;
     public javax.swing.JTextField txtAdressAdd;
     public javax.swing.JTextField txtCityAdd;
     public javax.swing.JTextField txtDepartmentAdd;
