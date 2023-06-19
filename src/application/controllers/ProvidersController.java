@@ -24,6 +24,7 @@ public class ProvidersController {
         events();
         loadData();
         editProviderForm();
+        filterListener();
     }
     
      private void filterListener() {
@@ -38,32 +39,35 @@ public class ProvidersController {
         
         private void applyFilter() {
         String filterOption = (String) view.cbmFilters.getSelectedItem();
-        ArrayList<ProviderModel> filteredUsersList = null;
+        ArrayList<ProviderModel> filteredProvidersList = null;
 
         switch (filterOption) {
             case "Todos":
-                filteredUsersList = queries.consultProviderLastMonth();
+                filteredProvidersList = queries.consulta();
+                break;
+            case "Hoy":
+                filteredProvidersList = queries.consultProvidersOneDay();
                 break;
             case "Ultima semana":
-                filteredUsersList = queries.consultProviderLastWeek();
+                filteredProvidersList = queries.consultProviderLastWeek();
                 break;
             case "Ultimo mes":
-                filteredUsersList = queries.consultProviderLastMonth();
+                filteredProvidersList = queries.consultProviderLastMonth();
                 break;
             case "Ultimos 6 meses":
-                filteredUsersList = queries.consultProviderLast6Months();
+                filteredProvidersList = queries.consultProviderLast6Months();
                 break;
             case "Ultimo año":
-                filteredUsersList = queries.consultProviderLastYear();
+                filteredProvidersList = queries.consultProviderLastYear();
                 break;
             case "Mas de un año":
-                filteredUsersList = queries.consultProviderMoreThanYear();
+                filteredProvidersList = queries.consultProviderMoreThanYear();
                 break;
             default:
-                filteredUsersList = new ArrayList<ProviderModel>();
+                filteredProvidersList = new ArrayList<ProviderModel>();
                 break;
         }
-    
+          updateTable(filteredProvidersList);
         }
     
     
@@ -95,6 +99,27 @@ public class ProvidersController {
         });
 
     }
+    
+    private void updateTable(ArrayList<ProviderModel> providerList) {
+        DefaultTableModel model = (DefaultTableModel) view.tblProvider.getModel();
+        model.setRowCount(0); // Limpiar la tabla
+
+        for (ProviderModel provider : providerList) {
+            Object[] row = new Object[8];
+            // Rellenar los datos del usuario en la fila
+           row[0] = provider.getId();
+            row[1] = provider.getFirstName();
+            row[2] = provider.getLastName();
+            row[3] = provider.getAddress();
+            row[4] = provider.getCity();
+            row[5] = provider.getDepartment();
+            row[6] = provider.getPhone();
+            row[7] = provider.getEmail();
+          
+
+            model.addRow(row); // Agregar la fila a la tabla
+        }
+    }
 
     public void loadData() {
         QueriesProvider consult = new QueriesProvider();
@@ -105,7 +130,7 @@ public class ProvidersController {
         listaProvider = consult.consulta();
 
         for (ProviderModel provider : listaProvider) {
-            Object[] row = new Object[9];
+            Object[] row = new Object[8];
             row[0] = provider.getId();
             row[1] = provider.getFirstName();
             row[2] = provider.getLastName();
@@ -114,7 +139,7 @@ public class ProvidersController {
             row[5] = provider.getDepartment();
             row[6] = provider.getPhone();
             row[7] = provider.getEmail();
-            row[8] = provider.getCreated_at();
+         
             model.addRow(row);
         }
     }

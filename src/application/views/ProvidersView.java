@@ -43,7 +43,7 @@ public class ProvidersView extends javax.swing.JPanel {
         jLabel1.setText("Proveedores registrados");
 
         cbmFilters.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbmFilters.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ultima semana", "Ultimo mes", "Ultimos 6 meses", "Ultimo año", "Mas de un año" }));
+        cbmFilters.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hoy", "Ultima semana", "Ultimo mes", "Ultimos 6 meses", "Ultimo año", "Mas de un año" }));
 
         btnAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/add-fff.png"))); // NOI18N
