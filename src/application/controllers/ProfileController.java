@@ -147,7 +147,7 @@ public class ProfileController {
         view.txtLastName.setEnabled(false);
         view.txtEmail.setEnabled(false);
         view.txtPhone.setEnabled(false);
-        view.cmbRole.setEnabled(false);
+       
     }
         
     public void habilitarPersonal()
@@ -156,7 +156,7 @@ public class ProfileController {
         view.txtLastName.setEnabled(true);
         view.txtEmail.setEnabled(true);
         view.txtPhone.setEnabled(true);
-        view.cmbRole.setEnabled(true);
+        
     }
     
     public void deshabilitarAddress()

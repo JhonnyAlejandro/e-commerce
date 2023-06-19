@@ -128,7 +128,13 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="cmbRoles" min="-2" pref="357" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="lblerrorRol" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="cmbRoles" min="-2" pref="357" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -161,7 +167,10 @@
                           <Component id="cmbRoles" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Component id="lblerrorPhone" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblerrorPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblerrorRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -294,6 +303,20 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblerrorRol">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="24" green="1d" red="f5" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Error message"/>
+              </Properties>
+              <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
