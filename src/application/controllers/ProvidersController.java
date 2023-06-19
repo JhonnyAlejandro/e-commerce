@@ -15,6 +15,7 @@ import utilities.PerformActions;
 public class ProvidersController {
 
     ProvidersView view;
+    QueriesProvider queries = new QueriesProvider();
     PerformActions performActions = new PerformActions();
 
     public ProvidersController(ProvidersView view) {
@@ -24,7 +25,51 @@ public class ProvidersController {
         loadData();
         editProviderForm();
     }
+    
+     private void filterListener() {
+        view.cbmFilters.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                applyFilter(); // Método para aplicar el filtro
+            }
+        });
+    
+     }
+        
+        private void applyFilter() {
+        String filterOption = (String) view.cbmFilters.getSelectedItem();
+        ArrayList<ProviderModel> filteredUsersList = null;
 
+        switch (filterOption) {
+            case "Todos":
+                filteredUsersList = queries.consultProviderLastMonth();
+                break;
+            case "Ultima semana":
+                filteredUsersList = queries.consultProviderLastWeek();
+                break;
+            case "Ultimo mes":
+                filteredUsersList = queries.consultProviderLastMonth();
+                break;
+            case "Ultimos 6 meses":
+                filteredUsersList = queries.consultProviderLast6Months();
+                break;
+            case "Ultimo año":
+                filteredUsersList = queries.consultProviderLastYear();
+                break;
+            case "Mas de un año":
+                filteredUsersList = queries.consultProviderMoreThanYear();
+                break;
+            default:
+                filteredUsersList = new ArrayList<ProviderModel>();
+                break;
+        }
+    
+        }
+    
+    
+
+    
+    
     private void events() {
         view.btnAdd.addActionListener(new ActionListener() {
             @Override

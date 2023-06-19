@@ -36,7 +36,7 @@ public class QueriesProvider {
                 mdlProvider.setDepartment(result.getString("departament"));
                 mdlProvider.setPhone(result.getString("phone"));
                 mdlProvider.setEmail(result.getString("email"));
-                mdlProvider.setCreated_at(result.getString("created_at"));
+               // mdlProvider.setCreated_at(result.get("created_at"));
                 listaProvider.add(mdlProvider);
             }
         }
@@ -48,7 +48,7 @@ public class QueriesProvider {
     }
     
    
-    public boolean registrar(ProviderModel provider) {
+   public boolean registrar(ProviderModel provider) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
 
         boolean register = false;
@@ -67,7 +67,9 @@ public class QueriesProvider {
             databaseConnection.disconnect();
         }
         return register;
-    }
+    } 
+    
+
 
     public boolean modificar(ProviderModel provider) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -160,4 +162,138 @@ public class QueriesProvider {
 
     return provider;
 }
+    
+    public ArrayList<ProviderModel> consultProviderLastWeek() {
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+
+        String sql = "SELECT providers.*,  providers.created_at AS created_at FROM providers WHERE providers.state = 1 AND providers.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                ProviderModel provider = new ProviderModel();
+                provider.setId(result.getInt("id"));
+                provider.setFirstName(result.getString("first_name"));
+                provider.setLastName(result.getString("last_name"));
+                provider.setAddress(result.getString("address"));
+                provider.setCity(result.getString("city"));
+                provider.setDepartment(result.getString("department"));
+                provider.setEmail(result.getString("email"));
+                provider.setPhone(result.getString("phone"));
+                providerList.add(provider);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return providerList;
+    }
+    
+    
+    public ArrayList<ProviderModel> consultProviderLastMonth() {
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT providers.*, providers.created_at AS created_at FROM providers  WHERE providers.state = 1 AND DATE(providers.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                ProviderModel provider = new ProviderModel();
+                provider.setId(result.getInt("id"));
+                provider.setFirstName(result.getString("first_name"));
+                provider.setLastName(result.getString("last_name"));
+                provider.setAddress(result.getString("address"));
+                provider.setCity(result.getString("city"));
+                provider.setDepartment(result.getString("department"));
+                provider.setEmail(result.getString("email"));
+                provider.setPhone(result.getString("phone"));
+                providerList.add(provider);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return providerList;
+    }
+    
+    public ArrayList<ProviderModel> consultProviderLast6Months() {
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT providers.*, providers.created_at AS created_at FROM providers WHERE providers.state = 1  AND DATE(providers.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                ProviderModel provider = new ProviderModel();
+                provider.setId(result.getInt("id"));
+                provider.setFirstName(result.getString("first_name"));
+                provider.setLastName(result.getString("last_name"));
+                provider.setAddress(result.getString("address"));
+                provider.setCity(result.getString("city"));
+                provider.setDepartment(result.getString("department"));
+                provider.setEmail(result.getString("email"));
+                provider.setPhone(result.getString("phone"));
+                providerList.add(provider);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return providerList;
+    }
+    
+    public ArrayList<ProviderModel> consultProviderLastYear() {
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT providers.*, providers.created_at AS created_at FROM providers WHERE providers.state = 1  AND DATE(providers.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                ProviderModel user = new ProviderModel();
+                user.setId(result.getInt("id"));
+                user.setFirstName(result.getString("first_name"));
+                user.setLastName(result.getString("last_name"));
+                user.setAddress(result.getString("address"));
+                user.setCity(result.getString("city"));
+                user.setDepartment(result.getString("department"));
+                user.setEmail(result.getString("email"));
+                user.setPhone(result.getString("phone"));
+                providerList.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return providerList;
+    }
+    
+    public ArrayList<ProviderModel> consultProviderMoreThanYear() {
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT providers.*, providers.created_at AS created_at FROM providers WHERE users.state = 1   AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+
+        ResultSet result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                ProviderModel user = new ProviderModel();
+                user.setId(result.getInt("id"));
+                user.setFirstName(result.getString("first_name"));
+                user.setLastName(result.getString("last_name"));
+                user.setAddress(result.getString("address"));
+                user.setCity(result.getString("city"));
+                user.setDepartment(result.getString("department"));
+                user.setEmail(result.getString("email"));
+                user.setPhone(result.getString("phone"));
+                providerList.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return providerList;
+    }
 }
