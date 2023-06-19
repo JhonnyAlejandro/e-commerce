@@ -126,7 +126,7 @@ public class UsersFormView extends javax.swing.JPanel {
         lblerrorPhone.setText("Error message");
 
         cmbRoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un rol", " " }));
+        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un rol" }));
         cmbRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRolesActionPerformed(evt);

@@ -48,7 +48,7 @@ public class editUsersController {
         changetitle();
         hideButton();
         loadData();
-       // this.users2 = loadData();
+        this.users2 = loadData();
 
     }
 
@@ -258,7 +258,7 @@ public class editUsersController {
                                                                                 UsersView usersView2 = new UsersView();
                                                                                 UsersController usersController = new UsersController(usersView2);
                                                                                 usersController.loadTable();
-                                                                                repaint.changePanel(usersView, view);
+                                                                                repaint.changePanel(view, usersView2);
 
                                                                             } else {
                                                                                 JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
@@ -311,7 +311,7 @@ public class editUsersController {
         view.txtPhoneAdd.setText(users.getPhone());
         view.txtAdressAdd.setText(users.getAddress());
         view.txtEmailAdd.setText(users.getEmail());
-        //     view.cmbRoles.setSelectedIndex(users.getRol());
+        view.cmbRoles.setSelectedIndex(users.getRol());
         return users;
     }
 
