@@ -1,6 +1,7 @@
 package application.views;
 
 import java.awt.Color;
+import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
 public class UsersView extends javax.swing.JPanel {
@@ -66,6 +67,7 @@ public class UsersView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblUsers.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(tblUsers);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
