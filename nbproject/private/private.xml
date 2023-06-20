@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/ProvidersController.java</file>
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/database/QueriesProfile.java</file>
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/utilities/ValidationsUsers.java</file>
@@ -11,6 +12,11 @@
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/EditProviderController.java</file>
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/views/UsersFormView.java</file>
             <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/views/ProvidersFormView.java</file>
+
+            <file>file:/C:/Users/User/OneDrive/Escritorio/Projects/Java/e-commerce/e-commerce/src/application/views/UsersView.java</file>
+            <file>file:/C:/Users/User/OneDrive/Escritorio/Projects/Java/e-commerce/e-commerce/src/application/views/ProvidersView.java</file>
+            <file>file:/C:/Users/User/OneDrive/Escritorio/Projects/Java/e-commerce/e-commerce/src/application/controllers/AddUserController.java</file>
+ c1e4f3a091673d56129f3fbffa989325b52d58ab
         </group>
     </open-files>
 </project-private>
