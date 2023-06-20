@@ -57,232 +57,271 @@ public class editUsersController {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 Object obj = usersView.tblUsers.getValueAt(usersView.tblUsers.getSelectedRow(), 0);
+
                 int id = (int) obj;
-                boolean emptyFirtsName = validation.checkEmpty(view.txtFirstNameAdd.getText());
 
-                if (emptyFirtsName) {
-                    view.lblerrorName.setVisible(emptyFirtsName);
-                    view.lblerrorName.setText("No puedes dejar el campo vacio");
-                    view.lblerrorLastName.setVisible(false);
-                    view.lblerrorEmail.setVisible(false);
-                    view.lblerrorPhone.setVisible(false);
-                    view.lblerrorDepartment.setVisible(false);
-                    view.lblerrorAdress.setVisible(false);
-                    view.lblerrorCity.setVisible(false);
-                    //view.lblerrorRol.setVisible(false);
+                boolean First_Name = false;
+                boolean Last_Name = false;
+                boolean Addres = false;
+                boolean City = false;
+                boolean Department = false;
+                boolean Email = false;
+                boolean Phone = false;
+                boolean rol = false;
+
+                UsersModel users = new UsersModel();
+                users.setIdUsers(id);
+
+                if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
+                    view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorName.setText("No se puede dejar el campo vacio");
+                    view.lblerrorName.setVisible(true);
+
+                    System.out.println("bandera 1");
                 } else {
-                    boolean emptyLastName = validation.checkEmpty(view.txtLastNameAdd.getText());
-                    if (emptyLastName) {
-                        view.lblerrorLastName.setVisible(emptyLastName);
-                        view.lblerrorLastName.setText("No puedes dejar el campo vacio");
-                        view.lblerrorName.setVisible(false);
-                        view.lblerrorEmail.setVisible(false);
-                        view.lblerrorPhone.setVisible(false);
-                        view.lblerrorDepartment.setVisible(false);
-                        view.lblerrorAdress.setVisible(false);
-                        view.lblerrorCity.setVisible(false);
-                        // view.lblerrorRol.setVisible(false);
+                    if (validation.stringCheck(view.txtFirstNameAdd.getText()) == false) {
+                        view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorName.setText("El nombre tiene caracteres no permitidos (1-9,@,$,%,&,?)");
+                        view.lblerrorName.setVisible(true);
+
                     } else {
-                        boolean emptyEmail = validation.checkEmpty(view.txtEmailAdd.getText());
-                        if (emptyEmail) {
-                            view.lblerrorEmail.setVisible(emptyEmail);
-                            view.lblerrorEmail.setText("No puedes dejar el campo vacio");
-                            view.lblerrorLastName.setVisible(false);
-                            view.lblerrorName.setVisible(false);
-                            view.lblerrorPhone.setVisible(false);
-                            view.lblerrorDepartment.setVisible(false);
-                            view.lblerrorAdress.setVisible(false);
-                            view.lblerrorCity.setVisible(false);
-                            view.lblerrorRol.setVisible(false);
+                        view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorName.setVisible(false);
+
+                        users.setFirstName(view.txtFirstNameAdd.getText());
+
+                        First_Name = true;
+
+                    }
+                }
+
+                // termina if nombre 
+                if (validation.checkEmpty(view.txtLastNameAdd.getText())) {
+                    view.txtLastNameAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorLastName.setText("No puedes dejar el campo vacio");
+                    view.lblerrorLastName.setVisible(true);
+
+                    System.out.println("bandera 2");
+                } else {
+                    if (validation.stringCheck(view.txtLastNameAdd.getText()) == false) {
+                        view.txtLastNameAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?");
+                        view.lblerrorLastName.setVisible(true);
+
+                    } else {
+
+                        view.txtLastNameAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorLastName.setVisible(false);
+
+                        users.setLastName(view.txtLastNameAdd.getText());
+
+                        Last_Name = true;
+
+                    }
+                }
+
+                // termina if de apellido 
+                if (validation.checkEmpty(view.txtEmailAdd.getText())) {
+                    view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
+                    view.lblerrorEmail.setVisible(true);
+                } else {
+                    if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
+                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico valida");
+                        view.lblerrorEmail.setVisible(true);
+                    } else {
+                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorEmail.setVisible(false);
+
+                        users.setEmail(view.txtEmailAdd.getText());
+                        createPassword(modelo, users);
+
+                        Email = true;
+
+                    }
+                }
+
+                // termina validacion email 
+                if (validation.checkEmpty(view.txtPhoneAdd.getText())) {
+                    view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.lblerrorPhone.setText("No se puede dejar el campo vacio");
+                    view.lblerrorPhone.setVisible(true);
+                    System.out.println("bandera 4");
+                } else {
+                    if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
+                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                        view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
+                        view.lblerrorPhone.setVisible(true);
+                    } else {
+                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                        view.lblerrorPhone.setVisible(false);
+                        users.setPhone(view.txtPhoneAdd.getText());
+                        Phone = true;
+                    }
+                }
+
+                //validaciones phone 
+                if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
+                    view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorDepartment.setText("No se puede dejar el campo vacio");
+                    view.lblerrorDepartment.setVisible(true);
+
+                    System.out.println("bandera 5");
+                } else {
+                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
+                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos");
+                        view.lblerrorDepartment.setVisible(true);
+                    } else {
+
+                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorDepartment.setVisible(false);
+
+                        users.setDepartment(view.txtDepartmentAdd.getText());
+
+                        Department = true;
+
+                    }
+                }//termina validaciones de departamento
+
+                if (validation.checkEmpty(view.txtCityAdd.getText())) {
+                    view.txtCityAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorCity.setText("No se puede dejar el campo vacio");
+                    view.lblerrorCity.setVisible(true);
+
+                    System.out.println("bandera 6");
+                } else {
+                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
+                        view.txtCityAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos");
+                        view.lblerrorCity.setVisible(true);
+                    } else {
+
+                        view.txtCityAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorCity.setVisible(false);
+
+                        users.setCity(view.txtCityAdd.getText());
+
+                        City = true;
+                    }
+                }
+
+                //validacion ciudad
+                if (validation.checkEmpty(view.txtAdressAdd.getText())) {
+                    view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorAdress.setText("No se puede dejar el campo vacio");
+                    view.lblerrorAdress.setVisible(true);
+
+                    System.out.println("bandera 7");
+                } else {
+                    if (!validation.addressCheck(view.txtAdressAdd.getText())) {
+                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F51D24;"
+                        );
+
+                        view.lblerrorAdress.setText("La dirección tiene un formato incorrecto");
+                        view.lblerrorAdress.setVisible(true);
+                    } else {
+                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+
+                        view.lblerrorAdress.setVisible(false);
+
+                        users.setAddress(view.txtAdressAdd.getText());
+
+                        Addres = true;
+                    }
+                }
+
+                if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol")) {
+                    view.cmbRoles.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+
+                    view.lblerrorRol.setText("Seleccione una opcion valida");
+                    view.lblerrorRol.setVisible(true);
+                } else {
+                    view.cmbRoles.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+
+                    view.lblerrorRol.setVisible(false);
+
+                    users.setRol(view.cmbRoles.getSelectedIndex());
+
+                    rol = true;
+                }
+
+                //validacion direccion 
+                if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true && rol == true) {
+                    if (queries.showifmailexists(users2)) {
+                        JOptionPane.showMessageDialog(usersView, "El correo ya existe");
+                    } else {
+
+                        if (!users2.getEmail().equals(view.txtEmailAdd.getText())) {
+                            createPassword(modelo, users);
+                        }
+
+                        if (queries.updateUser(users)) {
+
+                            JOptionPane.showMessageDialog(view, "Se actualizó el usuario");
+                            UsersView usersView2 = new UsersView();
+                            UsersController usersController = new UsersController(usersView2);
+                            usersController.loadTable();
+                            repaint.changePanel(view, usersView2);
+
                         } else {
-                            boolean emptyAddress = validation.checkEmpty(view.txtAdressAdd.getText());
-                            if (emptyAddress) {
-                                view.lblerrorAdress.setVisible(emptyAddress);
-                                view.lblerrorAdress.setText("No puedes dejar el campo vacio");
-                                view.lblerrorLastName.setVisible(false);
-                                view.lblerrorEmail.setVisible(false);
-                                view.lblerrorPhone.setVisible(false);
-                                view.lblerrorDepartment.setVisible(false);
-                                view.lblerrorName.setVisible(false);
-                                view.lblerrorCity.setVisible(false);
-                                view.lblerrorRol.setVisible(false);
-                            } else {
-                                boolean emptyDepartment = validation.checkEmpty(view.txtDepartmentAdd.getText());
-                                if (emptyDepartment) {
-                                    view.lblerrorDepartment.setVisible(emptyDepartment);
-                                    view.lblerrorDepartment.setText("No puedes dejar el campo vacio");
-                                    view.lblerrorLastName.setVisible(false);
-                                    view.lblerrorEmail.setVisible(false);
-                                    view.lblerrorPhone.setVisible(false);
-                                    view.lblerrorName.setVisible(false);
-                                    view.lblerrorAdress.setVisible(false);
-                                    view.lblerrorCity.setVisible(false);
-                                    view.lblerrorRol.setVisible(false);
-                                } else {
-                                    boolean emptyCity = validation.checkEmpty(view.txtCityAdd.getText());
-                                    if (emptyCity) {
-                                        view.lblerrorCity.setVisible(emptyCity);
-                                        view.lblerrorCity.setText("No puedes dejar el campo vacio");
-                                        view.lblerrorLastName.setVisible(false);
-                                        view.lblerrorEmail.setVisible(false);
-                                        view.lblerrorPhone.setVisible(false);
-                                        view.lblerrorDepartment.setVisible(false);
-                                        view.lblerrorAdress.setVisible(false);
-                                        view.lblerrorName.setVisible(false);
-                                        view.lblerrorRol.setVisible(false);
-                                    } else {
-                                        boolean emptyPhone = validation.checkEmpty(view.txtPhoneAdd.getText());
-                                        if (emptyPhone) {
-                                            view.lblerrorPhone.setVisible(emptyPhone);
-                                            view.lblerrorPhone.setText("No puedes dejar el campo vacio");
-                                            view.lblerrorLastName.setVisible(false);
-                                            view.lblerrorEmail.setVisible(false);
-                                            view.lblerrorName.setVisible(false);
-                                            view.lblerrorDepartment.setVisible(false);
-                                            view.lblerrorAdress.setVisible(false);
-                                            view.lblerrorCity.setVisible(false);
-                                            view.lblerrorRol.setVisible(false);
-                                        } else {
-                                            boolean nameCorrect = validation.stringCheck(view.txtFirstNameAdd.getText());
-                                            if (!nameCorrect) {
-                                                view.lblerrorName.setVisible(!nameCorrect);
-                                                view.lblerrorName.setText("El nombre tiene caracteres no permitidos (1-9,@,$,%,&,?)");
-                                                view.lblerrorLastName.setVisible(false);
-                                                view.lblerrorEmail.setVisible(false);
-                                                view.lblerrorPhone.setVisible(false);
-                                                view.lblerrorDepartment.setVisible(false);
-                                                view.lblerrorAdress.setVisible(false);
-                                                view.lblerrorCity.setVisible(false);
-                                                view.lblerrorRol.setVisible(false);
-                                            } else {
-                                                boolean lastNameCorrect = validation.stringCheck(view.txtLastNameAdd.getText());
-                                                if (!lastNameCorrect) {
-                                                    view.lblerrorLastName.setVisible(!lastNameCorrect);
-                                                    view.lblerrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?)");
-                                                    view.lblerrorName.setVisible(false);
-                                                    view.lblerrorEmail.setVisible(false);
-                                                    view.lblerrorPhone.setVisible(false);
-                                                    view.lblerrorDepartment.setVisible(false);
-                                                    view.lblerrorAdress.setVisible(false);
-                                                    view.lblerrorCity.setVisible(false);
-                                                    view.lblerrorRol.setVisible(false);
-                                                } else {
-                                                    boolean departmentCorrect = validation.stringCheck(view.txtDepartmentAdd.getText());
-                                                    if (!departmentCorrect) {
-                                                        view.lblerrorDepartment.setVisible(!departmentCorrect);
-                                                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos (1-9,@,$,%,&,?)");
-                                                        view.lblerrorLastName.setVisible(false);
-                                                        view.lblerrorEmail.setVisible(false);
-                                                        view.lblerrorPhone.setVisible(false);
-                                                        view.lblerrorName.setVisible(false);
-                                                        view.lblerrorAdress.setVisible(false);
-                                                        view.lblerrorCity.setVisible(false);
-                                                        view.lblerrorRol.setVisible(false);
-                                                    } else {
-                                                        boolean cityCorrect = validation.stringCheck(view.txtCityAdd.getText());
-                                                        if (!cityCorrect) {
-                                                            view.lblerrorCity.setVisible(!cityCorrect);
-                                                            view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos (1-9,@,$,%,&,?)");
-                                                            view.lblerrorLastName.setVisible(false);
-                                                            view.lblerrorEmail.setVisible(false);
-                                                            view.lblerrorPhone.setVisible(false);
-                                                            view.lblerrorDepartment.setVisible(false);
-                                                            view.lblerrorAdress.setVisible(false);
-                                                            view.lblerrorName.setVisible(false);
-                                                            view.lblerrorRol.setVisible(false);
-                                                        } else {
-                                                            boolean phoneCorrect = validation.phoneCheck(view.txtPhoneAdd.getText());
-                                                            if (!phoneCorrect) {
-                                                                view.lblerrorPhone.setVisible(!phoneCorrect);
-                                                                view.lblerrorPhone.setText("el numero de celular tiene caracteres no permitidos (a-z,#,$,%,&,/,-)");
-                                                                view.lblerrorLastName.setVisible(false);
-                                                                view.lblerrorEmail.setVisible(false);
-                                                                view.lblerrorName.setVisible(false);
-                                                                view.lblerrorDepartment.setVisible(false);
-                                                                view.lblerrorAdress.setVisible(false);
-                                                                view.lblerrorCity.setVisible(false);
-                                                                view.lblerrorRol.setVisible(false);
-                                                            } else {
-                                                                boolean domainCorrect = validation.emailDomain(view.txtEmailAdd.getText());
-                                                                if (!domainCorrect) {
-                                                                    view.lblerrorEmail.setVisible(!domainCorrect);
-                                                                    view.lblerrorEmail.setText("El correo electronico no tiene el dominio correcto");
-                                                                    view.lblerrorLastName.setVisible(false);
-                                                                    view.lblerrorName.setVisible(false);
-                                                                    view.lblerrorPhone.setVisible(false);
-                                                                    view.lblerrorDepartment.setVisible(false);
-                                                                    view.lblerrorAdress.setVisible(false);
-                                                                    view.lblerrorCity.setVisible(false);
-                                                                    view.lblerrorRol.setVisible(false);
-                                                                } else {
-                                                                    boolean addressCorrect = validation.addressCheck(view.txtAdressAdd.getText());
-                                                                    if (!addressCorrect) {
-                                                                        view.lblerrorAdress.setVisible(!addressCorrect);
-                                                                        view.lblerrorAdress.setText("la direccion tiene caracteres no permitidos");
-                                                                        view.lblerrorLastName.setVisible(false);
-                                                                        view.lblerrorEmail.setVisible(false);
-                                                                        view.lblerrorPhone.setVisible(false);
-                                                                        view.lblerrorDepartment.setVisible(false);
-                                                                        view.lblerrorName.setVisible(false);
-                                                                        view.lblerrorCity.setVisible(false);
-                                                                        view.lblerrorRol.setVisible(false);
-                                                                    } else {
-                                                                        if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol")) {
-                                                                            view.lblerrorRol.setVisible(true);
-                                                                            view.lblerrorRol.setText("Seleccione una opcion valida");
-                                                                            view.lblerrorLastName.setVisible(false);
-                                                                            view.lblerrorEmail.setVisible(false);
-                                                                            view.lblerrorPhone.setVisible(false);
-                                                                            view.lblerrorDepartment.setVisible(false);
-                                                                            view.lblerrorName.setVisible(false);
-                                                                            view.lblerrorCity.setVisible(false);
-                                                                            view.lblerrorAdress.setVisible(false);
-                                                                        } else {
-                                                                            UsersModel users = new UsersModel();
-                                                                            users.setIdUsers(id);
-                                                                            users.setFirstName(view.txtFirstNameAdd.getText());
-                                                                            users.setLastName(view.txtLastNameAdd.getText());
-                                                                            users.setAddress(view.txtAdressAdd.getText());
-                                                                            users.setCity(view.txtCityAdd.getText());
-                                                                            users.setEmail(view.txtEmailAdd.getText());
-                                                                            users.setPhone(view.txtPhoneAdd.getText());
-                                                                            users.setDepartment(view.txtDepartmentAdd.getText());
-                                                                            users.setRol(view.cmbRoles.getSelectedIndex());
-                                                                            
-                                                                            if (!queries.showifmailexists(users2)) {
-                                                                                
-                                                                                JOptionPane.showMessageDialog(usersView, "El correo ya existe");
-                                                                            } else {
-                                                                                
-                                                                            if (!users2.getEmail().equals(view.txtEmailAdd.getText())) {
-                                                                                createPassword(modelo, users);
-                                                                            }
-
-                                                                            
-                                                                                if (queries.updateUser(users)) {
-
-                                                                                    JOptionPane.showMessageDialog(view, "Se actualizó el usuario");
-                                                                                    UsersView usersView2 = new UsersView();
-                                                                                    UsersController usersController = new UsersController(usersView2);
-                                                                                    usersController.loadTable();
-                                                                                    repaint.changePanel(view, usersView2);
-
-                                                                                } else {
-                                                                                    JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
                         }
                     }
                 }
@@ -324,7 +363,7 @@ public class editUsersController {
     }
 
     public void changetitle() {
-        view.lblTitle.setText("Editar uisuario");
+        view.lblTitle.setText("Editar usuario");
     }
 
     public void hideButton() {

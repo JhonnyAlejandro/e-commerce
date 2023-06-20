@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/ProvidersController.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/utilities/ValidationsUsers.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/utilities/ValidationsProvider.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/AddProviderController.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/views/ProvidersView.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/EditProviderController.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/controllers/LoginController.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/application/views/UsersFormView.java</file>
-            <file>file:/C:/Users/braya/OneDrive/Documentos/NetBeansProjects/e-commerce/src/utilities/Validations.java</file>
+            <file>file:/C:/e-commerce/src/application/controllers/AddProviderController.java</file>
+            <file>file:/C:/e-commerce/src/database/QueriesProvider.java</file>
+            <file>file:/C:/e-commerce/src/application/models/ProviderModel.java</file>
         </group>
     </open-files>
 </project-private>
