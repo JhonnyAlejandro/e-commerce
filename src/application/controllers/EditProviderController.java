@@ -42,8 +42,8 @@ public class EditProviderController {
 
         view.txtFirstNameAdd.setText(model.getFirstName());
         view.txtLastNameAdd.setText(model.getLastName());
-        view.txtDepartmentAdd.setText(model.getDepartment());
-        view.txtCityAdd.setText(model.getCity());
+        view.txtCityAdd.setText(model.getDepartment());
+        view.txtDepartmentAdd.setText(model.getCity());
         view.txtPhoneAdd.setText(model.getPhone());
         view.txtAdressAdd.setText(model.getAddress());
         view.txtEmailAdd.setText(model.getEmail());
@@ -54,7 +54,7 @@ public class EditProviderController {
         view.btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if (validaciones.validateEmptyField(view.txtFirstNameAdd.getText()) || validaciones.validateEmptyField(view.txtLastNameAdd.getText()) || validaciones.validateEmptyField(view.txtCityAdd.getText()) || validaciones.validateEmptyField(view.txtEmailAdd.getText()) || validaciones.validateEmptyField(view.txtAdressAdd.getText()) || validaciones.validateEmptyField(view.txtPhoneAdd.getText()) || validaciones.validateEmptyField(view.txtDepartmentAdd.getText())) {
+                if (validaciones.validateEmptyField(view.txtFirstNameAdd.getText()) || validaciones.validateEmptyField(view.txtLastNameAdd.getText()) || validaciones.validateEmptyField(view.txtDepartmentAdd.getText()) || validaciones.validateEmptyField(view.txtEmailAdd.getText()) || validaciones.validateEmptyField(view.txtAdressAdd.getText()) || validaciones.validateEmptyField(view.txtPhoneAdd.getText()) || validaciones.validateEmptyField(view.txtCityAdd.getText())) {
                     JOptionPane.showMessageDialog(null, "campos vacios.");
 
                 } else {
@@ -62,9 +62,9 @@ public class EditProviderController {
                     model.setFirstName(view.txtFirstNameAdd.getText());
                     model.setLastName(view.txtLastNameAdd.getText());
                     model.setAddress(view.txtAdressAdd.getText());
-                    model.setCity(view.txtCityAdd.getText());
+                    model.setCity(view.txtDepartmentAdd.getText());
                     model.setPhone(view.txtPhoneAdd.getText());
-                    model.setDepartment(view.txtDepartmentAdd.getText());
+                    model.setDepartment(view.txtCityAdd.getText());
                     model.setEmail(view.txtEmailAdd.getText());
 
                     if (consult.modificar(model)) {

@@ -23,6 +23,7 @@ public class ProvidersController {
 
         events();
         loadData();
+        System.out.println("llegue a load ");
         editProviderForm();
         filterListener();
     }

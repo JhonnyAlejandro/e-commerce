@@ -11,15 +11,15 @@ public class ProvidersFormView extends javax.swing.JPanel {
 
         txtFirstNameAdd.putClientProperty("JTextField.placeholderText", "Nombre");
 
-        jLabel2.setVisible(false);
+        lblerrorName.setVisible(false);
 
         txtLastNameAdd.putClientProperty("JTextField.placeholderText", "Apellido");
 
-        jLabel3.setVisible(false);
+        lblerrorLastName.setVisible(false);
 
         txtEmailAdd.putClientProperty("JTextField.placeholderText", "Dirección de correo electrónico");
 
-        jLabel4.setVisible(false);
+        lblerrorEmail.setVisible(false);
 
         txtPhoneAdd.putClientProperty("JTextField.placeholderText", "Número de celular/teléfono");
 
@@ -27,19 +27,19 @@ public class ProvidersFormView extends javax.swing.JPanel {
                 "arc: 20;"
         );
 
-        jLabel5.setVisible(false);
+        lblerrorPhone.setVisible(false);
 
-        txtCityAdd.putClientProperty("JTextField.placeholderText", "Departamento");
+        txtDepartmentAdd.putClientProperty("JTextField.placeholderText", "Departamento");
 
-        jLabel6.setVisible(false);
+        lblerrorDepartment.setVisible(false);
 
-        txtDepartmentAdd.putClientProperty("JTextField.placeholderText", "Ciudad");
+        txtCityAdd.putClientProperty("JTextField.placeholderText", "Ciudad");
 
-        jLabel7.setVisible(false);
+        lblerrorCity.setVisible(false);
 
         txtAdressAdd.putClientProperty("JTextField.placeholderText", "Dirección de residencia");
 
-        jLabel8.setVisible(false);
+        lblerrorAdress.setVisible(false);
 
         btnAdd.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
@@ -74,20 +74,20 @@ public class ProvidersFormView extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         txtFirstNameAdd = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblerrorName = new javax.swing.JLabel();
         txtLastNameAdd = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblerrorLastName = new javax.swing.JLabel();
         txtEmailAdd = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblerrorEmail = new javax.swing.JLabel();
         txtPhoneAdd = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblerrorPhone = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        txtCityAdd = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txtDepartmentAdd = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblerrorDepartment = new javax.swing.JLabel();
+        txtCityAdd = new javax.swing.JTextField();
+        lblerrorCity = new javax.swing.JLabel();
         txtAdressAdd = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblerrorAdress = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -109,27 +109,32 @@ public class ProvidersFormView extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel2.setText("Error message");
+        lblerrorName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorName.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorName.setText("Error message");
 
         txtLastNameAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel3.setText("Error message");
+        lblerrorLastName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorLastName.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorLastName.setText("Error message");
 
         txtEmailAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel4.setText("Error message");
+        lblerrorEmail.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorEmail.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorEmail.setText("Error message");
 
         txtPhoneAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtPhoneAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneAddActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel5.setText("Error message");
+        lblerrorPhone.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorPhone.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorPhone.setText("Error message");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,19 +149,19 @@ public class ProvidersFormView extends javax.swing.JPanel {
                             .addComponent(txtFirstNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel2)))
+                                .addComponent(lblerrorName)))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLastNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel3))))
+                                .addComponent(lblerrorLastName))))
                     .addComponent(txtPhoneAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)))
+                            .addComponent(lblerrorPhone)
+                            .addComponent(lblerrorEmail)))
                     .addComponent(lblTitle))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -171,38 +176,43 @@ public class ProvidersFormView extends javax.swing.JPanel {
                     .addComponent(txtLastNameAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lblerrorName)
+                    .addComponent(lblerrorLastName))
                 .addGap(15, 15, 15)
                 .addComponent(txtEmailAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel4)
+                .addComponent(lblerrorEmail)
                 .addGap(15, 15, 15)
                 .addComponent(txtPhoneAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel5)
+                .addComponent(lblerrorPhone)
                 .addGap(20, 20, 20))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtDepartmentAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txtDepartmentAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDepartmentAddActionPerformed(evt);
+            }
+        });
+
+        lblerrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorDepartment.setText("Error message");
+
         txtCityAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel6.setText("Error message");
-
-        txtDepartmentAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel7.setText("Error message");
+        lblerrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorCity.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorCity.setText("Error message");
 
         txtAdressAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel8.setText("Error message");
+        lblerrorAdress.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblerrorAdress.setForeground(new java.awt.Color(245, 29, 36));
+        lblerrorAdress.setText("Error message");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -213,19 +223,19 @@ public class ProvidersFormView extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel6)))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel7))))
+                                .addComponent(lblerrorDepartment)))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(lblerrorCity))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel8))
+                        .addComponent(lblerrorAdress))
                     .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
@@ -234,16 +244,16 @@ public class ProvidersFormView extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(lblerrorDepartment)
+                    .addComponent(lblerrorCity))
                 .addGap(15, 15, 15)
                 .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel8)
+                .addComponent(lblerrorAdress)
                 .addGap(20, 20, 20))
         );
 
@@ -324,22 +334,30 @@ public class ProvidersFormView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameAddActionPerformed
 
+    private void txtPhoneAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneAddActionPerformed
+
+    private void txtDepartmentAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepartmentAddActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAdd;
     public javax.swing.JButton btnCancel;
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnSave;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JLabel lblTitle;
+    public javax.swing.JLabel lblerrorAdress;
+    public javax.swing.JLabel lblerrorCity;
+    public javax.swing.JLabel lblerrorDepartment;
+    public javax.swing.JLabel lblerrorEmail;
+    public javax.swing.JLabel lblerrorLastName;
+    public javax.swing.JLabel lblerrorName;
+    public javax.swing.JLabel lblerrorPhone;
     public javax.swing.JTextField txtAdressAdd;
     public javax.swing.JTextField txtCityAdd;
     public javax.swing.JTextField txtDepartmentAdd;

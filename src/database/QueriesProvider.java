@@ -10,6 +10,7 @@ import configuration.DatabaseConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 
 public class QueriesProvider {
     
@@ -36,7 +37,6 @@ public class QueriesProvider {
                 mdlProvider.setDepartment(result.getString("department"));
                 mdlProvider.setPhone(result.getString("phone"));
                 mdlProvider.setEmail(result.getString("email"));
-                mdlProvider.setCreated_at(result.getString("created_at"));
                 listaProvider.add(mdlProvider);
             }
         }
@@ -50,12 +50,13 @@ public class QueriesProvider {
    
     public boolean registrar(ProviderModel provider) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         boolean register = false;
         String sql = "INSERT INTO providers (first_name, last_name, address, city, department, phone, email, state, created_at, updated_at) "
                 + "VALUES ('" + provider.getFirstName() + "', '" + provider.getLastName() + "', '" + provider.getAddress() + "', '"
                 + provider.getCity() + "', '" + provider.getDepartment() + "', '" + provider.getPhone() + "', '" + provider.getEmail()
-                + "', '" + provider.getState() + "', '" + provider.getCreated_at() + "', '" + provider.getUpdated_at() + "')";
+                + "', '" + provider.getState() + "', '" + timestamp + "', '" + timestamp + "')";
 
         try {
             if (databaseConnection.execute(sql)) {
@@ -71,7 +72,7 @@ public class QueriesProvider {
 
     public boolean modificar(ProviderModel provider) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
-
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         
         boolean successModificar = false;
 
@@ -84,8 +85,7 @@ public class QueriesProvider {
                     + "department = '" + provider.getDepartment() + "', "
                     + "phone = '" + provider.getPhone() + "', "
                     + "email = '" + provider.getEmail() + "', "
-                    + "created_at = '" + provider.getCreated_at() + "', "
-                    + "updated_at = '" + provider.getUpdated_at() + "' "
+                    + "created_at = '" + timestamp + "' "
                     + "WHERE id = " + provider.getId();
 
             if (databaseConnection.execute(selectSql)) {

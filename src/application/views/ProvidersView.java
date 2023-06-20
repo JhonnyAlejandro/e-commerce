@@ -55,7 +55,7 @@ public class ProvidersView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "Nombre", "Apellido", "Direccion", "Ciudad", "Telefono", "Email"
+                "ID", "Nombre", "Apellido", "Dirección ", "Ciudad", "Departamento", "Telefono", "Email"
             }
         ));
         jScrollPane1.setViewportView(tblProvider);
