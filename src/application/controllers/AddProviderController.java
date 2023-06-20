@@ -164,7 +164,7 @@ public class AddProviderController {
 
                     System.out.println("bandera 5");
                 } else {
-                    if (validation.stringCheck(view.txtDepartmentAdd.getText())) {
+                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
                         view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
                                 "borderColor: #F51D24;"
                         );
@@ -196,7 +196,7 @@ public class AddProviderController {
 
                     System.out.println("bandera 6");
                 } else {
-                    if (validation.stringCheck(view.txtCityAdd.getText())) {
+                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
                         view.txtCityAdd.putClientProperty("FlatLaf.style",
                                 "borderColor: #F51D24;"
                         );
@@ -249,6 +249,7 @@ public class AddProviderController {
 
                 if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true) {
                     if (queries.registrar(model)) {
+                        
                         JOptionPane.showMessageDialog(null, "proveedor guardado");
                         ProvidersView providersView = new ProvidersView();
                         new ProvidersController(providersView);

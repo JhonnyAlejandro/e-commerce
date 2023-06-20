@@ -56,7 +56,7 @@ public class QueriesProvider {
         String sql = "INSERT INTO providers (first_name, last_name, address, city, department, phone, email, state, created_at, updated_at) "
                 + "VALUES ('" + provider.getFirstName() + "', '" + provider.getLastName() + "', '" + provider.getAddress() + "', '"
                 + provider.getCity() + "', '" + provider.getDepartment() + "', '" + provider.getPhone() + "', '" + provider.getEmail()
-                + "', '" + provider.getState() + "', '" + timestamp + "', '" + timestamp + "')";
+                + "', '" + 1 + "', '" + timestamp + "', '" + timestamp + "')";
 
         try {
             if (databaseConnection.execute(sql)) {
