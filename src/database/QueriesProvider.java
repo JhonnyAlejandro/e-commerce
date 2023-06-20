@@ -52,7 +52,7 @@ public class QueriesProvider {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        boolean register = false;
+        boolean registrar = false;
         String sql = "INSERT INTO providers (first_name, last_name, address, city, department, phone, email, state, created_at, updated_at) "
                 + "VALUES ('" + provider.getFirstName() + "', '" + provider.getLastName() + "', '" + provider.getAddress() + "', '"
                 + provider.getCity() + "', '" + provider.getDepartment() + "', '" + provider.getPhone() + "', '" + provider.getEmail()
@@ -60,14 +60,14 @@ public class QueriesProvider {
 
         try {
             if (databaseConnection.execute(sql)) {
-                register = true;
+                registrar = true;
             }
         } catch (Exception e) {
             System.err.println("Failed to register user: " + e);
         } finally {
             databaseConnection.disconnect();
         }
-        return register;
+        return registrar;
     }
 
     public boolean modificar(ProviderModel provider) {

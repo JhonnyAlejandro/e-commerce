@@ -30,7 +30,7 @@ public class ValidationsProvider {
     //el metodo que esta abajo es una expresion que solo recibe letras, una -,' para el apellido,el nombre,el departamento y ciudad. 
     public boolean stringCheck(String data3) {
 
-        Pattern pattern = Pattern.compile("^[A-Za-zñÑ\\s]+$");
+        Pattern pattern = Pattern.compile("^[A-Za-zñÑ\\s\\-,']+$");
         Matcher matcher = pattern.matcher(data3);
 
         if (matcher.find()) {
