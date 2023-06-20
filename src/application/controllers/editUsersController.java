@@ -93,7 +93,7 @@ public class editUsersController {
                             view.lblerrorDepartment.setVisible(false);
                             view.lblerrorAdress.setVisible(false);
                             view.lblerrorCity.setVisible(false);
-                            // view.lblerrorRol.setVisible(false);
+                            view.lblerrorRol.setVisible(false);
                         } else {
                             boolean emptyAddress = validation.checkEmpty(view.txtAdressAdd.getText());
                             if (emptyAddress) {
@@ -105,7 +105,7 @@ public class editUsersController {
                                 view.lblerrorDepartment.setVisible(false);
                                 view.lblerrorName.setVisible(false);
                                 view.lblerrorCity.setVisible(false);
-                                //view.lblerrorRol.setVisible(false);
+                                view.lblerrorRol.setVisible(false);
                             } else {
                                 boolean emptyDepartment = validation.checkEmpty(view.txtDepartmentAdd.getText());
                                 if (emptyDepartment) {
@@ -117,7 +117,7 @@ public class editUsersController {
                                     view.lblerrorName.setVisible(false);
                                     view.lblerrorAdress.setVisible(false);
                                     view.lblerrorCity.setVisible(false);
-                                    //view.lblerrorRol.setVisible(false);
+                                    view.lblerrorRol.setVisible(false);
                                 } else {
                                     boolean emptyCity = validation.checkEmpty(view.txtCityAdd.getText());
                                     if (emptyCity) {
@@ -129,7 +129,7 @@ public class editUsersController {
                                         view.lblerrorDepartment.setVisible(false);
                                         view.lblerrorAdress.setVisible(false);
                                         view.lblerrorName.setVisible(false);
-                                        // view.lblerrorRol.setVisible(false);
+                                        view.lblerrorRol.setVisible(false);
                                     } else {
                                         boolean emptyPhone = validation.checkEmpty(view.txtPhoneAdd.getText());
                                         if (emptyPhone) {
@@ -141,7 +141,7 @@ public class editUsersController {
                                             view.lblerrorDepartment.setVisible(false);
                                             view.lblerrorAdress.setVisible(false);
                                             view.lblerrorCity.setVisible(false);
-                                            // view.lblerrorRol.setVisible(false);
+                                            view.lblerrorRol.setVisible(false);
                                         } else {
                                             boolean nameCorrect = validation.stringCheck(view.txtFirstNameAdd.getText());
                                             if (!nameCorrect) {
@@ -153,7 +153,7 @@ public class editUsersController {
                                                 view.lblerrorDepartment.setVisible(false);
                                                 view.lblerrorAdress.setVisible(false);
                                                 view.lblerrorCity.setVisible(false);
-                                                // view.lblerrorRol.setVisible(false);
+                                                view.lblerrorRol.setVisible(false);
                                             } else {
                                                 boolean lastNameCorrect = validation.stringCheck(view.txtLastNameAdd.getText());
                                                 if (!lastNameCorrect) {
@@ -165,7 +165,7 @@ public class editUsersController {
                                                     view.lblerrorDepartment.setVisible(false);
                                                     view.lblerrorAdress.setVisible(false);
                                                     view.lblerrorCity.setVisible(false);
-                                                    //  view.lblerrorRol.setVisible(false);
+                                                    view.lblerrorRol.setVisible(false);
                                                 } else {
                                                     boolean departmentCorrect = validation.stringCheck(view.txtDepartmentAdd.getText());
                                                     if (!departmentCorrect) {
@@ -177,7 +177,7 @@ public class editUsersController {
                                                         view.lblerrorName.setVisible(false);
                                                         view.lblerrorAdress.setVisible(false);
                                                         view.lblerrorCity.setVisible(false);
-                                                        //view.lblerrorRol.setVisible(false);
+                                                        view.lblerrorRol.setVisible(false);
                                                     } else {
                                                         boolean cityCorrect = validation.stringCheck(view.txtCityAdd.getText());
                                                         if (!cityCorrect) {
@@ -189,7 +189,7 @@ public class editUsersController {
                                                             view.lblerrorDepartment.setVisible(false);
                                                             view.lblerrorAdress.setVisible(false);
                                                             view.lblerrorName.setVisible(false);
-                                                            // view.lblerrorRol.setVisible(false);
+                                                            view.lblerrorRol.setVisible(false);
                                                         } else {
                                                             boolean phoneCorrect = validation.phoneCheck(view.txtPhoneAdd.getText());
                                                             if (!phoneCorrect) {
@@ -201,7 +201,7 @@ public class editUsersController {
                                                                 view.lblerrorDepartment.setVisible(false);
                                                                 view.lblerrorAdress.setVisible(false);
                                                                 view.lblerrorCity.setVisible(false);
-                                                                //  view.lblerrorRol.setVisible(false);
+                                                                view.lblerrorRol.setVisible(false);
                                                             } else {
                                                                 boolean domainCorrect = validation.emailDomain(view.txtEmailAdd.getText());
                                                                 if (!domainCorrect) {
@@ -213,7 +213,7 @@ public class editUsersController {
                                                                     view.lblerrorDepartment.setVisible(false);
                                                                     view.lblerrorAdress.setVisible(false);
                                                                     view.lblerrorCity.setVisible(false);
-                                                                    // view.lblerrorRol.setVisible(false);
+                                                                    view.lblerrorRol.setVisible(false);
                                                                 } else {
                                                                     boolean addressCorrect = validation.addressCheck(view.txtAdressAdd.getText());
                                                                     if (!addressCorrect) {
@@ -225,11 +225,11 @@ public class editUsersController {
                                                                         view.lblerrorDepartment.setVisible(false);
                                                                         view.lblerrorName.setVisible(false);
                                                                         view.lblerrorCity.setVisible(false);
-                                                                        // view.lblerrorRol.setVisible(false);
+                                                                        view.lblerrorRol.setVisible(false);
                                                                     } else {
-                                                                        if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol:")) {
-                                                                            //view.lblerrorRol.setVisible(true);
-                                                                            //view.lblerrorRol.setText("Seleccione una opcion valida");
+                                                                        if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol")) {
+                                                                            view.lblerrorRol.setVisible(true);
+                                                                            view.lblerrorRol.setText("Seleccione una opcion valida");
                                                                             view.lblerrorLastName.setVisible(false);
                                                                             view.lblerrorEmail.setVisible(false);
                                                                             view.lblerrorPhone.setVisible(false);
@@ -248,20 +248,28 @@ public class editUsersController {
                                                                             users.setPhone(view.txtPhoneAdd.getText());
                                                                             users.setDepartment(view.txtDepartmentAdd.getText());
                                                                             users.setRol(view.cmbRoles.getSelectedIndex());
-
+                                                                            
+                                                                            if (!queries.showifmailexists(users2)) {
+                                                                                
+                                                                                JOptionPane.showMessageDialog(usersView, "El correo ya existe");
+                                                                            } else {
+                                                                                
                                                                             if (!users2.getEmail().equals(view.txtEmailAdd.getText())) {
                                                                                 createPassword(modelo, users);
                                                                             }
-                                                                            if (queries.updateUser(users)) {
 
-                                                                                JOptionPane.showMessageDialog(view, "Se actualizó el usuario");
-                                                                                UsersView usersView2 = new UsersView();
-                                                                                UsersController usersController = new UsersController(usersView2);
-                                                                                usersController.loadTable();
-                                                                                repaint.changePanel(view, usersView2);
+                                                                            
+                                                                                if (queries.updateUser(users)) {
 
-                                                                            } else {
-                                                                                JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
+                                                                                    JOptionPane.showMessageDialog(view, "Se actualizó el usuario");
+                                                                                    UsersView usersView2 = new UsersView();
+                                                                                    UsersController usersController = new UsersController(usersView2);
+                                                                                    usersController.loadTable();
+                                                                                    repaint.changePanel(view, usersView2);
+
+                                                                                } else {
+                                                                                    JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
+                                                                                }
                                                                             }
                                                                         }
                                                                     }

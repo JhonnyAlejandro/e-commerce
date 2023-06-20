@@ -388,4 +388,23 @@ public class QueriesUsers {
         connection.disconnect();
         return rolesList;
     }
+    public boolean showifmailexists(UsersModel users) {
+
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT email FROM users WHERE email = '"
+                + users.getEmail() + "'";
+
+        ResultSet result;
+        boolean show = false;
+        try {
+            result = connection.consult(sql);
+            while (result.next()) {
+                show = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al mostrar el correo: " + e);
+        }
+        connection.disconnect();
+        return show;
+    }
 }

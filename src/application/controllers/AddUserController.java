@@ -64,7 +64,7 @@ public class AddUserController {
                     view.lblerrorDepartment.setVisible(false);
                     view.lblerrorAdress.setVisible(false);
                     view.lblerrorCity.setVisible(false);
-                    //view.lblerrorRol.setVisible(false);
+                    view.lblerrorRol.setVisible(false);
                 } else {
                     boolean emptyLastName = validation.checkEmpty(view.txtLastNameAdd.getText());
                     if (emptyLastName) {
@@ -76,7 +76,7 @@ public class AddUserController {
                         view.lblerrorDepartment.setVisible(false);
                         view.lblerrorAdress.setVisible(false);
                         view.lblerrorCity.setVisible(false);
-                        //view.lblerrorRol.setVisible(false);
+                        view.lblerrorRol.setVisible(false);
                     } else {
                         boolean emptyEmail = validation.checkEmpty(view.txtEmailAdd.getText());
                         if (emptyEmail) {
@@ -88,7 +88,7 @@ public class AddUserController {
                             view.lblerrorDepartment.setVisible(false);
                             view.lblerrorAdress.setVisible(false);
                             view.lblerrorCity.setVisible(false);
-                            //view.lblerrorRol.setVisible(false);
+                            view.lblerrorRol.setVisible(false);
                         } else {
                             boolean emptyAddress = validation.checkEmpty(view.txtAdressAdd.getText());
                             if (emptyAddress) {
@@ -100,7 +100,7 @@ public class AddUserController {
                                 view.lblerrorDepartment.setVisible(false);
                                 view.lblerrorName.setVisible(false);
                                 view.lblerrorCity.setVisible(false);
-                                //view.lblerrorRol.setVisible(false);
+                                view.lblerrorRol.setVisible(false);
                             } else {
                                 boolean emptyDepartment = validation.checkEmpty(view.txtDepartmentAdd.getText());
                                 if (emptyDepartment) {
@@ -112,7 +112,7 @@ public class AddUserController {
                                     view.lblerrorName.setVisible(false);
                                     view.lblerrorAdress.setVisible(false);
                                     view.lblerrorCity.setVisible(false);
-                                    //view.lblerrorRol.setVisible(false);
+                                    view.lblerrorRol.setVisible(false);
                                 } else {
                                     boolean emptyCity = validation.checkEmpty(view.txtCityAdd.getText());
                                     if (emptyCity) {
@@ -124,7 +124,7 @@ public class AddUserController {
                                         view.lblerrorDepartment.setVisible(false);
                                         view.lblerrorAdress.setVisible(false);
                                         view.lblerrorName.setVisible(false);
-                                        //view.lblerrorRol.setVisible(false);
+                                        view.lblerrorRol.setVisible(false);
                                     } else {
                                         boolean emptyPhone = validation.checkEmpty(view.txtPhoneAdd.getText());
                                         if (emptyPhone) {
@@ -136,7 +136,7 @@ public class AddUserController {
                                             view.lblerrorDepartment.setVisible(false);
                                             view.lblerrorAdress.setVisible(false);
                                             view.lblerrorCity.setVisible(false);
-                                            //view.lblerrorRol.setVisible(false);
+                                            view.lblerrorRol.setVisible(false);
                                         } else {
                                             boolean nameCorrect = validation.stringCheck(view.txtFirstNameAdd.getText());
                                             if (!nameCorrect) {
@@ -148,7 +148,7 @@ public class AddUserController {
                                                 view.lblerrorDepartment.setVisible(false);
                                                 view.lblerrorAdress.setVisible(false);
                                                 view.lblerrorCity.setVisible(false);
-                                                //view.lblerrorRol.setVisible(false);
+                                                view.lblerrorRol.setVisible(false);
                                             } else {
                                                 boolean lastNameCorrect = validation.stringCheck(view.txtLastNameAdd.getText());
                                                 if (!lastNameCorrect) {
@@ -160,7 +160,7 @@ public class AddUserController {
                                                     view.lblerrorDepartment.setVisible(false);
                                                     view.lblerrorAdress.setVisible(false);
                                                     view.lblerrorCity.setVisible(false);
-                                                    //view.lblerrorRol.setVisible(false);
+                                                    view.lblerrorRol.setVisible(false);
                                                 } else {
                                                     boolean departmentCorrect = validation.stringCheck(view.txtDepartmentAdd.getText());
                                                     if (!departmentCorrect) {
@@ -172,7 +172,7 @@ public class AddUserController {
                                                         view.lblerrorName.setVisible(false);
                                                         view.lblerrorAdress.setVisible(false);
                                                         view.lblerrorCity.setVisible(false);
-                                                        //view.lblerrorRol.setVisible(false);
+                                                        view.lblerrorRol.setVisible(false);
                                                     } else {
                                                         boolean cityCorrect = validation.stringCheck(view.txtCityAdd.getText());
                                                         if (!cityCorrect) {
@@ -184,7 +184,7 @@ public class AddUserController {
                                                             view.lblerrorDepartment.setVisible(false);
                                                             view.lblerrorAdress.setVisible(false);
                                                             view.lblerrorName.setVisible(false);
-                                                            //view.lblerrorRol.setVisible(false);
+                                                            view.lblerrorRol.setVisible(false);
                                                         } else {
                                                             boolean phoneCorrect = validation.phoneCheck(view.txtPhoneAdd.getText());
                                                             if (!phoneCorrect) {
@@ -196,7 +196,7 @@ public class AddUserController {
                                                                 view.lblerrorDepartment.setVisible(false);
                                                                 view.lblerrorAdress.setVisible(false);
                                                                 view.lblerrorCity.setVisible(false);
-                                                                //view.lblerrorRol.setVisible(false);
+                                                                view.lblerrorRol.setVisible(false);
                                                             } else {
                                                                 boolean domainCorrect = validation.emailDomain(view.txtEmailAdd.getText());
                                                                 if (!domainCorrect) {
@@ -208,7 +208,7 @@ public class AddUserController {
                                                                     view.lblerrorDepartment.setVisible(false);
                                                                     view.lblerrorAdress.setVisible(false);
                                                                     view.lblerrorCity.setVisible(false);
-                                                                    //view.lblerrorRol.setVisible(false);
+                                                                    view.lblerrorRol.setVisible(false);
                                                                 } else {
                                                                     boolean addressCorrect = validation.addressCheck(view.txtAdressAdd.getText());
                                                                     if (!addressCorrect) {
@@ -220,11 +220,11 @@ public class AddUserController {
                                                                         view.lblerrorDepartment.setVisible(false);
                                                                         view.lblerrorName.setVisible(false);
                                                                         view.lblerrorCity.setVisible(false);
-                                                                        //view.lblerrorRol.setVisible(false);
+                                                                        view.lblerrorRol.setVisible(false);
                                                                     } else {
-                                                                        if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol:")) {
-                                                                            //view.lblerrorRol.setVisible(true);
-                                                                            //view.lblerrorRol.setText("Seleccione una opcion valida");
+                                                                        if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol")) {
+                                                                            view.lblerrorRol.setVisible(true);
+                                                                            view.lblerrorRol.setText("Seleccione una opcion valida");
                                                                             view.lblerrorLastName.setVisible(false);
                                                                             view.lblerrorEmail.setVisible(false);
                                                                             view.lblerrorPhone.setVisible(false);
@@ -246,12 +246,16 @@ public class AddUserController {
                                                                             users.setRol(view.cmbRoles.getSelectedIndex());
                                                                             createPassword(modelo, users);
 
-                                                                            if (queries.insertUser(users)) {
-                                                                                JOptionPane.showMessageDialog(view, "Se creo el usuario");
-                                                                                usersController.loadTable();
-                                                                                clean();
+                                                                            if (queries.showifmailexists(users)) {
+                                                                                JOptionPane.showMessageDialog(usersView, "El correo ya existe");
                                                                             } else {
-                                                                                JOptionPane.showMessageDialog(view, "No se ha podido crear el usuario");
+                                                                                if (queries.insertUser(users)) {
+                                                                                    JOptionPane.showMessageDialog(view, "Se creo el usuario");
+                                                                                    usersController.loadTable();
+                                                                                    clean();
+                                                                                } else {
+                                                                                    JOptionPane.showMessageDialog(view, "No se ha podido crear el usuario");
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
@@ -287,19 +291,18 @@ public class AddUserController {
             }
         });
     }
-    
-    public void changetitle(){
+
+    public void changetitle() {
         view.lblTitle.setText("Agregar uisuario");
     }
-    
-    public void hideButton(){
+
+    public void hideButton() {
         view.btnSaveChange.setVisible(false);
     }
-    
+
 //    public void moveButtonPosition(){
 //        view.btnAddCancel.setBounds(900, 900, 1000, 1000);
 //    }
-
     public void createPassword(RecuperationModel modelo, UsersModel users) {
 
         String temporaryPassword = generationCode();
