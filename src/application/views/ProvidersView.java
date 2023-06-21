@@ -50,14 +50,28 @@ public class ProvidersView extends javax.swing.JPanel {
         btnAdd.setText("Agregar");
         btnAdd.setIconTextGap(10);
 
-        tblProvider.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+      tblProvider.setModel(new javax.swing.table.DefaultTableModel(
+    new Object [][] {
 
-            },
-            new String [] {
-                "ID", "Nombre", "Apellido", "Dirección ", "Ciudad", "Departamento", "Telefono", "Email"
-            }
-        ));
+    },
+    new String [] {
+        "ID", "Nombre", "Apellido", "Dirección ", "Ciudad", "Departamento", "Teléfono", "Email"
+    }
+) {
+    boolean[] canEdit = new boolean [] {
+        false, true, true, true, true, true, true, true
+    };
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit[columnIndex];
+    }
+});
+
+
+tblProvider.getColumnModel().getColumn(0).setMinWidth(0);
+tblProvider.getColumnModel().getColumn(0).setMaxWidth(0);
+tblProvider.getColumnModel().getColumn(0).setWidth(0);
         jScrollPane1.setViewportView(tblProvider);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -50,22 +50,22 @@ public class LoginController {
                 boolean successfulEmailCredential = false;
                 boolean successfulPasswordCredential = false;
 
-                if (validations.validateEmptyField(view.txtEmail.getText())) {
+                if (validations.validateEmptyField(view.txtEmail.getText())) {  //primer if
                     view.txtEmail.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
                     view.lblEmailErrorMessage.setText("Ingresa tu dirección de correo electrónico*");
                     view.lblEmailErrorMessage.setVisible(true);
-                } else {
-                    if (validations.validateEmail(view.txtEmail.getText()) == false) {
+                } else { //else
+                    if (validations.validateEmail(view.txtEmail.getText()) == false) { //segundo if 
                         view.txtEmail.putClientProperty("FlatLaf.style",
                                 "borderColor: #F51D24;"
                         );
 
                         view.lblEmailErrorMessage.setText("Ingresa una dirección de correo electrónico valida*");
                         view.lblEmailErrorMessage.setVisible(true);
-                    } else {
+                    } else { //
                         view.txtEmail.putClientProperty("FlatLaf.style",
                                 "borderColor: #F3F6FB;"
                         );

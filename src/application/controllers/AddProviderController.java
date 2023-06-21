@@ -151,8 +151,8 @@ public class AddProviderController {
                         model.setPhone(view.txtPhoneAdd.getText());
                         Phone = true;
                     }
-                }
-//validaciones phone 
+                }//validaciones phone 
+                  
 
                 if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
                     view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
