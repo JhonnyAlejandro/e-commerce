@@ -60,6 +60,7 @@ public class UsersFormView extends javax.swing.JPanel {
                 + "background: #F51D24;"
                 + "hoverBackground: darken(#F51D24,5%);"
         );
+
     }
 
     @SuppressWarnings("unchecked")
@@ -139,6 +140,8 @@ public class UsersFormView extends javax.swing.JPanel {
         lblerrorRol.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorRol.setForeground(new java.awt.Color(245, 29, 36));
         lblerrorRol.setText("Error message");
+
+
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

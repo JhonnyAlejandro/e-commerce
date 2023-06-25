@@ -17,7 +17,7 @@ public class Queries {
 
         String pass = String.valueOf(user.getPassword());
 
-        String sql = "SELECT * FROM users WHERE email = '" + user.getEmail() + "' AND roles_id = '1' AND state = '1'";
+        String sql = "SELECT * FROM users WHERE email = '" + user.getEmail() + "' AND state = '1'";
 
         boolean authentication = false;
 

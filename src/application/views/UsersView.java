@@ -8,6 +8,10 @@ public class UsersView extends javax.swing.JPanel {
 
     public UsersView() {
         initComponents();
+        
+        tblUsers.getColumnModel().getColumn(0).setMinWidth(0);
+        tblUsers.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblUsers.getColumnModel().getColumn(0).setWidth(0);
 
         jPanel2.putClientProperty("FlatLaf.style",
                 "arc: 20;"

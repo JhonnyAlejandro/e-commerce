@@ -33,7 +33,7 @@ public class QueriesUsers {
                 users.setDepartment(result.getString("department"));
                 users.setEmail(result.getString("email"));
                 users.setPhone(result.getString("phone"));
-                users.setRol(result.getInt("roles_id"));
+                //users.setRol(result.getInt("roles_id"));
             }
         } catch (SQLException e) {
             System.err.println("Failed to get provider by id: " + e);
@@ -58,10 +58,10 @@ public class QueriesUsers {
 
         String pwHash = BCrypt.hashpw(pass, BCrypt.gensalt());
 
-        String sql = "INSERT INTO users (first_name, last_name, address, city, department, phone, email,password, state, created_at, updated_at,roles_id) "
+        String sql = "INSERT INTO users (first_name, last_name, address, city, department, phone, email,password, state, created_at, updated_at) "
                 + "VALUES ('" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getAddress() + "', '"
                 + user.getCity() + "', '" + user.getDepartment() + "', '" + user.getPhone() + "', '" + user.getEmail()
-                + "', '" + pwHash + "','" + 1 + "','" + timestamp + "','" + timestamp + "','" + user.getRol() + "')";
+                + "', '" + pwHash + "','" + 1 + "','" + timestamp + "','" + timestamp + "')";
 
         boolean insert = false;
 
@@ -100,8 +100,7 @@ public class QueriesUsers {
                     + "department = '" + user.getDepartment() + "', "
                     + "phone = '" + user.getPhone() + "', "
                     + "email = '" + user.getEmail() + "', "
-                    + "updated_at = '" + timestamp + "', "
-                    + "roles_id = '" + user.getRol() + "' "
+                    + "updated_at = '" + timestamp + "' "
                     + "WHERE id = " + user.getIdUsers();
             System.out.println("hola bb");
 
@@ -119,7 +118,6 @@ public class QueriesUsers {
                     + "password = '" + pwHash + "', "
                     + "email = '" + user.getEmail() + "', "
                     + " updated_at = '" + timestamp + "', "
-                    + " roles_id = '" + user.getRol() + "' "
                     + "WHERE id = " + user.getIdUsers();
 
             System.out.println("adios bb");
@@ -169,7 +167,7 @@ public class QueriesUsers {
         RolesModel roles = new RolesModel();
         DatabaseConnection connection = new DatabaseConnection();
         //String sql1 = "SELECT * FROM users WHERE state = 1";
-        String sql = "SELECT users.*, roles.name FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1";
+        String sql = "SELECT users.* FROM users WHERE users.state = 1";
 
         ResultSet result;
         result = connection.consult(sql);
@@ -184,8 +182,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
-                user.setRol(result.getInt("roles_id"));
-                user.setNameRol(result.getString("name"));
+                //user.setRol(result.getInt("roles_id"));
+                //user.setNameRol(result.getString("name"));
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -214,8 +212,8 @@ public class QueriesUsers {
                 user.setDepartment(result.getString("department"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
-                user.setRol(result.getInt("roles_id"));
-                user.setNameRol(result.getString("name"));
+                //user.setRol(result.getInt("roles_id"));
+                //user.setNameRol(result.getString("name"));
                 usersList.add(user);
 
             }
