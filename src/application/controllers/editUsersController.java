@@ -323,7 +323,7 @@ public class editUsersController {
                             UsersController usersController = new UsersController(usersView2);
                             usersController.loadTable();
                             repaint.changePanel(view, usersView2);
-                        } else if (correoExistente) {
+                        } else {
                             JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
                         }
                     }
