@@ -62,5 +62,19 @@ public class DatabaseConnection implements Configuration {
         }
         return result;
     }
+    
+    public int getLastInsertedId() throws SQLException {
+        int lastInsertedId = 0;
+        String sql = "SELECT LAST_INSERT_ID()";
+
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            if (resultSet.next()) {
+                lastInsertedId = resultSet.getInt(1);
+            }
+        }
+
+        return lastInsertedId;
+    }
 
 }

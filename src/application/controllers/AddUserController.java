@@ -295,8 +295,8 @@ public class AddUserController {
                 if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true && rol == true) {
                     UsersView usersView = new UsersView();
                     UsersController usersController = new UsersController(usersView);
-
-                    if (queries.showifmailexists(users)) {
+                    String email = users.getEmail();
+                    if (queries.showifmailexists(email)) {
                         JOptionPane.showMessageDialog(usersView, "El correo ya existe");
                     } else {
                         if (queries.insertUser(users)) {

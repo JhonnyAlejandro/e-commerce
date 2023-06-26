@@ -162,7 +162,6 @@ public class editUsersController {
                         view.lblerrorEmail.setVisible(false);
 
                         users.setEmail(view.txtEmailAdd.getText());
-                        createPassword(modelo, users);
 
                         Email = true;
 
@@ -304,23 +303,27 @@ public class editUsersController {
 
                 //validacion direccion 
                 if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true && rol == true) {
-                    if (queries.showifmailexists(users2)) {
-                        JOptionPane.showMessageDialog(usersView, "El correo ya existe");
-                    } else {
 
-                        if (!users2.getEmail().equals(view.txtEmailAdd.getText())) {
+                    boolean correoExistente = false;
+
+                    if (!users2.getEmail().equals(view.txtEmailAdd.getText())) {
+                        if (queries.showifmailexists(view.txtEmailAdd.getText())) {
+                            JOptionPane.showMessageDialog(usersView, "El correo ya existe");
+                            correoExistente = true;
+                        } else {
                             createPassword(modelo, users);
+
                         }
+                    }
 
+                    if (!correoExistente) {
                         if (queries.updateUser(users)) {
-
                             JOptionPane.showMessageDialog(view, "Se actualizó el usuario");
                             UsersView usersView2 = new UsersView();
                             UsersController usersController = new UsersController(usersView2);
                             usersController.loadTable();
                             repaint.changePanel(view, usersView2);
-
-                        } else {
+                        } else if (correoExistente) {
                             JOptionPane.showMessageDialog(view, "No se ha actualizado el usuario");
                         }
                     }
