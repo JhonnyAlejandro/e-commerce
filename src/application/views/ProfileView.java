@@ -95,10 +95,10 @@ public class ProfileView extends javax.swing.JPanel {
         tbtEditAddress = new javax.swing.JToggleButton();
         btnSaveAddress = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        txtDepartment = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         lblErrorDepartment = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txtCity = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblErrorCity = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
@@ -278,8 +278,8 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel12.setForeground(new java.awt.Color(126, 126, 146));
         jLabel12.setText("Departamento");
 
-        txtDepartment.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        txtDepartment.setEnabled(false);
+        jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jComboBox1.setEnabled(false);
 
         lblErrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblErrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
@@ -289,8 +289,8 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(126, 126, 146));
         jLabel14.setText("Ciudad");
 
-        txtCity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        txtCity.setEnabled(false);
+        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jComboBox2.setEnabled(false);
 
         lblErrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblErrorCity.setForeground(new java.awt.Color(245, 29, 36));
@@ -312,35 +312,40 @@ public class ProfileView extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tbtEditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnSaveAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
+                                .addGap(20, 20, 20)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
                                     .addComponent(lblErrorDepartment)
-                                    .addComponent(jLabel16))))
-                        .addGap(16, 16, 16)
+                                    .addComponent(jLabel16)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
+                                .addGap(21, 21, 21)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(lblErrorCity)))))
+                                    .addComponent(lblErrorCity)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(lblErrorAddress))
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tbtEditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(btnSaveAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(lblErrorAddress))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(15, 15, 15))
         );
         jPanel3Layout.setVerticalGroup(
@@ -356,9 +361,9 @@ public class ProfileView extends javax.swing.JPanel {
                     .addComponent(jLabel12)
                     .addComponent(jLabel14))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblErrorDepartment)
@@ -493,6 +498,8 @@ public class ProfileView extends javax.swing.JPanel {
     public javax.swing.JButton btnSaveAddress;
     public javax.swing.JButton btnSavePersonal;
     private javax.swing.JButton jButton5;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -511,7 +518,7 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     public javax.swing.JPasswordField jPasswordField1;
     public javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel lblErrorAddress;
     public javax.swing.JLabel lblErrorCity;
     public javax.swing.JLabel lblErrorDepartment;
@@ -522,8 +529,6 @@ public class ProfileView extends javax.swing.JPanel {
     public javax.swing.JToggleButton tbtEditAddress;
     public javax.swing.JToggleButton tbtEditPersonal;
     public javax.swing.JTextField txtAddress;
-    public javax.swing.JTextField txtCity;
-    public javax.swing.JTextField txtDepartment;
     public javax.swing.JTextField txtEmail;
     public javax.swing.JTextField txtFirstName;
     public javax.swing.JTextField txtLastName;

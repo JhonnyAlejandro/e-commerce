@@ -29,11 +29,7 @@ public class ProvidersFormView extends javax.swing.JPanel {
 
         lblerrorPhone.setVisible(false);
 
-        txtDepartmentAdd.putClientProperty("JTextField.placeholderText", "Departamento");
-
         lblerrorDepartment.setVisible(false);
-
-        txtCityAdd.putClientProperty("JTextField.placeholderText", "Ciudad");
 
         lblerrorCity.setVisible(false);
 
@@ -58,7 +54,7 @@ public class ProvidersFormView extends javax.swing.JPanel {
                 + "background: #F51D24;"
                 + "hoverBackground: darken(#F51D24,5%);"
         );
-        
+
         btnCancel.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
                 + "background: #F51D24;"
@@ -82,9 +78,9 @@ public class ProvidersFormView extends javax.swing.JPanel {
         txtPhoneAdd = new javax.swing.JTextField();
         lblerrorPhone = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        txtDepartmentAdd = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         lblerrorDepartment = new javax.swing.JLabel();
-        txtCityAdd = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblerrorCity = new javax.swing.JLabel();
         txtAdressAdd = new javax.swing.JTextField();
         lblerrorAdress = new javax.swing.JLabel();
@@ -191,18 +187,15 @@ public class ProvidersFormView extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtDepartmentAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        txtDepartmentAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDepartmentAddActionPerformed(evt);
-            }
-        });
+        jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento" }));
 
         lblerrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
         lblerrorDepartment.setText("Error message");
 
-        txtCityAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una ciudad" }));
 
         lblerrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorCity.setForeground(new java.awt.Color(245, 29, 36));
@@ -223,29 +216,33 @@ public class ProvidersFormView extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(lblerrorDepartment)))
-                        .addGap(16, 16, 16)
+                                .addComponent(lblerrorDepartment))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblerrorCity)
+                                .addGap(294, 294, 294))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(lblerrorCity))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(lblerrorAdress))
-                    .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                                .addComponent(lblerrorAdress))
+                            .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCityAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblerrorDepartment)
@@ -338,15 +335,13 @@ public class ProvidersFormView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneAddActionPerformed
 
-    private void txtDepartmentAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDepartmentAddActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAdd;
     public javax.swing.JButton btnCancel;
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnSave;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -359,8 +354,6 @@ public class ProvidersFormView extends javax.swing.JPanel {
     public javax.swing.JLabel lblerrorName;
     public javax.swing.JLabel lblerrorPhone;
     public javax.swing.JTextField txtAdressAdd;
-    public javax.swing.JTextField txtCityAdd;
-    public javax.swing.JTextField txtDepartmentAdd;
     public javax.swing.JTextField txtEmailAdd;
     public javax.swing.JTextField txtFirstNameAdd;
     public javax.swing.JTextField txtLastNameAdd;

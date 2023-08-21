@@ -107,12 +107,12 @@ public class LoginController {
 
                         view.lblCredentialsErrorMessage.setText("La dirección de correo electrónico y/o la contraseña son incorrectas. Número de intentos: " + String.valueOf(failedAttempts).toString());
 
-                        view.jPanel1.setVisible(true);
+                        view.jPanel2.setVisible(true);
 
                         if (failedAttempts == 0) {
                             view.lblCredentialsErrorMessage.setText("ACCESO DENEGADO. NOTA: Para acceder de nuevo al sistema, cierre la ventana y vuelva a abrirla.");
 
-                            for (Component component : view.jPanel2.getComponents()) {
+                            for (Component component : view.jPanel3.getComponents()) {
                                 if (!(component instanceof JLabel)) {
                                     component.setEnabled(false);
                                 }

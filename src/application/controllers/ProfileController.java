@@ -21,9 +21,13 @@ public class ProfileController {
     QueriesProfile consulta = new QueriesProfile();
     UsersModel upUser = new UsersModel();
 
-    public ProfileController(DashboardView viewDash,ProfileView view) {
+    public ProfileController(DashboardView viewDash, ProfileView view) {
         this.view = view;
         this.viewDash = viewDash;
+
+        view.jScrollPane1.getVerticalScrollBar().setUnitIncrement(20);
+        view.jScrollPane1.getVerticalScrollBar().setBlockIncrement(40);
+        
         events();
         setPersonal();
         setAddress();
@@ -44,20 +48,15 @@ public class ProfileController {
 
             }
         });
-        
-        view.tbtEditPersonal.addActionListener(new ActionListener()
-        {
+
+        view.tbtEditPersonal.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent event)
-            {
-                if (view.tbtEditPersonal.isSelected())
-                {
+            public void actionPerformed(ActionEvent event) {
+                if (view.tbtEditPersonal.isSelected()) {
                     habilitarPersonal();
                     view.btnSavePersonal.setEnabled(true);
                     view.tbtEditPersonal.setText("Cancelar");
-                }
-                else
-                {
+                } else {
                     view.btnSavePersonal.setEnabled(false);
                     deshabilitarPersonal();
                     view.tbtEditPersonal.setText("Editar");
@@ -65,75 +64,53 @@ public class ProfileController {
 
             }
         });
-        
-        view.btnSavePersonal.addActionListener(new ActionListener()
-        {
+
+        view.btnSavePersonal.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent event)
-            {
-                if(validations.validateEmptyField(view.txtFirstName.getText()) == true)
-                {
+            public void actionPerformed(ActionEvent event) {
+                if (validations.validateEmptyField(view.txtFirstName.getText()) == true) {
                     view.lblErrorFirstName.setText("Error! Debes colocar tu/s nombre/s.");
-                }
-                else if(validations.validateEmptyField(view.txtLastName.getText()) == true)
-                {
+                } else if (validations.validateEmptyField(view.txtLastName.getText()) == true) {
                     view.lblErrorLastName.setText("Error! Debes colocar tu/s apellido/s.");
-                }
-                else if(validations.validateEmptyField(view.txtEmail.getText()) == true)
-                {
+                } else if (validations.validateEmptyField(view.txtEmail.getText()) == true) {
                     view.lblErrorEmail.setText("Error! Debes colocar un correo.");
-                }
-                else if(validations.validateEmail(view.txtEmail.getText()) == false)
-                {
+                } else if (validations.validateEmail(view.txtEmail.getText()) == false) {
                     view.lblErrorEmail.setText("Error! Debes colocar un email válido.");
-                }
-                else if(validations.validateEmptyField(view.txtPhone.getText()) == true)
-                {
+                } else if (validations.validateEmptyField(view.txtPhone.getText()) == true) {
                     view.lblErrorEmail.setText("Error! Debes colocar un teléfono.");
-                }
-                else
-                {
+                } else {
                     UsersModel newModelo = new UsersModel();
                     newModelo.setFirstName(view.txtFirstName.getText());
                     newModelo.setLastName(view.txtLastName.getText());
                     newModelo.setPhone(view.txtPhone.getText());
                     newModelo.setEmail(view.txtEmail.getText());
 
-                    if (consulta.updatePersonal(newModelo))
-                    {
+                    if (consulta.updatePersonal(newModelo)) {
                         deshabilitarPersonal();
                         view.btnSavePersonal.setEnabled(false);
-                        if(view.tbtEditPersonal.isSelected() == true)
-                        {
+                        if (view.tbtEditPersonal.isSelected() == true) {
                             view.btnSavePersonal.setEnabled(false);
                             setPersonal();
                             deshabilitarPersonal();
                             view.tbtEditPersonal.setText("Editar");
                             view.tbtEditPersonal.setSelected(false);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         deshabilitarPersonal();
                         view.btnSavePersonal.setEnabled(false);
                     }
                 }
             }
         });
-        
-        view.tbtEditAddress.addActionListener(new ActionListener()
-        {
+
+        view.tbtEditAddress.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent event)
-            {
-                if (view.tbtEditAddress.isSelected())
-                {
+            public void actionPerformed(ActionEvent event) {
+                if (view.tbtEditAddress.isSelected()) {
                     habilitarAddress();
                     view.btnSaveAddress.setEnabled(true);
                     view.tbtEditAddress.setText("Cancelar");
-                }
-                else
-                {
+                } else {
                     view.btnSaveAddress.setEnabled(false);
                     deshabilitarAddress();
                     view.tbtEditAddress.setText("Editar");
@@ -141,104 +118,86 @@ public class ProfileController {
 
             }
         });
-        
-        view.btnSaveAddress.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent event)
-            {
-                if(validations.validateEmptyField(view.txtDepartment.getText()) == true)
-                {
-                    view.lblErrorDepartment.setText("Error! Debes un departamento.");
-                }
-                else if(validations.validateEmptyField(view.txtCity.getText()) == true)
-                {
-                    view.lblErrorCity.setText("Error! Debes colocar una ciudad.");
-                }
-                else if(validations.validateEmptyField(view.txtAddress.getText()) == true)
-                {
-                    view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
-                }
-                else
-                {
-                    UsersModel newModelo = new UsersModel();
-                    newModelo.setDepartment(view.txtDepartment.getText());
-                    newModelo.setCity(view.txtCity.getText());
-                    newModelo.setAddress(view.txtAddress.getText());
 
-                    if (consulta.updateAddress(newModelo))
-                    {
-                        deshabilitarAddress();
-                        view.btnSaveAddress.setEnabled(false);
-                        if(view.tbtEditAddress.isSelected() == true)
-                        {
-                            view.btnSaveAddress.setEnabled(false);
-                            setAddress();
-                            deshabilitarAddress();
-                            view.tbtEditAddress.setText("Editar");
-                            view.tbtEditAddress.setSelected(false);
-                        }
-                    }
-                    else
-                    {
-                        deshabilitarAddress();
-                        view.btnSaveAddress.setEnabled(false);
-                    }
-                }
+        view.btnSaveAddress.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+//                if (validations.validateEmptyField(view.txtDepartment.getText()) == true) {
+//                    view.lblErrorDepartment.setText("Error! Debes un departamento.");
+//                } else if (validations.validateEmptyField(view.txtCity.getText()) == true) {
+//                    view.lblErrorCity.setText("Error! Debes colocar una ciudad.");
+//                } else if (validations.validateEmptyField(view.txtAddress.getText()) == true) {
+//                    view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
+//                } else {
+//                    UsersModel newModelo = new UsersModel();
+//                    newModelo.setDepartment(view.txtDepartment.getText());
+//                    newModelo.setCity(view.txtCity.getText());
+//                    newModelo.setAddress(view.txtAddress.getText());
+//
+//                    if (consulta.updateAddress(newModelo)) {
+//                        deshabilitarAddress();
+//                        view.btnSaveAddress.setEnabled(false);
+//                        if (view.tbtEditAddress.isSelected() == true) {
+//                            view.btnSaveAddress.setEnabled(false);
+//                            setAddress();
+//                            deshabilitarAddress();
+//                            view.tbtEditAddress.setText("Editar");
+//                            view.tbtEditAddress.setSelected(false);
+//                        }
+//                    } else {
+//                        deshabilitarAddress();
+//                        view.btnSaveAddress.setEnabled(false);
+//                    }
+//                }
             }
         });
     }
-    
-    public void getUsers()
-    {
+
+    public void getUsers() {
         upUser = consulta.getUser();
     }
-    
-    public void deshabilitarPersonal()
-    {
+
+    public void deshabilitarPersonal() {
         view.txtFirstName.setEnabled(false);
         view.txtLastName.setEnabled(false);
         view.txtEmail.setEnabled(false);
         view.txtPhone.setEnabled(false);
-       
+
     }
-        
-    public void habilitarPersonal()
-    {
+
+    public void habilitarPersonal() {
         view.txtFirstName.setEnabled(true);
         view.txtLastName.setEnabled(true);
         view.txtEmail.setEnabled(true);
         view.txtPhone.setEnabled(true);
-        
+
     }
-    
-    public void deshabilitarAddress()
-    {
-        view.txtCity.setEnabled(false);
-        view.txtDepartment.setEnabled(false);
+
+    public void deshabilitarAddress() {
+//        view.txtCity.setEnabled(false);
+//        view.txtDepartment.setEnabled(false);
         view.txtAddress.setEnabled(false);
     }
-        
-    public void habilitarAddress()
-    {
-        view.txtCity.setEnabled(true);
-        view.txtDepartment.setEnabled(true);
+
+    public void habilitarAddress() {
+//        view.txtCity.setEnabled(true);
+//        view.txtDepartment.setEnabled(true);
         view.txtAddress.setEnabled(true);
     }
-    
-    public void setPersonal(){
+
+    public void setPersonal() {
         getUsers();
         view.txtFirstName.setText(upUser.getFirstName());
         view.txtLastName.setText(upUser.getLastName());
         view.txtEmail.setText(upUser.getEmail());
         view.txtPhone.setText(upUser.getPhone());
     }
-    
-    public void setAddress(){
+
+    public void setAddress() {
         getUsers();
         view.txtAddress.setText(upUser.getAddress());
-        view.txtCity.setText(upUser.getCity());
-        view.txtDepartment.setText(upUser.getDepartment());
+//        view.txtCity.setText(upUser.getCity());
+//        view.txtDepartment.setText(upUser.getDepartment());
     }
 
 }

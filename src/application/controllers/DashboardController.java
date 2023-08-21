@@ -1,6 +1,5 @@
 package application.controllers;
 
-import application.views.CalendarView;
 import application.views.DashboardView;
 import application.views.HomeView;
 import application.views.ProfileView;
@@ -8,6 +7,7 @@ import application.views.ProvidersView;
 import application.views.UsersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import utilities.ManipulateText;
 import utilities.PerformActions;
@@ -24,8 +24,14 @@ public class DashboardController {
 
     public DashboardController() {
         view.jLabel2.setText("Hola " + manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName()));
-        view.jButton5.setText("<html>" + manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName()) + "<br><span style='font-size: 8px;'>Rol</span></html>");
-
+        
+        String text = manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName());
+        view.jButton3.setText(text);
+        
+        if (text.length() > 12) {
+            view.jButton3.setText(text.substring(0, 12) + "...");
+        }
+        
         start();
         events();
     }
@@ -36,13 +42,14 @@ public class DashboardController {
         view.setVisible(true);
     }
 
-    private void changeButtonColor(JButton buttonPressed) {
+    private void changeButtonColor(JButton buttonPressed, String button) {
         if (originalButton != null) {
             originalButton.putClientProperty("FlatLaf.style",
                     "foreground: #646675;"
                     + "background: #FFF;"
                     + "hoverBackground: darken(#FFF,5%);"
             );
+            originalButton.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/" + originalButton.getClientProperty("icon") + "-b8c0cb.png")));
         }
 
         buttonPressed.putClientProperty("FlatLaf.style",
@@ -50,75 +57,60 @@ public class DashboardController {
                 + "background: #1D90F5;"
                 + "hoverBackground: darken(#1D90F5,5%);"
         );
+        buttonPressed.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/" + button + "-fff.png")));
 
         originalButton = buttonPressed;
     }
 
     private void events() {
+
         view.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                UsersView users = new UsersView();
 
-                view.jLabel3.setText("Bienvenido de nuevo");
+                view.jButton1.putClientProperty("icon", "users");
 
-                performActions.changePanel(view.jPanel3, home);
+                view.jLabel3.setText("Usuarios");
 
-                changeButtonColor(view.jButton1);
+                performActions.changePanel(view.jPanel3, users);
+
+                changeButtonColor(view.jButton1, "users");
+
+                new UsersController(users);
             }
         });
 
         view.jButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                CalendarView calendar = new CalendarView();
-
-                view.jLabel3.setText("Calendario");
-
-                performActions.changePanel(view.jPanel3, calendar);
-
-                changeButtonColor(view.jButton2);
-            }
-        });
-
-        view.jButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                UsersView users = new UsersView();
-
-                view.jLabel3.setText("Usuarios");
-
-                performActions.changePanel(view.jPanel3, users);
-
-                changeButtonColor(view.jButton3);
-
-                new UsersController(users);
-            }
-        });
-
-        view.jButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
                 ProvidersView providers = new ProvidersView();
+
+                view.jButton2.putClientProperty("icon", "providers");
 
                 view.jLabel3.setText("Proveedores");
 
                 performActions.changePanel(view.jPanel3, providers);
 
-                changeButtonColor(view.jButton4);
+                changeButtonColor(view.jButton2, "providers");
 
                 new ProvidersController(providers);
             }
         });
 
-        view.jButton5.addActionListener(new ActionListener() {
+        view.jButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 ProfileView profile = new ProfileView();
                 new ProfileController(view, profile);
 
+                view.jButton3.putClientProperty("icon", "profile");
+
                 view.jLabel3.setText("Perfil");
 
                 performActions.changePanel(view.jPanel3, profile);
+
+                changeButtonColor(view.jButton3, "profile");
             }
         });
     }
