@@ -153,69 +153,69 @@ public class AddProviderController {
                     }
                 }//validaciones phone 
                   
-
-                if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
-                    view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-
-                    view.lblerrorDepartment.setText("Ingresa el departamento correctamente");
-                    view.lblerrorDepartment.setVisible(true);
-
-                    System.out.println("bandera 5");
-                } else {
-                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
-                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
-
-                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos");
-                        view.lblerrorDepartment.setVisible(true);
-                    } else {
-
-                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-
-                        view.lblerrorDepartment.setVisible(false);
-
-                        model.setDepartment(view.txtDepartmentAdd.getText());
-
-                        Department = true;
-
-                    }
-                }//termina validaciones de departamento
-
-                if (validation.checkEmpty(view.txtCityAdd.getText())) {
-                    view.txtCityAdd.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-
-                    view.lblerrorCity.setText("Ingresa la ciudad correctamente");
-                    view.lblerrorCity.setVisible(true);
-
-                    System.out.println("bandera 6");
-                } else {
-                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
-                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
-
-                        view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos");
-                        view.lblerrorCity.setVisible(true);
-                    } else {
-
-                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-
-                        view.lblerrorCity.setVisible(false);
-
-                        model.setCity(view.txtCityAdd.getText());
-
-                        City = true;
-                    }
-                }//validacion ciudad
+//
+//                if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
+//                    view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+//                            "borderColor: #F51D24;"
+//                    );
+//
+//                    view.lblerrorDepartment.setText("Ingresa el departamento correctamente");
+//                    view.lblerrorDepartment.setVisible(true);
+//
+//                    System.out.println("bandera 5");
+//                } else {
+//                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
+//                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+//                                "borderColor: #F51D24;"
+//                        );
+//
+//                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos");
+//                        view.lblerrorDepartment.setVisible(true);
+//                    } else {
+//
+//                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
+//                                "borderColor: #F3F6FB;"
+//                        );
+//
+//                        view.lblerrorDepartment.setVisible(false);
+//
+//                        model.setDepartment(view.txtDepartmentAdd.getText());
+//
+//                        Department = true;
+//
+//                    }
+//                }//termina validaciones de departamento
+//
+//                if (validation.checkEmpty(view.txtCityAdd.getText())) {
+//                    view.txtCityAdd.putClientProperty("FlatLaf.style",
+//                            "borderColor: #F51D24;"
+//                    );
+//
+//                    view.lblerrorCity.setText("Ingresa la ciudad correctamente");
+//                    view.lblerrorCity.setVisible(true);
+//
+//                    System.out.println("bandera 6");
+//                } else {
+//                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
+//                        view.txtCityAdd.putClientProperty("FlatLaf.style",
+//                                "borderColor: #F51D24;"
+//                        );
+//
+//                        view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos");
+//                        view.lblerrorCity.setVisible(true);
+//                    } else {
+//
+//                        view.txtCityAdd.putClientProperty("FlatLaf.style",
+//                                "borderColor: #F3F6FB;"
+//                        );
+//
+//                        view.lblerrorCity.setVisible(false);
+//
+//                        model.setCity(view.txtCityAdd.getText());
+//
+//                        City = true;
+//                    }
+//                }//validacion ciudad
 
                 if (validation.checkEmpty(view.txtAdressAdd.getText())) {
                     view.txtAdressAdd.putClientProperty("FlatLaf.style",

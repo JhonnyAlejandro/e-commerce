@@ -77,9 +77,9 @@ public class UsersFormView extends javax.swing.JPanel {
         cmbRoles = new javax.swing.JComboBox<>();
         lblerrorRol = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbDepartment = new javax.swing.JComboBox<>();
         lblerrorDepartment = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbCity = new javax.swing.JComboBox<>();
         lblerrorCity = new javax.swing.JLabel();
         txtAdressAdd = new javax.swing.JTextField();
         lblerrorAdress = new javax.swing.JLabel();
@@ -204,15 +204,15 @@ public class UsersFormView extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento" }));
+        cmbDepartment.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento" }));
 
         lblerrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
         lblerrorDepartment.setText("Error message");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una ciudad" }));
+        cmbCity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una ciudad" }));
 
         lblerrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorCity.setForeground(new java.awt.Color(245, 29, 36));
@@ -236,7 +236,7 @@ public class UsersFormView extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(lblerrorDepartment))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -244,7 +244,7 @@ public class UsersFormView extends javax.swing.JPanel {
                                 .addGap(294, 294, 294))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,8 +259,8 @@ public class UsersFormView extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblerrorDepartment)
@@ -367,9 +367,9 @@ public class UsersFormView extends javax.swing.JPanel {
     public javax.swing.JButton btnAdd;
     public javax.swing.JButton btnAddCancel;
     public javax.swing.JButton btnSaveChange;
+    public javax.swing.JComboBox<String> cmbCity;
+    public javax.swing.JComboBox<String> cmbDepartment;
     public javax.swing.JComboBox<String> cmbRoles;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

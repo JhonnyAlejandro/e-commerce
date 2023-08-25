@@ -19,8 +19,7 @@ public class QueriesProfile
                 model.setLastName(result.getString("last_name"));
                 model.setPhone(result.getString("phone"));
                 model.setEmail(result.getString("email"));
-                model.setDepartment(result.getString("department"));
-                model.setCity(result.getString("city"));
+                model.setCity(result.getInt("city"));
                 model.setAddress(result.getString("address"));
             }
         } catch (Exception e) {
@@ -54,7 +53,6 @@ public class QueriesProfile
         boolean band = false;
         DatabaseConnection connect = new DatabaseConnection();
         String sql = "UPDATE users SET "
-            + "department = '" + model.getDepartment() + "', "
             + "city = '" + model.getCity() + "', "
             + "address = '" + model.getAddress() + "' "
             + "WHERE email = '" + Session.userModel.getEmail() + "'";

@@ -1,5 +1,7 @@
 package application.controllers;
 
+import application.models.CityModel;
+import application.models.DepartmentModel;
 import application.models.UsersModel;
 import application.views.UsersFormView;
 
@@ -35,6 +37,7 @@ public class AddUserController {
     private MimeMessage mCorreo;
     UsersFormView view;
     UsersModel users = new UsersModel();
+    DepartmentModel department = new DepartmentModel();
     ValidationsUsers validation = new ValidationsUsers();
     QueriesUsers queries = new QueriesUsers();
 
@@ -44,10 +47,28 @@ public class AddUserController {
         loadRoles();
         hideButton();
         changetitle();
+        loadDepartments();
+
         //moveButtonPosition();
     }
 
-    private void events() {
+    public void events() {
+
+        view.cmbDepartment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DepartmentModel department = new DepartmentModel();
+                int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+
+                // Limpiar las ciudades existentes antes de agregar nuevas
+                view.cmbCity.removeAllItems();
+
+                if (selectedDepartmentId != 0) {
+                    // Cargar ciudades solo si se selecciona un departamento válido
+                    loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
 
         view.btnAdd.addActionListener(new ActionListener() {
             @Override
@@ -61,6 +82,7 @@ public class AddUserController {
                 boolean Phone = false;
                 boolean rol = false;
 
+                //Inicia validacion de FirstName
                 if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
                     view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
@@ -93,7 +115,8 @@ public class AddUserController {
                     }
                 }
 
-                // termina if nombre 
+                // termina validacion de FirstName
+                //Inicia validacion de Lastname
                 if (validation.checkEmpty(view.txtLastNameAdd.getText())) {
                     view.txtLastNameAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
@@ -127,7 +150,8 @@ public class AddUserController {
                     }
                 }
 
-                // termina if de apellido 
+                // termina validacion de LastName
+                //Inicia validacion de Email
                 if (validation.checkEmpty(view.txtEmailAdd.getText())) {
                     view.txtEmailAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
@@ -159,119 +183,66 @@ public class AddUserController {
                 }
 
                 // termina validacion email 
-                if (validation.checkEmpty(view.txtPhoneAdd.getText())) {
+                //Empieza validaciones de phone
+                if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
                     view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
-                    view.lblerrorPhone.setText("No se puede dejar el campo vacio");
+                    view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
                     view.lblerrorPhone.setVisible(true);
-                    System.out.println("bandera 4");
                 } else {
-                    if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
-                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
-                        view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
-                        view.lblerrorPhone.setVisible(true);
-                    } else {
-                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
-                        view.lblerrorPhone.setVisible(false);
-                        users.setPhone(view.txtPhoneAdd.getText());
-                        Phone = true;
-                    }
+                    view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                    view.lblerrorPhone.setVisible(false);
+                    users.setPhone(view.txtPhoneAdd.getText());
+                    Phone = true;
                 }
+                //Termina validacion de phone 
 
-                //validaciones phone 
-                if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
-                    view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-
-                    view.lblerrorDepartment.setText("No se puede dejar el campo vacio");
+                //Inicia validacion de departamento
+                //termina validaciones de departamento
+                //Inicia validacion de City
+                if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    ); 
+                    view.lblerrorDepartment.setText("Seleccione un departamento");
                     view.lblerrorDepartment.setVisible(true);
-
-                    System.out.println("bandera 5");
-                } else {
-                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
-                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
-
-                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos");
-                        view.lblerrorDepartment.setVisible(true);
-                    } else {
-
-                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-
-                        view.lblerrorDepartment.setVisible(false);
-
-                        users.setDepartment(view.txtDepartmentAdd.getText());
-
-                        Department = true;
-
-                    }
-                }//termina validaciones de departamento
-
-                if (validation.checkEmpty(view.txtCityAdd.getText())) {
-                    view.txtCityAdd.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-
-                    view.lblerrorCity.setText("No se puede dejar el campo vacio");
+                    view.lblerrorCity.setText("Seleccione una ciudad");
                     view.lblerrorCity.setVisible(true);
-
-                    System.out.println("bandera 6");
                 } else {
-                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
-                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
-
-                        view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos");
-                        view.lblerrorCity.setVisible(true);
-                    } else {
-
-                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-
-                        view.lblerrorCity.setVisible(false);
-
-                        users.setCity(view.txtCityAdd.getText());
-
-                        City = true;
-                    }
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    view.lblerrorDepartment.setVisible(false);
+                    view.lblerrorCity.setVisible(false);
+                    String selectedCityName = view.cmbCity.getSelectedItem().toString();
+                    int selectedIndexCity = getCityByName(selectedCityName);
+                    users.setCity(selectedIndexCity);
+                    Department = true;
+                    City = true;
                 }
 
-                //validacion ciudad
-                if (validation.checkEmpty(view.txtAdressAdd.getText())) {
+                //Termina validacion de city
+                //Inicia validacion de address
+                if (!validation.addressCheck(view.txtAdressAdd.getText())) {
                     view.txtAdressAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorAdress.setText("No se puede dejar el campo vacio");
+                    view.lblerrorAdress.setText("La dirección tiene un formato incorrecto");
                     view.lblerrorAdress.setVisible(true);
-
-                    System.out.println("bandera 7");
                 } else {
-                    if (!validation.addressCheck(view.txtAdressAdd.getText())) {
-                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
+                    view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
 
-                        view.lblerrorAdress.setText("La dirección tiene un formato incorrecto");
-                        view.lblerrorAdress.setVisible(true);
-                    } else {
-                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
+                    view.lblerrorAdress.setVisible(false);
 
-                        view.lblerrorAdress.setVisible(false);
+                    users.setAddress(view.txtAdressAdd.getText());
 
-                        users.setAddress(view.txtAdressAdd.getText());
-
-                        Addres = true;
-                    }
+                    Addres = true;
                 }
 
+                //Termina validacion de Address
+                //Inicia validacion de roles
                 if (view.cmbRoles.getSelectedItem().equals("Seleccione un rol")) {
                     view.cmbRoles.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
@@ -291,7 +262,7 @@ public class AddUserController {
                     rol = true;
                 }
 
-                //validacion direccion 
+                //Termina validacion de rol 
                 if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true && rol == true) {
                     UsersView usersView = new UsersView();
                     UsersController usersController = new UsersController(usersView);
@@ -405,14 +376,40 @@ public class AddUserController {
         }
     }
 
+    private void loadDepartments() {
+        ArrayList<DepartmentModel> departments = queries.consultDeparment();
+        for (int i = 0; i < departments.size(); i++) {
+            view.cmbDepartment.addItem(departments.get(i).getNameDepartment());
+        }
+    }
+
+    private void loadCitiesByDepartment(int id) {
+        ArrayList<CityModel> cities = queries.consultCitiesByDepartment(id);
+        for (int i = 0; i < cities.size(); i++) {
+            view.cmbCity.addItem(cities.get(i).getNameCity());
+        }
+    }
+
     public void clean() {
         view.txtFirstNameAdd.setText("");
         view.txtLastNameAdd.setText("");
         view.txtEmailAdd.setText("");
-        view.txtDepartmentAdd.setText("");
-        view.txtCityAdd.setText("");
+        view.cmbDepartment.setSelectedIndex(0);
+        view.cmbCity.setSelectedIndex(0);
         view.txtAdressAdd.setText("");
         view.txtPhoneAdd.setText("");
         view.cmbRoles.setSelectedIndex(0);
     }
+
+    private int getCityByName(String nameCity) {
+        int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+        ArrayList<CityModel> cityList = queries.consultCitiesByDepartment(selectedDepartmentId);
+        for (CityModel cities : cityList) {
+            if (cities.getNameCity().equals(nameCity)) {
+                return cities.getIdCity();
+            }
+        }
+        return 0;
+    }
+
 }

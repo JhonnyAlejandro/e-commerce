@@ -41,29 +41,26 @@ public class ValidationsUsers {
     }
 
     // este metodo solo verifica que tenga numeros el celular.
-    public boolean phoneCheck(String data4) {
+        public boolean phoneCheck(String data4) {
+          if (data4 == null || data4.trim().isEmpty()) {
+              return true; // Aceptar valores vacíos
+          }
 
-        Pattern pattern = Pattern.compile("^\\d+$");
-        Matcher matcher = pattern.matcher(data4);
+          Pattern pattern = Pattern.compile("^\\d+$");
+          Matcher matcher = pattern.matcher(data4);
 
-        if (matcher.find()) {
-            return true;
-        } else {
-            return false;
-        }
+          if (matcher.find()) {
+              return true;
+          } else {
+              return false;
+          }
+      }
 
-    }
+        public boolean addressCheck(String data5) {
+          Pattern pattern = Pattern.compile("^(?:(?:Calle|Carrera|Avenida|Transversal|Diagonal|Manzana|Kilómetro|Vereda|Vía|Autopista|Pasaje|Peaje|Circular|Glorieta|Anillo|Callejón|Lote|CALLE|calle|carrera|CARRERA|AVENIDA|avenida|cll|cl|CLL|CL|AV|Av|av|cra|CRA|DIAGONAL|diagonal|diag|dg|DG|AK|ak|Ak|ac|AC|Ac|ap|Ap|AP|TV|Tv|tv|Transv|TRANSVERSAL|transversal|manzana|MANZANA|KILOMETRO|kilometro|km|Km|KM|VEREDA|vereda|VIA|via|aut|autopista|AUT|AUTOPISTA|PASAJE|pasaje|glorieta|GLORIETA|PEAJE|peaje|circular|CIRCULAR|ANILLO|anillo|callejon|CALLEJON|lote)\\s*\\d+[A-Za-z]?[-\\s#]?\\w*(?:\\d+[-]?\\d*)?(?:[-\\s]?[A-Za-z0-9]+\\s*)?)?\\s*$");
+          Matcher matcher = pattern.matcher(data5);
 
-    public boolean addressCheck(String data5) {
-
-        Pattern pattern = Pattern.compile("^(?:Calle|Carrera|Avenida|Transversal|Diagonal|Manzana|Kilómetro|Vereda|Vía|Autopista|Pasaje|Peaje|Circular|Glorieta|Anillo|Callejón|Lote|CALLE|calle|carrera|CARRERA|AVENIDA|avenida|cll|cl|CLL|CL|AV|Av|av|cra|CRA|DIAGONAL|diagonal|diag|dg|DG|AK|ak|Ak|ac|AC|Ac|ap|Ap|AP|TV|Tv|tv|Transv|TRANSVERSAL|transversal|manzana|MANZANA|KILOMETRO|kilometro|km|Km|KM|VEREDA|vereda|VIA|via|aut|autopista|AUT|AUTOPISTA|PASAJE|pasaje|glorieta|GLORIETA|PEAJE|peaje|circular|CIRCULAR|ANILLO|anillo|callejon|CALLEJON|lote|LOTE)\\s*\\d+[A-Za-z]?[-\\s#]?\\w*(?:\\d+[-]?\\d*)?(?:[-\\s]?[A-Za-z0-9]+\\s*)?$");
-        Matcher matcher = pattern.matcher(data5);
-
-        if (matcher.find()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+          return matcher.matches();
+      }
 
 }
