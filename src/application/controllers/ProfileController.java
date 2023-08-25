@@ -8,7 +8,12 @@ import java.util.prefs.Preferences;
 import application.views.ProfileView;
 import application.views.DashboardView;
 import database.QueriesProfile;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import utilities.Session;
+//import utilities.Session;
 import utilities.Validations;
 
 public class ProfileController {
@@ -20,6 +25,10 @@ public class ProfileController {
     Validations validations = new Validations();
     QueriesProfile consulta = new QueriesProfile();
     UsersModel upUser = new UsersModel();
+    String citiesUser;
+    ArrayList cities = new ArrayList();
+    String departmentUser;
+    ArrayList departments = new ArrayList();
 
     public ProfileController(DashboardView viewDash, ProfileView view) {
         this.view = view;
@@ -56,10 +65,21 @@ public class ProfileController {
                     habilitarPersonal();
                     view.btnSavePersonal.setEnabled(true);
                     view.tbtEditPersonal.setText("Cancelar");
+                    view.tbtEditPersonal.putClientProperty("FlatLaf.style",
+                        "foreground: #FFF;"
+                        + "background: #F51D24;"
+                        + "hoverBackground: darken(#F51D24,5%);"
+                    );
                 } else {
                     view.btnSavePersonal.setEnabled(false);
                     deshabilitarPersonal();
                     view.tbtEditPersonal.setText("Editar");
+                    view.tbtEditPersonal.putClientProperty("FlatLaf.style",
+                        "foreground: #FFF;"
+                        + "background: #1D90F5;"
+                        + "hoverBackground: darken(#1D90F5,5%);"
+                    );
+                    setPersonal();
                 }
 
             }
@@ -110,10 +130,21 @@ public class ProfileController {
                     habilitarAddress();
                     view.btnSaveAddress.setEnabled(true);
                     view.tbtEditAddress.setText("Cancelar");
+                    view.tbtEditAddress.putClientProperty("FlatLaf.style",
+                        "foreground: #FFF;"
+                        + "background: #F51D24;"
+                        + "hoverBackground: darken(#F51D24,5%);"
+                    );
                 } else {
                     view.btnSaveAddress.setEnabled(false);
                     deshabilitarAddress();
                     view.tbtEditAddress.setText("Editar");
+                    view.tbtEditAddress.putClientProperty("FlatLaf.style",
+                        "foreground: #FFF;"
+                        + "background: #1D90F5;"
+                        + "hoverBackground: darken(#1D90F5,5%);"
+                    );
+                    setAddress();
                 }
 
             }
@@ -122,39 +153,43 @@ public class ProfileController {
         view.btnSaveAddress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-//                if (validations.validateEmptyField(view.txtDepartment.getText()) == true) {
-//                    view.lblErrorDepartment.setText("Error! Debes un departamento.");
-//                } else if (validations.validateEmptyField(view.txtCity.getText()) == true) {
-//                    view.lblErrorCity.setText("Error! Debes colocar una ciudad.");
-//                } else if (validations.validateEmptyField(view.txtAddress.getText()) == true) {
-//                    view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
-//                } else {
-//                    UsersModel newModelo = new UsersModel();
-//                    newModelo.setDepartment(view.txtDepartment.getText());
-//                    newModelo.setCity(view.txtCity.getText());
-//                    newModelo.setAddress(view.txtAddress.getText());
-//
-//                    if (consulta.updateAddress(newModelo)) {
-//                        deshabilitarAddress();
-//                        view.btnSaveAddress.setEnabled(false);
-//                        if (view.tbtEditAddress.isSelected() == true) {
-//                            view.btnSaveAddress.setEnabled(false);
-//                            setAddress();
-//                            deshabilitarAddress();
-//                            view.tbtEditAddress.setText("Editar");
-//                            view.tbtEditAddress.setSelected(false);
-//                        }
-//                    } else {
-//                        deshabilitarAddress();
-//                        view.btnSaveAddress.setEnabled(false);
-//                    }
-//                }
+                if (validations.validateEmptyField(view.txtAddress.getText()) == true) {
+                    view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
+                } else {
+                    UsersModel newModelo = new UsersModel();
+                    newModelo.setCity(view.cmbCity.getSelectedItem().toString());
+                    newModelo.setAddress(view.txtAddress.getText());
+                    if (consulta.updateAddress(newModelo)) {
+                        deshabilitarAddress();
+                        view.btnSaveAddress.setEnabled(false);
+                        if (view.tbtEditAddress.isSelected() == true) {
+                            view.btnSaveAddress.setEnabled(false);
+                            setAddress();
+                            deshabilitarAddress();
+                            view.tbtEditAddress.setText("Editar");
+                            view.tbtEditAddress.setSelected(false);
+                        }
+                    } else {
+                        deshabilitarAddress();
+                        view.btnSaveAddress.setEnabled(false);
+                    }
+                }
             }
         });
-    }
-
-    public void getUsers() {
-        upUser = consulta.getUser();
+        
+        view.cmbDepartment.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    if (view.cmbDepartment.getSelectedIndex() > 0) {
+                        view.cmbCity.setModel(new DefaultComboBoxModel(consulta.getCities(view.cmbDepartment.getSelectedIndex())));
+                    } else {
+                        System.out.println(view.cmbDepartment.getSelectedIndex());
+                        view.cmbCity.setModel(new DefaultComboBoxModel(new String[]{"Seleccionar país"}));
+                    }
+                }
+            }
+        });
     }
 
     public void deshabilitarPersonal() {
@@ -162,7 +197,6 @@ public class ProfileController {
         view.txtLastName.setEnabled(false);
         view.txtEmail.setEnabled(false);
         view.txtPhone.setEnabled(false);
-
     }
 
     public void habilitarPersonal() {
@@ -170,23 +204,22 @@ public class ProfileController {
         view.txtLastName.setEnabled(true);
         view.txtEmail.setEnabled(true);
         view.txtPhone.setEnabled(true);
-
     }
 
     public void deshabilitarAddress() {
-//        view.txtCity.setEnabled(false);
-//        view.txtDepartment.setEnabled(false);
+        view.cmbCity.setEnabled(false);
+        view.cmbDepartment.setEnabled(false);
         view.txtAddress.setEnabled(false);
     }
 
     public void habilitarAddress() {
-//        view.txtCity.setEnabled(true);
-//        view.txtDepartment.setEnabled(true);
+        view.cmbCity.setEnabled(true);
+        view.cmbDepartment.setEnabled(true);
         view.txtAddress.setEnabled(true);
     }
 
     public void setPersonal() {
-        getUsers();
+        upUser = consulta.getUser();
         view.txtFirstName.setText(upUser.getFirstName());
         view.txtLastName.setText(upUser.getLastName());
         view.txtEmail.setText(upUser.getEmail());
@@ -194,10 +227,20 @@ public class ProfileController {
     }
 
     public void setAddress() {
-        getUsers();
+        upUser = consulta.getUser();
+        departmentUser = consulta.getDeparmentUser();
+        if (departments.size() == 0) {
+            departments = consulta.getDeparments();
+            for (int i = 0; i < departments.size(); i++) {
+                view.cmbDepartment.addItem(departments.get(i).toString());
+            }
+        }
         view.txtAddress.setText(upUser.getAddress());
-//        view.txtCity.setText(upUser.getCity());
-//        view.txtDepartment.setText(upUser.getDepartment());
+        if (upUser.getCity().isEmpty() || upUser.getCity() == null) {
+            //
+        } else {
+            view.cmbDepartment.setSelectedItem(departmentUser);
+            view.cmbCity.setSelectedItem(upUser.getCity());
+        }
     }
-
 }

@@ -95,10 +95,10 @@ public class ProfileView extends javax.swing.JPanel {
         tbtEditAddress = new javax.swing.JToggleButton();
         btnSaveAddress = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbDepartment = new javax.swing.JComboBox<>();
         lblErrorDepartment = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbCity = new javax.swing.JComboBox<>();
         lblErrorCity = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
@@ -278,8 +278,9 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel12.setForeground(new java.awt.Color(126, 126, 146));
         jLabel12.setText("Departamento");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox1.setEnabled(false);
+        cmbDepartment.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento" }));
+        cmbDepartment.setEnabled(false);
 
         lblErrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblErrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
@@ -289,8 +290,9 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(126, 126, 146));
         jLabel14.setText("Ciudad");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox2.setEnabled(false);
+        cmbCity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el país" }));
+        cmbCity.setEnabled(false);
 
         lblErrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblErrorCity.setForeground(new java.awt.Color(245, 29, 36));
@@ -323,7 +325,7 @@ public class ProfileView extends javax.swing.JPanel {
                                     .addComponent(jLabel16)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
@@ -332,7 +334,7 @@ public class ProfileView extends javax.swing.JPanel {
                                     .addComponent(lblErrorCity)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,8 +364,8 @@ public class ProfileView extends javax.swing.JPanel {
                     .addComponent(jLabel14))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblErrorDepartment)
@@ -497,9 +499,9 @@ public class ProfileView extends javax.swing.JPanel {
     public javax.swing.JButton btnLogout;
     public javax.swing.JButton btnSaveAddress;
     public javax.swing.JButton btnSavePersonal;
+    public javax.swing.JComboBox<String> cmbCity;
+    public javax.swing.JComboBox<String> cmbDepartment;
     private javax.swing.JButton jButton5;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
