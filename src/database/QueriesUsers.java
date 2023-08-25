@@ -1,5 +1,7 @@
 package database;
 
+import application.models.CityModel;
+import application.models.DepartmentModel;
 import application.models.RolesModel;
 import application.models.UsersModel;
 import application.models.UsersModel;
@@ -21,24 +23,31 @@ public class QueriesUsers {
         UsersModel users = null;
 
         try {
-            String selectSql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name "
+            String selectSql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name "
                     + "FROM users "
                     + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                     + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                    + "INNER JOIN cities ON users.city = cities.id "
+                    + "INNER JOIN departments ON cities.department = departments.id "
                     + "WHERE users.state = 1 and users.id = '" + id + "'";
             ResultSet result = databaseConnection.consult(selectSql);
 
             if (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
+                city.setNameDepartment(result.getString("department_name"));
+                city.setDepartmentId(result.getInt("department_id"));
                 users = new UsersModel();
                 users.setIdUsers(result.getInt("id"));
                 users.setFirstName(result.getString("first_name"));
                 users.setLastName(result.getString("last_name"));
                 users.setAddress(result.getString("address"));
-                users.setCity(result.getString("city"));
-                users.setDepartment(result.getString("department"));
+                users.setCity(result.getInt("city"));
                 users.setEmail(result.getString("email"));
                 users.setPhone(result.getString("phone"));
                 users.setRol(result.getInt("role_id"));
+                users.setCityModel(city);
             }
         } catch (SQLException e) {
             System.err.println("Failed to get provider by id: " + e);
@@ -58,14 +67,14 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         System.out.println("bandera 1");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
+   
         String pass = String.valueOf(user.getPassword());
 
         String pwHash = BCrypt.hashpw(pass, BCrypt.gensalt());
 
-        String sql = "INSERT INTO users (first_name, last_name, address, city, department, phone, email, password, state, created_at, updated_at) "
+        String sql = "INSERT INTO users (first_name, last_name, address, city, phone, email, password, state, created_at, updated_at) "
                 + "VALUES ('" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getAddress() + "', '"
-                + user.getCity() + "', '" + user.getDepartment() + "', '" + user.getPhone() + "', '" + user.getEmail()
+                + user.getCity() + "', '" + user.getPhone() + "', '" + user.getEmail()
                 + "', '" + pwHash + "', " + 1 + ", '" + timestamp + "', '" + timestamp + "')";
 
         boolean insert = false;
@@ -102,7 +111,6 @@ public class QueriesUsers {
                     + "users.last_name = '" + user.getLastName() + "', "
                     + "users.address = '" + user.getAddress() + "', "
                     + "users.city = '" + user.getCity() + "', "
-                    + "users.department = '" + user.getDepartment() + "', "
                     + "users.phone = '" + user.getPhone() + "', "
                     + "users.email = '" + user.getEmail() + "', "
                     + "users.updated_at = '" + timestamp + "' "
@@ -117,7 +125,6 @@ public class QueriesUsers {
                     + "last_name = '" + user.getLastName() + "', "
                     + "address = '" + user.getAddress() + "', "
                     + "city = '" + user.getCity() + "', "
-                    + "department = '" + user.getDepartment() + "', "
                     + "phone = '" + user.getPhone() + "', "
                     + "password = '" + pwHash + "', "
                     + "email = '" + user.getEmail() + "', "
@@ -172,27 +179,31 @@ public class QueriesUsers {
     public ArrayList<UsersModel> consultUsers() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name "
+        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state "
                 + "FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1";
 
         ResultSet result = connection.consult(sql);
 
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -210,25 +221,29 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state  FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
 
             }
@@ -245,25 +260,29 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
-        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
 
             }
@@ -280,25 +299,29 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -314,25 +337,29 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -348,25 +375,30 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //+String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
+
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -382,25 +414,29 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1   AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at, roles.id AS role_id, roles.name AS role_name FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
+                + "INNER JOIN cities ON users.city = cities.id "
                 + "WHERE users.state = 1 AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
         try {
             while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("city_id"));
+                city.setNameCity(result.getString("city_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setAddress(result.getString("address"));
-                user.setCity(result.getString("city"));
-                user.setDepartment(result.getString("department"));
+                user.setCity(result.getInt("city"));
                 user.setEmail(result.getString("email"));
                 user.setPhone(result.getString("phone"));
                 user.setRol(result.getInt("role_id"));
                 user.setNameRol(result.getString("role_name"));
+                user.setCityModel(city);
                 usersList.add(user);
             }
         } catch (Exception e) {
@@ -408,6 +444,52 @@ public class QueriesUsers {
         }
         connection.disconnect();
         return usersList;
+    }
+
+    public ArrayList<DepartmentModel> consultDeparment() {
+        ArrayList<DepartmentModel> departmentList = new ArrayList();
+        DatabaseConnection connection = new DatabaseConnection();
+        String sql = "SELECT * FROM departments";
+        ResultSet result;
+        result = connection.consult(sql);
+        try {
+            while (result.next()) {
+                DepartmentModel department = new DepartmentModel();
+                department.setIdDepartment(result.getInt("id"));
+                department.setNameDepartment(result.getString("name"));
+                departmentList.add(department);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.disconnect();
+        return departmentList;
+    }
+
+    public ArrayList<CityModel> consultCitiesByDepartment(int departmentId) {
+        ArrayList<CityModel> cityList = new ArrayList();
+        DatabaseConnection connection = new DatabaseConnection();
+
+        String sql = "SELECT * FROM cities WHERE department =' " + departmentId + "'";
+
+        ResultSet result;
+        result = connection.consult(sql);
+
+        try {
+            while (result.next()) {
+                CityModel city = new CityModel();
+                city.setIdCity(result.getInt("id"));
+                city.setNameCity(result.getString("name"));
+                city.setStateCity(result.getInt("state"));
+                city.setDepartmentId(result.getInt("department")); // Assuming you have this setter in CityModel
+                cityList.add(city);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        connection.disconnect();
+        return cityList;
     }
 
     public ArrayList<RolesModel> consultRoles() {
@@ -431,7 +513,7 @@ public class QueriesUsers {
         return rolesList;
     }
 
-  public boolean showifmailexists(String email) {
+    public boolean showifmailexists(String email) {
 
         DatabaseConnection connection = new DatabaseConnection();
         String sql = "SELECT email FROM users WHERE email = '"
@@ -450,4 +532,5 @@ public class QueriesUsers {
         connection.disconnect();
         return show;
     }
+
 }

@@ -60,11 +60,11 @@ public class UsersView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Nombre", "Apellido", "Departamento", "Ciudad", "Dirección", "Correo", "Telefono", "Rol"
+                "Id", "Nombre", "Apellido", "Ciudad", "Dirección", "Correo", "Telefono", "Rol"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

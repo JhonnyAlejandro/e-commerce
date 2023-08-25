@@ -7,17 +7,20 @@ public class UsersModel extends RolesModel{
     private String lastName;
     private String email;
     private String address;
-    private String city;
+    private int city;
     private String department;
     private String phone;
     private int state;
     private char[] password;
     private int rol;
+    private CityModel cityModel; //composicion 
+
 
     //private String dateCreate;
     //private String dateUpdate;
-    public UsersModel(int idUsers, String firstName, String lastName, String email, String adress, String city,
-            String department, String phone, int state, char[] password, int rol, int idRoles, String nameRol) {
+    public UsersModel(int idUsers, String firstName, String lastName, String email, String adress, int city,
+            String department, String phone, int state, char[] password, int rol, int idRoles, String nameRol,
+            CityModel cityModel) {
         super(idRoles, nameRol);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,7 +32,7 @@ public class UsersModel extends RolesModel{
         this.state = state;
         this.password = password;
         this.rol = rol;
-
+        this.cityModel = cityModel;
     }
 
     public UsersModel() {
@@ -68,20 +71,12 @@ public class UsersModel extends RolesModel{
         this.address = address;
     }
 
-    public String getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(int city) {
         this.city = city;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public String getPhone() {
@@ -123,4 +118,13 @@ public class UsersModel extends RolesModel{
     public void setRol(int rol) {
         this.rol = rol;
     }
+    
+    public CityModel getCityModel() {
+        return cityModel;
+    }
+
+    public void setCityModel(CityModel cityModel) {
+        this.cityModel = cityModel;
+    }
 }
+
