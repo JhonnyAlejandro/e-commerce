@@ -1,6 +1,7 @@
 package database;
 
 import application.models.UsersModel;
+import application.models.CityModel;
 import configuration.DatabaseConnection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,11 +12,12 @@ public class QueriesProfile
     public UsersModel getUser() {
         DatabaseConnection connect = new DatabaseConnection();
         UsersModel model = new UsersModel();
-        String sql = "SELECT first_name, last_name, phone, email, cities.name city, address "
-                + "FROM users "
-                + "INNER JOIN cities "
-                + "ON cities.id = users.city "
-                + "WHERE email = '" + Session.userModel.getEmail()+ "'";
+        CityModel cityModel = new CityModel();
+        String sql = "SELECT first_name, last_name, phone, email, cities.name city, cities.id idCity, address\n" +
+                "FROM users\n" +
+                "INNER JOIN cities\n" +
+                "ON cities.id = users.city\n" +
+                "WHERE email = '" + Session.userModel.getEmail() + "'";
         ResultSet result;
         try {
             result = connect.consult(sql);
@@ -24,7 +26,10 @@ public class QueriesProfile
                 model.setLastName(result.getString("last_name"));
                 model.setPhone(result.getString("phone"));
                 model.setEmail(result.getString("email"));
-                model.setCity(result.getString("city"));
+                model.setCity(result.getInt("idCity"));
+                cityModel.setIdCity(result.getInt("idCity"));
+                cityModel.setNameCity(result.getString("city"));
+                model.setCityModel(cityModel);
                 model.setAddress(result.getString("address"));
             }
         } catch (Exception e) {
@@ -132,9 +137,10 @@ public class QueriesProfile
         String sql = "UPDATE users\n" +
                 "SET city = (SELECT cities.id\n" +
                 "FROM cities\n" +
-                "WHERE cities.name = '" + model.getCity() + "'),\n" +
+                "WHERE cities.name = '" + model.getCityModel().getNameCity()+ "'),\n" +
                 "address = '" + model.getAddress() + "' " +
                 "WHERE email = '" + Session.userModel.getEmail() + "'";
+        System.out.println(sql);
         try {
             if (connect.execute(sql)) {
                 band = true;

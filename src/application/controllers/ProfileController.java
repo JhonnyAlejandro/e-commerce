@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.models.CityModel;
 import application.models.UsersModel;
 import application.views.LoginView;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import utilities.ManipulateText;
 import utilities.Session;
 //import utilities.Session;
 import utilities.Validations;
@@ -115,6 +117,18 @@ public class ProfileController {
                             view.tbtEditPersonal.setText("Editar");
                             view.tbtEditPersonal.setSelected(false);
                         }
+                        view.tbtEditPersonal.putClientProperty("FlatLaf.style",
+                            "foreground: #FFF;"
+                            + "background: #1D90F5;"
+                            + "hoverBackground: darken(#1D90F5,5%);"
+                        );
+//                        DashboardView view = new DashboardView();
+//                        ManipulateText manipulateText = new ManipulateText();
+//                        String text = manipulateText.getFirstWord(Session.userModel.getFirstName()) + " " + manipulateText.getFirstWord(Session.userModel.getLastName());
+//                        view.jButton3.setText(text);
+//                        if (text.length() > 12) {
+//                            view.jButton3.setText(text.substring(0, 12) + "...");
+//                        }
                     } else {
                         deshabilitarPersonal();
                         view.btnSavePersonal.setEnabled(false);
@@ -157,7 +171,9 @@ public class ProfileController {
                     view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
                 } else {
                     UsersModel newModelo = new UsersModel();
-                    newModelo.setCity(view.cmbCity.getSelectedItem().toString());
+                    CityModel cityModel = new CityModel();
+                    cityModel.setNameCity(view.cmbCity.getSelectedItem().toString());
+                    newModelo.setCityModel(cityModel);
                     newModelo.setAddress(view.txtAddress.getText());
                     if (consulta.updateAddress(newModelo)) {
                         deshabilitarAddress();
@@ -169,6 +185,11 @@ public class ProfileController {
                             view.tbtEditAddress.setText("Editar");
                             view.tbtEditAddress.setSelected(false);
                         }
+                        view.tbtEditAddress.putClientProperty("FlatLaf.style",
+                            "foreground: #FFF;"
+                            + "background: #1D90F5;"
+                            + "hoverBackground: darken(#1D90F5,5%);"
+                        );
                     } else {
                         deshabilitarAddress();
                         view.btnSaveAddress.setEnabled(false);
@@ -229,18 +250,18 @@ public class ProfileController {
     public void setAddress() {
         upUser = consulta.getUser();
         departmentUser = consulta.getDeparmentUser();
-        if (departments.size() == 0) {
+        if (departments.isEmpty()) {
             departments = consulta.getDeparments();
             for (int i = 0; i < departments.size(); i++) {
                 view.cmbDepartment.addItem(departments.get(i).toString());
             }
         }
         view.txtAddress.setText(upUser.getAddress());
-        if (upUser.getCity().isEmpty() || upUser.getCity() == null) {
+        if (upUser.getCityModel().getNameCity().isEmpty() || upUser.getCityModel().getNameCity() == null) {
             //
         } else {
             view.cmbDepartment.setSelectedItem(departmentUser);
-            view.cmbCity.setSelectedItem(upUser.getCity());
+            view.cmbCity.setSelectedItem(upUser.getCityModel().getNameCity());
         }
     }
 }
