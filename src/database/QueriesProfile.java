@@ -40,7 +40,7 @@ public class QueriesProfile
     }
     
     public String[] getCities(int department) {
-        String[] cities = new String[8];
+        String[] cities = new String[0];
         DatabaseConnection connect = new DatabaseConnection();
         String sql = "SELECT cities.name AS city,\n" +
                 "(SELECT COUNT(*)\n" +
@@ -56,9 +56,10 @@ public class QueriesProfile
             int i = 0;
             while (result.next()) {
                 if (i == 0) {
-                    cities = new String[result.getInt("valor")];
+                    cities = new String[result.getInt("valor") + 1];
+                    cities[i] = "Seleccione una ciudad";
                 }
-                cities[i] = (result.getString("city"));
+                cities[i + 1] = (result.getString("city"));
                 i++;
             }
         } catch (Exception e) {

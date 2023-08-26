@@ -20,7 +20,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
-import utilities.Validations;
+import utilities.ValidationsProfile;
 
 public class EmailRequestController {
 
@@ -32,7 +32,7 @@ public class EmailRequestController {
     RecuperationModel model = new RecuperationModel();
     LoginView viewLogin = new LoginView();
     UsersModel modelUsers = new UsersModel();
-    Validations validations = new Validations();
+    ValidationsProfile validations = new ValidationsProfile();
     Queries queries = new Queries();
 
     public EmailRequestController() {

@@ -6,12 +6,12 @@ import application.views.VerificationCodeView;
 import database.Queries;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import utilities.Validations;
+import utilities.ValidationsProfile;
 
 public class VerificationCodeController {
 
     VerificationCodeView view = new VerificationCodeView();
-    Validations validations = new Validations();
+    ValidationsProfile validations = new ValidationsProfile();
     Queries queries = new Queries();
     UsersModel modelUsers;
     String code;

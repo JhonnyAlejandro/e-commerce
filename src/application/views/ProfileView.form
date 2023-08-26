@@ -576,7 +576,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="Seleccione el pa&#xed;s"/>
+                        <StringItem index="0" value="Seleccione una ciudad"/>
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>

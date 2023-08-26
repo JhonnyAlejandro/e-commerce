@@ -10,13 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.prefs.Preferences;
 import javax.swing.JLabel;
-import utilities.Validations;
+import utilities.ValidationsProfile;
 
 public class LoginController {
 
     UsersModel model;
     LoginView view;
-    Validations validations = new Validations();
+    ValidationsProfile validations = new ValidationsProfile();
     Queries queries = new Queries();
 
     int failedAttempts = 4;

@@ -291,7 +291,7 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel14.setText("Ciudad");
 
         cmbCity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el país" }));
+        cmbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una ciudad" }));
         cmbCity.setEnabled(false);
 
         lblErrorCity.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N

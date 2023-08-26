@@ -3,7 +3,7 @@ package application.controllers;
 import application.views.PasswordResetView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import utilities.Validations;
+import utilities.ValidationsProfile;
 import application.models.UsersModel;
 import application.views.LoginView;
 import database.Queries;
@@ -12,7 +12,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class PasswordResetController {
 
     PasswordResetView view = new PasswordResetView();
-    Validations validations = new Validations();
+    ValidationsProfile validations = new ValidationsProfile();
     UsersModel user;
     Queries queries = new Queries();
 
