@@ -13,9 +13,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import utilities.ManipulateText;
-import utilities.Session;
-//import utilities.Session;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import utilities.ValidationsProfile;
 
 public class ProfileController {
@@ -31,6 +34,13 @@ public class ProfileController {
     ArrayList cities = new ArrayList();
     String departmentUser;
     ArrayList departments = new ArrayList();
+    boolean firstName = false;
+    boolean lastName = false;
+    boolean address = false;
+    boolean city = false;
+    boolean department = false;
+    boolean email = false;
+    boolean phone = false;
 
     public ProfileController(DashboardView viewDash, ProfileView view) {
         this.view = view;
@@ -66,22 +76,21 @@ public class ProfileController {
                 if (view.tbtEditPersonal.isSelected()) {
                     habilitarPersonal();
                     view.btnSavePersonal.setEnabled(true);
+                    setColorNormal(null, null, null, view.btnSavePersonal);
+                    view.tbtEditPersonal.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/cancel-fff.png")));
                     view.tbtEditPersonal.setText("Cancelar");
-                    view.tbtEditPersonal.putClientProperty("FlatLaf.style",
-                        "foreground: #FFF;"
-                        + "background: #F51D24;"
-                        + "hoverBackground: darken(#F51D24,5%);"
-                    );
+                    setColorRed(null, null, view.tbtEditPersonal);
                 } else {
                     setVisibleLblPersonal();
+                    setColorNormal(view.txtFirstName, null, null, null);
+                    setColorNormal(view.txtLastName, null, null, null);
+                    setColorNormal(view.txtEmail, null, null, null);
+                    setColorNormal(view.txtPhone, null, null, null);
                     view.btnSavePersonal.setEnabled(false);
                     deshabilitarPersonal();
+                    view.tbtEditPersonal.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
                     view.tbtEditPersonal.setText("Editar");
-                    view.tbtEditPersonal.putClientProperty("FlatLaf.style",
-                        "foreground: #FFF;"
-                        + "background: #1D90F5;"
-                        + "hoverBackground: darken(#1D90F5,5%);"
-                    );
+                    setColorNormal(null, null, view.tbtEditPersonal, null);
                     setPersonal();
                 }
 
@@ -92,77 +101,105 @@ public class ProfileController {
             @Override
             public void actionPerformed(ActionEvent event) {
                 setVisibleLblPersonal();
+                setColorNormal(view.txtFirstName, null, null, null);
+                setColorNormal(view.txtLastName, null, null, null);
+                setColorNormal(view.txtEmail, null, null, null);
+                setColorNormal(view.txtPhone, null, null, null);
                 //validación de nombre
-                if (validations.validateEmptyField(view.txtFirstName.getText())) {
+                if (view.txtFirstName.getText().length() > 40) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("El campo tiene no permite más de 40 carácteres.");
+                } else if (validations.validateEmptyField(view.txtFirstName.getText())) {
+                    setColorRed(view.txtFirstName, null, null);
                     view.lblErrorFirstName.setVisible(true);
-                    view.lblErrorFirstName.setText("Error! Debes colocar tu/s nombre/s.");                    
+                    view.lblErrorFirstName.setText("No se puede dejar el campo vacío.");
                 } else if (!validations.validateString(view.txtFirstName.getText())) {
+                    setColorRed(view.txtFirstName, null, null);
                     view.lblErrorFirstName.setVisible(true);
-                    view.lblErrorFirstName.setText("Error! El nombre tiene caracteres no permitidos (1-9,@,$,%,&,?");
+                    view.lblErrorFirstName.setText("El nombre tiene caracteres no permitidos (1-9,@,$,%,&,?");
                 } else {
-                    //validación de apellido
-                    if (validations.validateEmptyField(view.txtLastName.getText())) {
-                        view.lblErrorLastName.setVisible(true);
-                        view.lblErrorLastName.setText("Error! Debes colocar tu/s apellido/s.");
+                    firstName = true;
+                }
+                    
+                    
+                //validación de apellido
+                if (view.txtLastName.getText().length() > 40) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("El campo tiene no permite más de 40 carácteres.");
+                } else if (validations.validateEmptyField(view.txtLastName.getText())) {
+                    setColorRed(view.txtLastName, null, null);
+                    view.lblErrorLastName.setVisible(true);
+                    view.lblErrorLastName.setText("No se puede dejar el campo vacío.");
 
-                    } else if (!validations.validateString(view.txtLastName.getText())) {
-                        view.lblErrorLastName.setVisible(true);
-                        view.lblErrorLastName.setText("Error! El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?");
-                    } else {
-                        //validación de email
-                        if (validations.validateEmptyField(view.txtEmail.getText())) {
-                            view.lblErrorEmail.setVisible(true);
-                            view.lblErrorEmail.setText("Error! Debes colocar un correo.");
-                        } else if (!validations.validateEmail(view.txtEmail.getText())) {
-                            view.lblErrorEmail.setVisible(true);
-                            view.lblErrorEmail.setText("Error! Debes colocar un email válido.");
-                        } else {
-                            //validación de teléfono
-                            if (validations.validateEmptyField(view.txtPhone.getText())) {
-                                view.lblErrorPhone.setVisible(true);
-                                view.lblErrorPhone.setText("Error! Debes colocar un teléfono.");
-                            } else if (!validations.validatePhone(view.txtPhone.getText())) {
-                                view.lblErrorPhone.setVisible(true);
-                                view.lblErrorPhone.setText("Error! Solo puedes ingresar números.");
-                                //intento de guardado
-                            } else {
-                                UsersModel newModelo = new UsersModel();
-                                newModelo.setFirstName(view.txtFirstName.getText());
-                                newModelo.setLastName(view.txtLastName.getText());
-                                newModelo.setPhone(view.txtPhone.getText());
-                                newModelo.setEmail(view.txtEmail.getText());
-
-                                if (consulta.updatePersonal(newModelo)) {
-                                    deshabilitarPersonal();
-                                    view.btnSavePersonal.setEnabled(false);
-                                    if (view.tbtEditPersonal.isSelected() == true) {
-                                        view.btnSavePersonal.setEnabled(false);
-                                        setPersonal();
-                                        deshabilitarPersonal();
-                                        view.tbtEditPersonal.setText("Editar");
-                                        view.tbtEditPersonal.setSelected(false);
-                                    }
-                                    view.tbtEditPersonal.putClientProperty("FlatLaf.style",
-                                        "foreground: #FFF;"
-                                        + "background: #1D90F5;"
-                                        + "hoverBackground: darken(#1D90F5,5%);"
-                                    );
-                                    
-                                    ManipulateText manipulateText = new ManipulateText();
-                                    String text = manipulateText.getFirstWord(newModelo.getFirstName()) + " " + manipulateText.getFirstWord(newModelo.getLastName());
-                                    viewDash.jButton3.setText(text);
-                                    if (text.length() > 12) {
-                                        viewDash.jButton3.setText(text.substring(0, 12) + "...");
-                                    }
-                                    
-                                    
-                                } else {
-                                    deshabilitarPersonal();
-                                    view.btnSavePersonal.setEnabled(false);
-                                }
-                            }
-                            
+                } else if (!validations.validateString(view.txtLastName.getText())) {
+                    setColorRed(view.txtLastName, null, null);
+                    view.lblErrorLastName.setVisible(true);
+                    view.lblErrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?");
+                } else {
+                    lastName = true;
+                }                
+                        
+                //validación de email
+                if (view.txtPhone.getText().length() > 95) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("El campo tiene no permite más de 95 carácteres.");
+                } else if (validations.validateEmptyField(view.txtEmail.getText())) {
+                    setColorRed(view.txtEmail, null, null);
+                    view.lblErrorEmail.setVisible(true);
+                    view.lblErrorEmail.setText("No se puede dejar el campo vacío.");
+                } else if (!validations.validateEmail(view.txtEmail.getText())) {
+                    setColorRed(view.txtEmail, null, null);
+                    view.lblErrorEmail.setVisible(true);
+                    view.lblErrorEmail.setText("Ingresa una dirección de correo electrónico válida.");
+                } else {
+                    email = true;
+                }
+                        
+                //validación de teléfono
+                if (view.txtPhone.getText().length() > 10) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("El campo tiene no permite más de 10 dígitos.");
+                } else if (!validations.validatePhone(view.txtPhone.getText())) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos).");
+                } else {
+                    phone = true;
+                }
+                //intento de guardado
+                if (firstName && lastName && email && phone) {
+                    UsersModel newModelo = new UsersModel();
+                    newModelo.setFirstName(view.txtFirstName.getText());
+                    newModelo.setLastName(view.txtLastName.getText());
+                    newModelo.setPhone(view.txtPhone.getText());
+                    newModelo.setEmail(view.txtEmail.getText());
+                    
+                    if (consulta.updatePersonal(newModelo)) {
+                        deshabilitarPersonal();
+                        view.btnSavePersonal.setEnabled(false);
+                        if (view.tbtEditPersonal.isSelected() == true) {
+                            view.btnSavePersonal.setEnabled(false);
+                            setPersonal();
+                            deshabilitarPersonal();
+                            view.tbtEditPersonal.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
+                            view.tbtEditPersonal.setText("Editar");
+                            view.tbtEditPersonal.setSelected(false);
                         }
+                        setColorNormal(null, null, view.tbtEditPersonal, null);
+                        setColorNormal(null, null, null, view.btnSavePersonal);
+                        ManipulateText manipulateText = new ManipulateText();
+                        String text = manipulateText.getFirstWord(newModelo.getFirstName()) + " " + manipulateText.getFirstWord(newModelo.getLastName());
+                        viewDash.jButton3.setText(text);
+                        if (text.length() > 12) {
+                            viewDash.jButton3.setText(text.substring(0, 12) + "...");
+                        }
+                    } else {
+                        deshabilitarPersonal();
+                        view.btnSavePersonal.setEnabled(false);
                     }
                 }
             }
@@ -174,22 +211,20 @@ public class ProfileController {
                 if (view.tbtEditAddress.isSelected()) {
                     habilitarAddress();
                     view.btnSaveAddress.setEnabled(true);
+                    setColorNormal(null, null, null, view.btnSaveAddress);
+                    view.tbtEditAddress.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/cancel-fff.png")));
                     view.tbtEditAddress.setText("Cancelar");
-                    view.tbtEditAddress.putClientProperty("FlatLaf.style",
-                        "foreground: #FFF;"
-                        + "background: #F51D24;"
-                        + "hoverBackground: darken(#F51D24,5%);"
-                    );
+                    setColorRed(null, null, view.tbtEditAddress);
                 } else {
                     setVisibleLblAddress();
+                    setColorNormal(view.txtAddress, null, null, null);
+                    setColorNormal(null, view.cmbDepartment, null, null);
+                    setColorNormal(null, view.cmbCity, null, null);
                     view.btnSaveAddress.setEnabled(false);
                     deshabilitarAddress();
+                    view.tbtEditAddress.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
                     view.tbtEditAddress.setText("Editar");
-                    view.tbtEditAddress.putClientProperty("FlatLaf.style",
-                        "foreground: #FFF;"
-                        + "background: #1D90F5;"
-                        + "hoverBackground: darken(#1D90F5,5%);"
-                    );
+                    setColorNormal(null, null, view.tbtEditAddress, null);
                     setAddress();
                 }
 
@@ -200,51 +235,63 @@ public class ProfileController {
             @Override
             public void actionPerformed(ActionEvent event) {
                 setVisibleLblAddress();
+                setColorNormal(view.txtAddress, null, null, null);
+                setColorNormal(null, view.cmbDepartment, null, null);
+                setColorNormal(null, view.cmbCity, null, null);
                 //validación de dirección de residencia
                 if (validations.validateEmptyField(view.txtAddress.getText())) {
+                    setColorRed(view.txtAddress, null, null);
                     view.lblErrorAddress.setVisible(true);
-                    view.lblErrorAddress.setText("Error! Debes colocar una dirección de residencia.");
+                    view.lblErrorAddress.setText("No se puede dejar el campo vacío.");
                 } else if (!validations.validateAddress(view.txtAddress.getText())) {
+                    setColorRed(view.txtAddress, null, null);
                     view.lblErrorAddress.setVisible(true);
-                    view.lblErrorAddress.setText("Error! El nombre tiene caracteres no permitidos (1-9,@,$,%,&,?)\"");
+                    view.lblErrorAddress.setText("La dirección tiene un formato incorrecto.");
                 } else {
-                    if (view.cmbDepartment.getSelectedIndex() < 1) {
-                        System.out.println(view.cmbDepartment.getSelectedIndex());
-                        System.out.println(view.cmbCity.getSelectedIndex());
-                        view.lblErrorDepartment.setVisible(true);
-                        view.lblErrorDepartment.setText("Error! Debes seleccionar un departamento.");
-                    } else {
-                        //validación de ciudad
-                        if (view.cmbCity.getSelectedIndex() < 1) {
-                            view.lblErrorCity.setVisible(true);
-                            view.lblErrorCity.setText("Error! Debes seleccionar una ciudad");
-                        } else {
-                            UsersModel newModelo = new UsersModel();
-                            CityModel cityModel = new CityModel();
-                            cityModel.setNameCity(view.cmbCity.getSelectedItem().toString());
-                            newModelo.setCityModel(cityModel);
-                            newModelo.setAddress(view.txtAddress.getText());
-                            if (consulta.updateAddress(newModelo)) {
-                                deshabilitarAddress();
-                                view.btnSaveAddress.setEnabled(false);
-                                if (view.tbtEditAddress.isSelected() == true) {
-                                    view.btnSaveAddress.setEnabled(false);
-                                    setAddress();
-                                    deshabilitarAddress();
-                                    view.tbtEditAddress.setText("Editar");
-                                    view.tbtEditAddress.setSelected(false);
-                                }
-                                view.tbtEditAddress.putClientProperty("FlatLaf.style",
-                                    "foreground: #FFF;"
-                                    + "background: #1D90F5;"
-                                    + "hoverBackground: darken(#1D90F5,5%);"
-                                );
-                            } else {
-                                deshabilitarAddress();
-                                view.btnSaveAddress.setEnabled(false);
-                            }
+                    address = true;
+                }
+                    
+                //validación de departamento
+                if (view.cmbDepartment.getSelectedIndex() < 1) {
+                    setColorRed(null, view.cmbDepartment, null);
+                    view.lblErrorDepartment.setVisible(true);
+                    view.lblErrorDepartment.setText("Debes seleccionar un departamento.");
+                } else {
+                    department = true;
+                }
+                    
+                //validación de ciudad
+                if (view.cmbCity.getSelectedIndex() < 1) {
+                    setColorRed(null, view.cmbCity, null);
+                    view.lblErrorCity.setVisible(true);
+                    view.lblErrorCity.setText("Debes seleccionar una ciudad");
+                } else {
+                    city = true;
+                }
+                        
+                if (address && city && department) {
+                    UsersModel newModelo = new UsersModel();
+                    CityModel cityModel = new CityModel();
+                    cityModel.setNameCity(view.cmbCity.getSelectedItem().toString());
+                    newModelo.setCityModel(cityModel);
+                    newModelo.setAddress(view.txtAddress.getText());
+                    if (consulta.updateAddress(newModelo)) {
+                        deshabilitarAddress();
+                        view.btnSaveAddress.setEnabled(false);
+                        if (view.tbtEditAddress.isSelected() == true) {
+                            view.btnSaveAddress.setEnabled(false);
+                            setAddress();
+                            deshabilitarAddress();
+                            view.tbtEditAddress.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
+                            view.tbtEditAddress.setText("Editar");
+                            view.tbtEditAddress.setSelected(false);
                         }
-                    }
+                        setColorNormal(null, null, null, view.btnSaveAddress);
+                        setColorNormal(null, null, view.tbtEditAddress, null);
+                    } else {
+                        deshabilitarAddress();
+                        view.btnSaveAddress.setEnabled(false);
+                    }   
                 }
             }
         });
@@ -256,12 +303,53 @@ public class ProfileController {
                     if (view.cmbDepartment.getSelectedIndex() > 0) {
                         view.cmbCity.setModel(new DefaultComboBoxModel(consulta.getCities(view.cmbDepartment.getSelectedIndex())));
                     } else {
-                        System.out.println(view.cmbDepartment.getSelectedIndex());
                         view.cmbCity.setModel(new DefaultComboBoxModel(new String[]{"Seleccione una ciudad"}));
                     }
                 }
             }
         });
+    }
+    
+    public void setColorRed (JTextField txt, JComboBox cmb, JToggleButton tbt) {
+        if (txt != null) {
+            txt.putClientProperty("FlatLaf.style",
+                    "borderColor: #F51D24;"
+            );
+        } else if (cmb != null) {
+            cmb.putClientProperty("FlatLaf.style",
+                    "borderColor: #F51D24;"
+            );
+        } else {
+            tbt.putClientProperty("FlatLaf.style",
+                "foreground: #FFF;"
+                + "background: #F51D24;"
+                + "hoverBackground: darken(#F51D24,5%);"
+            ); 
+        }
+    }
+    
+    public void setColorNormal (JTextField txt, JComboBox cmb, JToggleButton tbt, JButton btn) {
+        if (txt != null) {
+            txt.putClientProperty("FlatLaf.style",
+                "borderColor: #F3F6FB;"
+            );
+        } else if (cmb != null) {
+            cmb.putClientProperty("FlatLaf.style",
+                "borderColor: #F3F6FB;"
+            );
+        } else if (tbt != null) {
+            tbt.putClientProperty("FlatLaf.style",
+                "foreground: #FFF;"
+                + "background: #1D90F5;"
+                + "hoverBackground: darken(#1D90F5,5%);"
+            );
+        } else {
+            btn.putClientProperty("FlatLaf.style",
+                "foreground: #FFF;"
+                + "background: #1D90F5;"
+                + "hoverBackground: darken(#1D90F5,5%);"
+            );
+        }
     }
 
     public void setVisibleLblPersonal () {

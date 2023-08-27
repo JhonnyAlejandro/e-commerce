@@ -141,7 +141,6 @@ public class QueriesProfile
                 "WHERE cities.name = '" + model.getCityModel().getNameCity()+ "'),\n" +
                 "address = '" + model.getAddress() + "' " +
                 "WHERE email = '" + Session.userModel.getEmail() + "'";
-        System.out.println(sql);
         try {
             if (connect.execute(sql)) {
                 band = true;
