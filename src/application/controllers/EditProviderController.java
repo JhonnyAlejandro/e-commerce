@@ -34,7 +34,7 @@ public class EditProviderController {
         hideButton();
         loadDepartments();
         loadData();
-        
+
         this.model = loadData();
 
     }
@@ -43,6 +43,9 @@ public class EditProviderController {
         ProviderModel model = new ProviderModel();
         Object obj = providersView.tblProvider.getValueAt(providersView.tblProvider.getSelectedRow(), 0);
         int id = (int) obj;
+        
+        
+        
 
         model = queries.buscar(id);
 
@@ -87,7 +90,7 @@ public class EditProviderController {
                 boolean Email = false;
                 boolean Phone = false;
 
-                  if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
+                if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
                     view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
@@ -120,7 +123,6 @@ public class EditProviderController {
                 }
 
                 // termina validacion de FirstName
-                
                 // Empieza validacion de LastName
                 if (validation.checkEmpty(view.txtLastNameAdd.getText())) {
                     view.txtLastNameAdd.putClientProperty("FlatLaf.style",
@@ -157,35 +159,26 @@ public class EditProviderController {
                 // termina validacion de LastName
 
                 // Empieza validacion de email 
-                if (validation.checkEmpty(view.txtEmailAdd.getText())) {
+                if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
                     view.txtEmailAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
+                    view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico válida");
                     view.lblerrorEmail.setVisible(true);
                 } else {
-                    if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
+                    view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
 
-                        view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico valida");
-                        view.lblerrorEmail.setVisible(true);
-                    } else {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
+                    view.lblerrorEmail.setVisible(false);
 
-                        view.lblerrorEmail.setVisible(false);
+                    model.setEmail(view.txtEmailAdd.getText());
 
-                        model.setEmail(view.txtEmailAdd.getText());
+                    Email = true;
+                }
+                // termina validacion email 
 
-                        Email = true;
-
-                    }
-                }// termina validacion email 
-                
                 //Empieza validaciones de phone
                 if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
                     view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
@@ -200,7 +193,7 @@ public class EditProviderController {
                 //Termina validacion de phone 
 
                 //Inicia validacion de City 
-                                  if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
+                if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
@@ -224,11 +217,11 @@ public class EditProviderController {
                     model.setCity(selectedIndexCity);
                     Department = true;
                     City = true;
-                    System.out.println("aqui"+model.getLastName());
+                    System.out.println("aqui" + model.getLastName());
 
                 }
                 //Termina validacion de city
-                
+
                 //Inicia validacion de address
                 if (!validation.addressCheck(view.txtAdressAdd.getText())) {
                     view.txtAdressAdd.putClientProperty("FlatLaf.style",
@@ -243,31 +236,28 @@ public class EditProviderController {
                     view.lblerrorAdress.setVisible(false);
                     model.setAddress(view.txtAdressAdd.getText());
                     Addres = true;
-              
+
                 }
                 //T
 
                 if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true) {
-                    
 
                     if (queries.modificar(model)) {
-                              
-                              JOptionPane.showMessageDialog(null, "error al guardar");
-                     
+
+                        JOptionPane.showMessageDialog(null, "error al guardar");
+
                     } else {
-              
-                        
-                           JOptionPane.showMessageDialog(null, "proveedor actualizado");
+
+                        JOptionPane.showMessageDialog(null, "proveedor actualizado");
 
                         ProvidersView providersView = new ProvidersView();
                         new ProvidersController(providersView);
                         providersView.setBounds(0, 0, 800, 700);
-                       
+
                         view.removeAll();
                         view.add(providersView);
                         view.repaint();
                         view.revalidate();
-
 
                     }
                 }

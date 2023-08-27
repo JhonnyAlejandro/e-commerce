@@ -139,33 +139,25 @@ public class AddProviderController {
                     }
                 }// termina if de apellido 
 
-                if (validation.checkEmpty(view.txtEmailAdd.getText())) {
+                //if email
+                
+                if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
                     view.txtEmailAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
+                    view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico válida");
                     view.lblerrorEmail.setVisible(true);
                 } else {
-                    if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
+                    view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
 
-                        view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico valida");
-                        view.lblerrorEmail.setVisible(true);
-                    } else {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
+                    view.lblerrorEmail.setVisible(false);
 
-                        view.lblerrorEmail.setVisible(false);
+                    model.setEmail(view.txtEmailAdd.getText());
 
-                        model.setEmail(view.txtEmailAdd.getText());
-
-                        Email = true;
-
-                    }
+                    Email = true;
                 }
 
                 //inicia validacion phone
@@ -201,6 +193,10 @@ public class AddProviderController {
                             "borderColor: #F3F6FB;"
                     );
 
+                    view.cmbCity.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+
                     view.lblerrorDepartment.setVisible(false);
                     view.lblerrorCity.setVisible(false);
                     String selectedCityName = view.cmbCity.getSelectedItem().toString();
@@ -229,8 +225,6 @@ public class AddProviderController {
                     model.setAddress(view.txtAdressAdd.getText());
 
                     Addres = true;
-                    System.out.println("aqui" + model.getAddress());
-
                 }
                 //validacion direccion 
 
