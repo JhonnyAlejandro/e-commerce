@@ -56,4 +56,8 @@ public class ValidationsProfile {
             return false;
         }
     }
+    
+    public boolean isTextLengthValid(String data, int maxLength) {
+        return data.length() <= maxLength;
+    }
 }

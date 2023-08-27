@@ -11,6 +11,8 @@ import application.views.DashboardView;
 import database.QueriesProfile;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -19,6 +21,8 @@ import javax.swing.JComboBox;
 import utilities.ManipulateText;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import utilities.ValidationsProfile;
 
 public class ProfileController {
@@ -78,6 +82,7 @@ public class ProfileController {
                     view.btnSavePersonal.setEnabled(true);
                     setColorNormal(null, null, null, view.btnSavePersonal);
                     view.tbtEditPersonal.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/cancel-fff.png")));
+                    
                     view.tbtEditPersonal.setText("Cancelar");
                     setColorRed(null, null, view.tbtEditPersonal);
                 } else {
@@ -239,10 +244,10 @@ public class ProfileController {
                 setColorNormal(null, view.cmbDepartment, null, null);
                 setColorNormal(null, view.cmbCity, null, null);
                 //validación de dirección de residencia
-                if (validations.validateEmptyField(view.txtAddress.getText())) {
-                    setColorRed(view.txtAddress, null, null);
-                    view.lblErrorAddress.setVisible(true);
-                    view.lblErrorAddress.setText("No se puede dejar el campo vacío.");
+                if (view.txtAddress.getText().length() > 10) {
+                    setColorRed(view.txtPhone, null, null);
+                    view.lblErrorPhone.setVisible(true);
+                    view.lblErrorPhone.setText("El campo tiene no permite más de 10 dígitos.");
                 } else if (!validations.validateAddress(view.txtAddress.getText())) {
                     setColorRed(view.txtAddress, null, null);
                     view.lblErrorAddress.setVisible(true);
@@ -308,6 +313,22 @@ public class ProfileController {
                 }
             }
         });
+        
+        view.txtPhone.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtPhone.getText(), 95)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
+                }
+            }
+        });
+        
+        view.txtAddress.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtAddress.getText(), 95)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
+                }
+            }
+        });
     }
     
     public void setColorRed (JTextField txt, JComboBox cmb, JToggleButton tbt) {
@@ -324,7 +345,7 @@ public class ProfileController {
                 "foreground: #FFF;"
                 + "background: #F51D24;"
                 + "hoverBackground: darken(#F51D24,5%);"
-            ); 
+            );
         }
     }
     
