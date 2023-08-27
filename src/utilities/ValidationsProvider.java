@@ -1,5 +1,7 @@
 package utilities;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,6 +66,10 @@ public class ValidationsProvider {
         } else {
             return false;
         }
+    }
+
+     public  boolean isTextLengthValid(String data6, int maxLength) {
+        return data6.length() <= maxLength;
     }
 
 }
