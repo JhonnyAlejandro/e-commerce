@@ -23,7 +23,7 @@ public class ProvidersController {
 
         events();
         loadData();
-        System.out.println("llegue a load ");
+        System.out.println("llegue a provideController");
         editProviderForm();
         filterListener();
     }
@@ -89,8 +89,11 @@ public class ProvidersController {
     public void editProviderForm() {
 
         view.tblProvider.addMouseListener(new MouseAdapter() {
-
+   
+            @Override
             public void mouseClicked(MouseEvent arg0) {
+               
+                
                 ProvidersFormView providersForm = new ProvidersFormView();
                 performActions.changePanel(view.jPanel1, providersForm);
                 new EditProviderController(providersForm, view);
@@ -112,8 +115,8 @@ public class ProvidersController {
             row[1] = provider.getFirstName();
             row[2] = provider.getLastName();
             row[3] = provider.getAddress();
-            row[4] = provider.getCity();
-            row[5] = provider.getDepartment();
+            row[4] = provider.getCityModel().getNameCity();
+            row[5] = provider.getCityModel().getNameDepartment();
             row[6] = provider.getPhone();
             row[7] = provider.getEmail();
           
@@ -136,8 +139,8 @@ public class ProvidersController {
             row[1] = provider.getFirstName();
             row[2] = provider.getLastName();
             row[3] = provider.getAddress();
-            row[4] = provider.getCity();
-            row[5] = provider.getDepartment();
+            row[4] = provider.getCityModel().getNameCity();
+            row[5] = provider.getCityModel().getNameDepartment();
             row[6] = provider.getPhone();
             row[7] = provider.getEmail();
          

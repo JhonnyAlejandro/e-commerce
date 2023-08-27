@@ -11,13 +11,29 @@ public class ProviderModel {
     private String FirstName;
     private String lastName;
     private String address;
-    private String city;
+    private int city;
     private String department;
     private String phone;
     private String email;
+    private CityModel cityModel;
     private int state;
+
+    public ProviderModel(int id, String FirstName, String lastName, String address, int city, String department, String phone, String email, CityModel cityModel, int state) {
+        this.id = id;
+        this.FirstName = FirstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.department = department;
+        this.phone = phone;
+        this.email = email;
+        this.cityModel = cityModel;
+        this.state = state;
+    }
    
 
+   
+    
     public ProviderModel() {
        
     }
@@ -54,11 +70,11 @@ public class ProviderModel {
         this.address = address;
     }
 
-    public String getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
@@ -93,6 +109,16 @@ public class ProviderModel {
     public void setState(int state) {
         this.state = state;
     }
+
+    public CityModel getCityModel() {
+        return cityModel;
+    }
+
+    public void setCityModel(CityModel cityModel) {
+        this.cityModel = cityModel;
+    }
+    
+    
    
 }
 

@@ -5,12 +5,15 @@
  */
 package application.controllers;
 
+import application.models.CityModel;
+import application.models.DepartmentModel;
 import application.models.ProviderModel;
 import application.views.ProvidersFormView;
 import application.views.ProvidersView;
 import database.QueriesProvider;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import utilities.PerformActions;
 import utilities.ValidationsProvider;
@@ -26,15 +29,18 @@ public class EditProviderController {
     public EditProviderController(ProvidersFormView view, ProvidersView providersView) {
         this.view = view;
         this.providersView = providersView;
-        changetitle();
-        hideButton();
-        loadData();
         events();
+        changetitle();  //tener en cuenta el orden por que si tiene importancia //
+        hideButton();
+        loadDepartments();
+        loadData();
+        
+        this.model = loadData();
 
     }
 
-    private void loadData() {
-
+    private ProviderModel loadData() {
+        ProviderModel model = new ProviderModel();
         Object obj = providersView.tblProvider.getValueAt(providersView.tblProvider.getSelectedRow(), 0);
         int id = (int) obj;
 
@@ -42,14 +48,33 @@ public class EditProviderController {
 
         view.txtFirstNameAdd.setText(model.getFirstName());
         view.txtLastNameAdd.setText(model.getLastName());
-        //view.txtCityAdd.setText(model.getDepartment());
-        //view.txtDepartmentAdd.setText(model.getCity());
         view.txtPhoneAdd.setText(model.getPhone());
         view.txtAdressAdd.setText(model.getAddress());
         view.txtEmailAdd.setText(model.getEmail());
+        view.cmbDepartment.setSelectedIndex(model.getCityModel().getDepartmentId());
+        view.cmbCity.setSelectedItem(model.getCityModel().getNameCity());
+
+        return model;
+
     }
 
     private void events() {
+
+        view.cmbDepartment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                DepartmentModel department = new DepartmentModel();
+                int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+
+                // Limpiar las ciudades existentes antes de agregar nuevas
+                view.cmbCity.removeAllItems();
+
+                if (selectedDepartmentId != 0) {
+                    // Cargar ciudades solo si se selecciona un departamento válido
+                    loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
 
         view.btnSave.addActionListener(new ActionListener() {
             @Override
@@ -62,12 +87,12 @@ public class EditProviderController {
                 boolean Email = false;
                 boolean Phone = false;
 
-                if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
+                  if (validation.checkEmpty(view.txtFirstNameAdd.getText())) {
                     view.txtFirstNameAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorName.setText("Ingresa el nombre correctamente");
+                    view.lblerrorName.setText("No se puede dejar el campo vacio");
                     view.lblerrorName.setVisible(true);
 
                     System.out.println("bandera 1");
@@ -92,8 +117,11 @@ public class EditProviderController {
                         First_Name = true;
 
                     }
-                }  // termina if nombre 
+                }
 
+                // termina validacion de FirstName
+                
+                // Empieza validacion de LastName
                 if (validation.checkEmpty(view.txtLastNameAdd.getText())) {
                     view.txtLastNameAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
@@ -125,14 +153,16 @@ public class EditProviderController {
                         Last_Name = true;
 
                     }
-                }// termina if de apellido 
+                }
+                // termina validacion de LastName
 
+                // Empieza validacion de email 
                 if (validation.checkEmpty(view.txtEmailAdd.getText())) {
                     view.txtEmailAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorEmail.setText("Ingresa tu dirección de correo electrónico*");
+                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
                     view.lblerrorEmail.setVisible(true);
                 } else {
                     if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
@@ -155,141 +185,89 @@ public class EditProviderController {
 
                     }
                 }// termina validacion email 
-
-                if (validation.checkEmpty(view.txtPhoneAdd.getText())) {
+                
+                //Empieza validaciones de phone
+                if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
                     view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
-                    view.lblerrorPhone.setText("Ingresa el número de teléfono correctamente");
+                    view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
                     view.lblerrorPhone.setVisible(true);
-                    System.out.println("bandera 4");
                 } else {
-                    if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
-                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
-                        view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
-                        view.lblerrorPhone.setVisible(true);
-                    } else {
-                        view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
-                        view.lblerrorPhone.setVisible(false);
-                        model.setPhone(view.txtPhoneAdd.getText());
-                        Phone = true;
-                    }
-                }//validaciones phone 
+                    view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                    view.lblerrorPhone.setVisible(false);
+                    model.setPhone(view.txtPhoneAdd.getText());
+                    Phone = true;
+                }
+                //Termina validacion de phone 
 
-//                if (validation.checkEmpty(view.txtDepartmentAdd.getText())) {
-//                    view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-//                            "borderColor: #F51D24;"
-//                    );
-//
-//                    view.lblerrorDepartment.setText("Ingresa el departamento correctamente");
-//                    view.lblerrorDepartment.setVisible(true);
-//
-//                    System.out.println("bandera 5");
-//                } else {
-//                    if (!validation.stringCheck(view.txtDepartmentAdd.getText())) {
-//                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-//                                "borderColor: #F51D24;"
-//                        );
-//
-//                        view.lblerrorDepartment.setText("El departamento tiene caracteres no permitidos");
-//                        view.lblerrorDepartment.setVisible(true);
-//                    } else {
-//
-//                        view.txtDepartmentAdd.putClientProperty("FlatLaf.style",
-//                                "borderColor: #F3F6FB;"
-//                        );
-//
-//                        view.lblerrorDepartment.setVisible(false);
-//
-//                        model.setDepartment(view.txtDepartmentAdd.getText());
-//
-//                        Department = true;
-//
-//                    }
-//                }//termina validaciones de departamento
-
-//                if (validation.checkEmpty(view.txtCityAdd.getText())) {
-//                    view.txtCityAdd.putClientProperty("FlatLaf.style",
-//                            "borderColor: #F51D24;"
-//                    );
-//
-//                    view.lblerrorCity.setText("Ingresa la ciudad correctamente");
-//                    view.lblerrorCity.setVisible(true);
-//
-//                    System.out.println("bandera 6");
-//                } else {
-//                    if (!validation.stringCheck(view.txtCityAdd.getText())) {
-//                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-//                                "borderColor: #F51D24;"
-//                        );
-//
-//                        view.lblerrorCity.setText("La ciudad tiene caracteres no permitidos");
-//                        view.lblerrorCity.setVisible(true);
-//                    } else {
-//
-//                        view.txtCityAdd.putClientProperty("FlatLaf.style",
-//                                "borderColor: #F3F6FB;"
-//                        );
-//
-//                        view.lblerrorCity.setVisible(false);
-//
-//                        model.setCity(view.txtCityAdd.getText());
-//
-//                        City = true;
-//                    }
-//                }//validacion ciudad
-
-                if (validation.checkEmpty(view.txtAdressAdd.getText())) {
-                    view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                //Inicia validacion de City 
+                                  if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorAdress.setText("Ingresa la dirección correctamente");
-                    view.lblerrorAdress.setVisible(true);
+                    view.lblerrorDepartment.setText("Ingresa el departamento correctamente");
+                    view.lblerrorDepartment.setVisible(true);
+                    view.lblerrorCity.setText("Seleccione una ciudad");
+                    view.lblerrorCity.setVisible(true);
 
-                    System.out.println("bandera 7");
+                    System.out.println("bandera 5");
                 } else {
-                    if (!validation.addressCheck(view.txtAdressAdd.getText())) {
-                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
 
-                        view.lblerrorAdress.setText("La dirección tiene un formato incorrecto");
-                        view.lblerrorAdress.setVisible(true);
-                    } else {
-                        view.txtAdressAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
 
-                        view.lblerrorAdress.setVisible(false);
+                    view.lblerrorDepartment.setVisible(false);
+                    view.lblerrorCity.setVisible(false);
+                    String selectedCityName = view.cmbCity.getSelectedItem().toString();
+                    int selectedIndexCity = getCityByName(selectedCityName);
+                    model.setCity(selectedIndexCity);
+                    Department = true;
+                    City = true;
+                    System.out.println("aqui"+model.getLastName());
 
-                        model.setAddress(view.txtAdressAdd.getText());
-
-                        Addres = true;
-                    }
                 }
+                //Termina validacion de city
                 
-                if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true) {
-                    model.setFirstName(view.txtFirstNameAdd.getText());
-                    model.setLastName(view.txtLastNameAdd.getText());
+                //Inicia validacion de address
+                if (!validation.addressCheck(view.txtAdressAdd.getText())) {
+                    view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+                    view.lblerrorAdress.setText("La dirección tiene un formato incorrecto");
+                    view.lblerrorAdress.setVisible(true);
+                } else {
+                    view.txtAdressAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    view.lblerrorAdress.setVisible(false);
                     model.setAddress(view.txtAdressAdd.getText());
-                    //model.setCity(view.txtDepartmentAdd.getText());
-                    model.setPhone(view.txtPhoneAdd.getText());
-                    //model.setDepartment(view.txtCityAdd.getText());
-                    model.setEmail(view.txtEmailAdd.getText());
+                    Addres = true;
+              
+                }
+                //T
 
-                  if (queries.modificar(model)) {
+                if (First_Name == true && Last_Name == true && Addres == true && City == true && Department == true && Email == true && Phone == true) {
+                    
 
-                        JOptionPane.showMessageDialog(null, "proveedor actualizado");
+                    if (queries.modificar(model)) {
+                              
+                              JOptionPane.showMessageDialog(null, "error al guardar");
+                     
+                    } else {
+              
+                        
+                           JOptionPane.showMessageDialog(null, "proveedor actualizado");
 
                         ProvidersView providersView = new ProvidersView();
                         new ProvidersController(providersView);
                         providersView.setBounds(0, 0, 800, 700);
+                       
                         view.removeAll();
                         view.add(providersView);
                         view.repaint();
                         view.revalidate();
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "error al guardar");
 
                     }
                 }
@@ -297,46 +275,19 @@ public class EditProviderController {
 
         });
 
-            view.btnDelete.addActionListener ( 
+        view.btnDelete.addActionListener(
                 new ActionListener() {
             @Override
-                public void actionPerformed
-                (ActionEvent arg0
-                
-                    ) {
+            public void actionPerformed(ActionEvent arg0
+            ) {
                 Object obj = providersView.tblProvider.getValueAt(providersView.tblProvider.getSelectedRow(), 0);
-                    int id = (int) obj;
-                    model.setId(id);
-                    model.setState(0);
+                int id = (int) obj;
+                model.setId(id);
+                model.setState(0);
 
-                    if (queries.eliminar(model)) {
-                        JOptionPane.showMessageDialog(null, "proveedor eliminado");
-                        ProvidersView providersView = new ProvidersView();
-                        new ProvidersController(providersView);
-                        providersView.setBounds(0, 0, 800, 700);
-                        view.removeAll();
-                        view.add(providersView);
-                        view.repaint();
-                        view.revalidate();
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "error al eliminar");
-                    }
-
-                }
-            }
-
-            );
-
-            view.btnCancel.addActionListener ( 
-                new ActionListener() {
-            @Override
-                public void actionPerformed
-                (ActionEvent arg0
-                
-                    ) {
-
-                ProvidersView providersView = new ProvidersView();
+                if (queries.eliminar(model)) {
+                    JOptionPane.showMessageDialog(null, "proveedor eliminado");
+                    ProvidersView providersView = new ProvidersView();
                     new ProvidersController(providersView);
                     providersView.setBounds(0, 0, 800, 700);
                     view.removeAll();
@@ -344,8 +295,30 @@ public class EditProviderController {
                     view.repaint();
                     view.revalidate();
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "error al eliminar");
                 }
+
             }
+        }
+        );
+
+        view.btnCancel.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0
+            ) {
+
+                ProvidersView providersView = new ProvidersView();
+                new ProvidersController(providersView);
+                providersView.setBounds(0, 0, 800, 700);
+                view.removeAll();
+                view.add(providersView);
+                view.repaint();
+                view.revalidate();
+
+            }
+        }
         );
 
     }
@@ -356,6 +329,31 @@ public class EditProviderController {
 
     private void hideButton() {
         view.btnAdd.setVisible(false);
+    }
+
+    private void loadDepartments() {
+        ArrayList<DepartmentModel> departments = queries.consultDeparment();
+        for (int i = 0; i < departments.size(); i++) {
+            view.cmbDepartment.addItem(departments.get(i).getNameDepartment());
+        }
+    }
+
+    private void loadCitiesByDepartment(int id) {
+        ArrayList<CityModel> cities = queries.consultCitiesByDepartment(id);
+        for (int i = 0; i < cities.size(); i++) {
+            view.cmbCity.addItem(cities.get(i).getNameCity());
+        }
+    }
+
+    private int getCityByName(String nameCity) {
+        int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+        ArrayList<CityModel> cityList = queries.consultCitiesByDepartment(selectedDepartmentId);
+        for (CityModel cities : cityList) {
+            if (cities.getNameCity().equals(nameCity)) {
+                return cities.getIdCity();
+            }
+        }
+        return 0;
     }
 
 }
