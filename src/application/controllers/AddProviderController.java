@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import application.views.ProvidersView;
 import database.QueriesProvider;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import utilities.ValidationsProvider;
 
@@ -46,6 +48,14 @@ public class AddProviderController {
                 if (selectedDepartmentId != 0) {
                     // Cargar ciudades solo si se selecciona un departamento válido
                     loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
+
+        view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
                 }
             }
         });
@@ -88,7 +98,7 @@ public class AddProviderController {
                         view.lblerrorName.setVisible(false);
 
                         model.setFirstName(view.txtFirstNameAdd.getText());
-                        System.out.println("aqui"+model.getFirstName());
+                        System.out.println("aqui" + model.getFirstName());
 
                         First_Name = true;
 
@@ -124,45 +134,33 @@ public class AddProviderController {
                         model.setLastName(view.txtLastNameAdd.getText());
 
                         Last_Name = true;
-                        System.out.println("aqui"+model.getFirstName());
+                        System.out.println("aqui" + model.getFirstName());
 
                     }
                 }// termina if de apellido 
+
+                //if email
                 
-                if (validation.checkEmpty(view.txtEmailAdd.getText())) {
+                if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
                     view.txtEmailAdd.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
+                    view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico válida");
                     view.lblerrorEmail.setVisible(true);
                 } else {
-                    if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F51D24;"
-                        );
+                    view.txtEmailAdd.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
 
-                        view.lblerrorEmail.setText("Ingresa una dirección de correo electrónico valida");
-                        view.lblerrorEmail.setVisible(true);
-                    } else {
-                        view.txtEmailAdd.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
+                    view.lblerrorEmail.setVisible(false);
 
-                        view.lblerrorEmail.setVisible(false);
+                    model.setEmail(view.txtEmailAdd.getText());
 
-                        model.setEmail(view.txtEmailAdd.getText());
-
-
-                        Email = true;
-
-                    }
+                    Email = true;
                 }
-                
-                
-                
+
                 //inicia validacion phone
-                
                 if (!validation.phoneCheck(view.txtPhoneAdd.getText())) {
                     view.txtPhoneAdd.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.lblerrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos)");
@@ -173,11 +171,13 @@ public class AddProviderController {
                     model.setPhone(view.txtPhoneAdd.getText());
                     Phone = true;
                 }
-                
-                //termina validacion phone
 
+                //termina validacion phone
                 if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
@@ -193,6 +193,10 @@ public class AddProviderController {
                             "borderColor: #F3F6FB;"
                     );
 
+                    view.cmbCity.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+
                     view.lblerrorDepartment.setVisible(false);
                     view.lblerrorCity.setVisible(false);
                     String selectedCityName = view.cmbCity.getSelectedItem().toString();
@@ -200,11 +204,9 @@ public class AddProviderController {
                     model.setCity(selectedIndexCity);
                     Department = true;
                     City = true;
-                    System.out.println("aqui"+model.getLastName());
+                    System.out.println("aqui" + model.getLastName());
 
                 }//termina validaciones de departamento
-
-              
 
                 if (!validation.addressCheck(view.txtAdressAdd.getText())) {
                     view.txtAdressAdd.putClientProperty("FlatLaf.style",
@@ -223,8 +225,6 @@ public class AddProviderController {
                     model.setAddress(view.txtAdressAdd.getText());
 
                     Addres = true;
-                    System.out.println("aqui"+model.getAddress());
-                    
                 }
                 //validacion direccion 
 
@@ -268,7 +268,7 @@ public class AddProviderController {
     private void changetitle() {
         view.lblTitle.setText("Agregar Proveedor");
     }
-    
+
     public void clean() {
         view.txtFirstNameAdd.setText("");
         view.txtLastNameAdd.setText("");
@@ -297,8 +297,8 @@ public class AddProviderController {
             view.cmbCity.addItem(cities.get(i).getNameCity());
         }
     }
-    
-     private int getCityByName(String nameCity) {
+
+    private int getCityByName(String nameCity) {
         int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
         ArrayList<CityModel> cityList = queries.consultCitiesByDepartment(selectedDepartmentId);
         for (CityModel cities : cityList) {
@@ -309,4 +309,4 @@ public class AddProviderController {
         return 0;
     }
 
-}    
+}
