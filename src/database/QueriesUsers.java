@@ -67,7 +67,7 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         System.out.println("bandera 1");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-   
+
         String pass = String.valueOf(user.getPassword());
 
         String pwHash = BCrypt.hashpw(pass, BCrypt.gensalt());
@@ -179,11 +179,12 @@ public class QueriesUsers {
     public ArrayList<UsersModel> consultUsers() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state "
+        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name  "
                 + "FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1";
 
         ResultSet result = connection.consult(sql);
@@ -193,6 +194,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -221,10 +224,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state  FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
 
         ResultSet result = connection.consult(sql);
@@ -233,6 +237,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -260,10 +266,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
-        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
 
         ResultSet result = connection.consult(sql);
@@ -272,6 +279,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -299,10 +308,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
 
         ResultSet result = connection.consult(sql);
@@ -311,6 +321,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -337,10 +349,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at , roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
         ResultSet result = connection.consult(sql);
@@ -349,6 +362,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -375,10 +390,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //+String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at ,roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
@@ -387,6 +403,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));
@@ -414,10 +432,11 @@ public class QueriesUsers {
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1   AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
-        String sql = "SELECT users.*, users.created_at AS user_created_at, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state FROM users "
+        String sql = "SELECT users.*, users.created_at AS user_created_at, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
+                + "INNER JOIN departments ON cities.department = departments.id "
                 + "WHERE users.state = 1 AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
@@ -426,6 +445,8 @@ public class QueriesUsers {
                 CityModel city = new CityModel();
                 city.setIdCity(result.getInt("city_id"));
                 city.setNameCity(result.getString("city_name"));
+                city.setDepartmentId(result.getInt("department_id"));
+                city.setNameDepartment(result.getString("department_name"));
                 UsersModel user = new UsersModel();
                 user.setIdUsers(result.getInt("id"));
                 user.setFirstName(result.getString("first_name"));

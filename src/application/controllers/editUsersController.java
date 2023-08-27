@@ -204,7 +204,16 @@ public class editUsersController {
                 //Termina validacion de phone 
 
                 //Inicia validacion de City 
-                    view.cmbCity.putClientProperty("FlatLaf.style",
+                if(view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")){
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    ); 
+                    view.lblerrorDepartment.setText("Seleccione un departamento");
+                    view.lblerrorDepartment.setVisible(true);
+                    view.lblerrorCity.setText("Seleccione una ciudad");
+                    view.lblerrorCity.setVisible(true);
+                }else{
+                     view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F3F6FB;"
                     );
                     view.lblerrorCity.setVisible(false);
@@ -213,7 +222,7 @@ public class editUsersController {
                     users.setCity(selectedIndexCity);
                     City = true;
                     Department = true;
-
+                }
                 //Termina validacion de city
                 
                 //Inicia validacion de address

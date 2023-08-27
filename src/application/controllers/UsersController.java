@@ -77,16 +77,17 @@ public class UsersController {
         model.setRowCount(0); // Limpiar la tabla
 
         for (UsersModel user : usersList) {
-            Object[] row = new Object[8];
+            Object[] row = new Object[9];
             // Rellenar los datos del usuario en la fila
             row[0] = user.getIdUsers();
             row[1] = user.getFirstName();
             row[2] = user.getLastName();
             row[3] = user.getCityModel().getNameCity();
-            row[4] = user.getAddress();
-            row[5] = user.getEmail();
-            row[6] = user.getPhone();
-            row[7] = user.getNameRol();
+            row[4] = user.getCityModel().getNameDepartment();
+            row[5] = user.getAddress();
+            row[6] = user.getEmail();
+            row[7] = user.getPhone();
+            row[8] = user.getNameRol();
 
             model.addRow(row); // Agregar la fila a la tabla
         }
@@ -101,16 +102,17 @@ public class UsersController {
         System.out.println("bandera 20");
 
         for (UsersModel user : usersList) {
-            Object[] row = new Object[8];
+            Object[] row = new Object[9];
 
             row[0] = user.getIdUsers();
             row[1] = user.getFirstName();
             row[2] = user.getLastName();
             row[3] = user.getCityModel().getNameCity();
-            row[4] = user.getAddress();
-            row[5] = user.getEmail();
-            row[6] = user.getPhone();
-            row[7] = user.getNameRol();
+            row[4] = user.getCityModel().getNameDepartment();
+            row[5] = user.getAddress();
+            row[6] = user.getEmail();
+            row[7] = user.getPhone();
+            row[8] = user.getNameRol();
             System.out.println("bandera 21");
             //Falta una linea de codigo mas
             //view.tblUsers.setModel(model);
