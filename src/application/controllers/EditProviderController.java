@@ -13,6 +13,8 @@ import application.views.ProvidersView;
 import database.QueriesProvider;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import utilities.PerformActions;
@@ -43,9 +45,6 @@ public class EditProviderController {
         ProviderModel model = new ProviderModel();
         Object obj = providersView.tblProvider.getValueAt(providersView.tblProvider.getSelectedRow(), 0);
         int id = (int) obj;
-        
-        
-        
 
         model = queries.buscar(id);
 
@@ -75,6 +74,14 @@ public class EditProviderController {
                 if (selectedDepartmentId != 0) {
                     // Cargar ciudades solo si se selecciona un departamento válido
                     loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
+
+        view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
                 }
             }
         });
