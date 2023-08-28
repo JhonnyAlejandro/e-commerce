@@ -55,140 +55,80 @@ public class ProfileController {
 
         view.jScrollPane1.getVerticalScrollBar().setUnitIncrement(20);
         view.jScrollPane1.getVerticalScrollBar().setBlockIncrement(40);
-        
+
         events();
         setPersonal();
         setAddress();
     }
 
     public void events() {
-        
+
         view.btnRestore.setEnabled(true);
         setColorNormal(null, null, null, view.btnRestore);
-        
+
         view.btnRestore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                boolean successPassword = false;
-                boolean successPasswordConfirm = false;
-                boolean successPasswordEquals = false;
-                boolean successPasswordlength = false;
+                String nuevaContraseña = String.copyValueOf(view.pwdNewPass.getPassword());
+                String confirmarContraseña = String.copyValueOf(view.pwdConfirmPass.getPassword());
 
-                if (validations.validateEmptyField(String.copyValueOf(view.pwdNewPass.getPassword()))) {
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-                   
+                // Restablecer estilos y mensajes
+                view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB; showRevealButton: false;");
+                view.lblNewPassErrorMessage.setVisible(false);
+
+                if(validations.validateEmptyField(nuevaContraseña) && validations.validateEmptyField(confirmarContraseña) ){
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
+                    view.lblNewPassErrorMessage.setText("Los campos son obligatorios*");
+                    view.lblNewPassErrorMessage.setVisible(true);
+                } else if (validations.validateEmptyField(nuevaContraseña)) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
                     view.lblNewPassErrorMessage.setText("Ingresa tu nueva contraseña*");
                     view.lblNewPassErrorMessage.setVisible(true);
-                    
-                    
+                } else if (validations.validateEmptyField(confirmarContraseña)) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
+                    view.lblNewPassErrorMessage.setText("Confirma tu nueva contraseña*");
+                    view.lblNewPassErrorMessage.setVisible(true);
+                } else if (nuevaContraseña.length() <= 7) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
+                    view.lblNewPassErrorMessage.setText("Ingresa una contraseña de máximo 8 caracteres");
+                    view.lblNewPassErrorMessage.setVisible(true);
+                } else if (!nuevaContraseña.equals(confirmarContraseña)) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
+                    view.lblNewPassErrorMessage.setText("Las contraseñas no coinciden");
+                    view.lblNewPassErrorMessage.setVisible(true);
                 } else {
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                    );
-                    successPassword = true;
-                    view.lblNewPassErrorMessage.setVisible(false);
-                }
+                    UsersModel usuario = new UsersModel();
+                    char[] pass = confirmarContraseña.toCharArray();
+                    usuario.setPassword(pass);
+                    usuario.setEmail(view.txtEmail.getText());
 
-                if (validations.validateEmptyField(String.copyValueOf(view.pwdConfirmPass.getPassword()))) {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                            + "showRevealButton: false;"
-                    );
+                    String passConfirmada = queries.getUser(usuario);
+                    boolean confirmar = queries.NewPass(usuario);
 
-                    view.lblConfirmPassErrorMenssage.setText("Confirma tu nueva contraseña*");
-                    view.lblConfirmPassErrorMenssage.setVisible(true);
-                    
-                } else {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    successPasswordConfirm = true;
-                    view.lblConfirmPassErrorMenssage.setVisible(false);
-                 
-
-                }
-
-                if (!view.pwdNewPass.getText().equals(view.pwdConfirmPass.getText())) {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
-                    view.lblConfirmPassErrorMenssage.setText("Las contraseñas no coinciden");
-                    view.lblConfirmPassErrorMenssage.setVisible(true);
-               
-
-                } else {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    successPasswordEquals = true;
-                    view.lblConfirmPassErrorMenssage.setVisible(false);
-
-                }
-                
-                if (successPassword == true && successPasswordConfirm == true && successPasswordEquals == true) {
-                    
-                    if (String.copyValueOf(view.pwdNewPass.getPassword()).length() <= 7) {
-                        view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                        );
- 
-                        view.lblNewPassErrorMessage.setText("Ingresa una contraseña de maximo 8 caracteres");
-                        view.lblNewPassErrorMessage.setVisible(true);
-                        
-                    }else {
-                        view.pwdNewPass.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-  
-                        view.lblNewPassErrorMessage.setVisible(false);
-                    
-                    UsersModel user = new UsersModel();
-                    
-                    
-                    char[] pass = view.pwdConfirmPass.getPassword();
-                    System.out.print(pass);
-                    
-                    user.setPassword(pass);
-                    user.setEmail(view.txtEmail.getText());
-
-                    String passConfirm = queries.getUser(user);
-                    
-                    boolean confirm = queries.NewPass(user);
-                    
-                        if (!BCrypt.checkpw(view.pwdConfirmPass.getText(), passConfirm)) {
-
-                            if (confirm) {
-                                
-                                view.pwdNewPass.setText("");
-                                view.pwdConfirmPass.setText("");
-                                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
-                                prefs.remove("rememberPassword");
-                                prefs.remove("email");
-                                prefs.remove("password");
-
-                            }
-
-                        } else {
-                            view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                            );
-                            view.lblNewPassErrorMessage.setText("Has usado esta contraseña recientemente");
-                            view.lblNewPassErrorMessage.setVisible(true);
-                           
-
+                    if (!BCrypt.checkpw(confirmarContraseña, passConfirmada)) {
+                        if (confirmar) {
+                            // Lógica para actualizar la contraseña
+                            view.pwdNewPass.setText("");
+                            view.pwdConfirmPass.setText("");
+                            Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                            prefs.remove("rememberPassword");
+                            prefs.remove("email");
+                            prefs.remove("password");
                         }
+                    } else {
+                        view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                        view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
+                        view.lblNewPassErrorMessage.setText("Has usado esta contraseña recientemente");
+                        view.lblNewPassErrorMessage.setVisible(true);
                     }
                 }
             }
-
         });
 
         view.btnLogout.addActionListener(new ActionListener() {
@@ -213,7 +153,7 @@ public class ProfileController {
                     view.btnSavePersonal.setEnabled(true);
                     setColorNormal(null, null, null, view.btnSavePersonal);
                     view.tbtEditPersonal.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/cancel-fff.png")));
-                    
+
                     view.tbtEditPersonal.setText("Cancelar");
                     setColorRed(null, null, view.tbtEditPersonal);
                 } else {
@@ -257,8 +197,7 @@ public class ProfileController {
                 } else {
                     firstName = true;
                 }
-                    
-                    
+
                 //validación de apellido
                 if (view.txtLastName.getText().length() > 40) {
                     setColorRed(view.txtPhone, null, null);
@@ -275,8 +214,8 @@ public class ProfileController {
                     view.lblErrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?");
                 } else {
                     lastName = true;
-                }                
-                        
+                }
+
                 //validación de email
                 if (view.txtPhone.getText().length() > 95) {
                     setColorRed(view.txtPhone, null, null);
@@ -293,7 +232,7 @@ public class ProfileController {
                 } else {
                     email = true;
                 }
-                        
+
                 //validación de teléfono
                 if (view.txtPhone.getText().length() > 10) {
                     setColorRed(view.txtPhone, null, null);
@@ -313,7 +252,7 @@ public class ProfileController {
                     newModelo.setLastName(view.txtLastName.getText());
                     newModelo.setPhone(view.txtPhone.getText());
                     newModelo.setEmail(view.txtEmail.getText());
-                    
+
                     if (consulta.updatePersonal(newModelo)) {
                         deshabilitarPersonal();
                         view.btnSavePersonal.setEnabled(false);
@@ -386,7 +325,7 @@ public class ProfileController {
                 } else {
                     address = true;
                 }
-                    
+
                 //validación de departamento
                 if (view.cmbDepartment.getSelectedIndex() < 1) {
                     setColorRed(null, view.cmbDepartment, null);
@@ -395,7 +334,7 @@ public class ProfileController {
                 } else {
                     department = true;
                 }
-                    
+
                 //validación de ciudad
                 if (view.cmbCity.getSelectedIndex() < 1) {
                     setColorRed(null, view.cmbCity, null);
@@ -404,7 +343,7 @@ public class ProfileController {
                 } else {
                     city = true;
                 }
-                        
+
                 if (address && city && department) {
                     UsersModel newModelo = new UsersModel();
                     CityModel cityModel = new CityModel();
@@ -427,11 +366,11 @@ public class ProfileController {
                     } else {
                         deshabilitarAddress();
                         view.btnSaveAddress.setEnabled(false);
-                    }   
+                    }
                 }
             }
         });
-        
+
         view.cmbDepartment.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent event) {
@@ -444,7 +383,7 @@ public class ProfileController {
                 }
             }
         });
-        
+
         view.txtPhone.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validations.isTextLengthValid(view.txtPhone.getText(), 95)) {
@@ -452,7 +391,7 @@ public class ProfileController {
                 }
             }
         });
-        
+
         view.txtAddress.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validations.isTextLengthValid(view.txtAddress.getText(), 95)) {
@@ -461,8 +400,8 @@ public class ProfileController {
             }
         });
     }
-    
-    public void setColorRed (JTextField txt, JComboBox cmb, JToggleButton tbt) {
+
+    public void setColorRed(JTextField txt, JComboBox cmb, JToggleButton tbt) {
         if (txt != null) {
             txt.putClientProperty("FlatLaf.style",
                     "borderColor: #F51D24;"
@@ -473,50 +412,50 @@ public class ProfileController {
             );
         } else {
             tbt.putClientProperty("FlatLaf.style",
-                "foreground: #FFF;"
-                + "background: #F51D24;"
-                + "hoverBackground: darken(#F51D24,5%);"
-            );
-        }
-    }
-    
-    public void setColorNormal (JTextField txt, JComboBox cmb, JToggleButton tbt, JButton btn) {
-        if (txt != null) {
-            txt.putClientProperty("FlatLaf.style",
-                "borderColor: #F3F6FB;"
-            );
-        } else if (cmb != null) {
-            cmb.putClientProperty("FlatLaf.style",
-                "borderColor: #F3F6FB;"
-            );
-        } else if (tbt != null) {
-            tbt.putClientProperty("FlatLaf.style",
-                "foreground: #FFF;"
-                + "background: #1D90F5;"
-                + "hoverBackground: darken(#1D90F5,5%);"
-            );
-        } else {
-            btn.putClientProperty("FlatLaf.style",
-                "foreground: #FFF;"
-                + "background: #1D90F5;"
-                + "hoverBackground: darken(#1D90F5,5%);"
+                    "foreground: #FFF;"
+                    + "background: #F51D24;"
+                    + "hoverBackground: darken(#F51D24,5%);"
             );
         }
     }
 
-    public void setVisibleLblPersonal () {
+    public void setColorNormal(JTextField txt, JComboBox cmb, JToggleButton tbt, JButton btn) {
+        if (txt != null) {
+            txt.putClientProperty("FlatLaf.style",
+                    "borderColor: #F3F6FB;"
+            );
+        } else if (cmb != null) {
+            cmb.putClientProperty("FlatLaf.style",
+                    "borderColor: #F3F6FB;"
+            );
+        } else if (tbt != null) {
+            tbt.putClientProperty("FlatLaf.style",
+                    "foreground: #FFF;"
+                    + "background: #1D90F5;"
+                    + "hoverBackground: darken(#1D90F5,5%);"
+            );
+        } else {
+            btn.putClientProperty("FlatLaf.style",
+                    "foreground: #FFF;"
+                    + "background: #1D90F5;"
+                    + "hoverBackground: darken(#1D90F5,5%);"
+            );
+        }
+    }
+
+    public void setVisibleLblPersonal() {
         view.lblErrorEmail.setVisible(false);
         view.lblErrorFirstName.setVisible(false);
         view.lblErrorLastName.setVisible(false);
         view.lblErrorPhone.setVisible(false);
     }
-    
-    public void setVisibleLblAddress () {
+
+    public void setVisibleLblAddress() {
         view.lblErrorCity.setVisible(false);
         view.lblErrorDepartment.setVisible(false);
         view.lblErrorAddress.setVisible(false);
     }
-    
+
     public void deshabilitarPersonal() {
         view.txtFirstName.setEnabled(false);
         view.txtLastName.setEnabled(false);
