@@ -354,11 +354,11 @@ public class QueriesProvider {
 
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT * FROM providers WHERE state = 1 AND created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
-        String sql = "SELECT providers.*, cities.id AS city_id, cities.name AS city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name "
-                + "FROM providers "
-                + "INNER JOIN cities ON providers.city = cities.id "
-                + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE providers.state = 1 AND DATE(providers.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
+       String sql = "SELECT providers.*, cities.id AS city_id, cities.name AS city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name "
+            + "FROM providers "
+            + "INNER JOIN cities ON providers.city = cities.id "
+            + "INNER JOIN departments ON cities.department = departments.id "
+            + "WHERE providers.state = 1 AND DATE(providers.created_at) <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
         ResultSet result = connection.consult(sql);
         try {
