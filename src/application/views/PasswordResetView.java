@@ -95,6 +95,11 @@ public class PasswordResetView extends javax.swing.JFrame {
         lblNewPassErrorMessage.setText("Error message");
 
         pwdConfirmPass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pwdConfirmPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdConfirmPassActionPerformed(evt);
+            }
+        });
 
         lblConfirmPassErrorMenssage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblConfirmPassErrorMenssage.setForeground(new java.awt.Color(245, 29, 36));
@@ -192,6 +197,10 @@ public class PasswordResetView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pwdConfirmPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdConfirmPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwdConfirmPassActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCancel;

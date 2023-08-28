@@ -49,17 +49,17 @@ public class ProfileView extends javax.swing.JPanel {
                 "arc: 20;"
         );
 
-        jPasswordField1.putClientProperty("JTextField.placeholderText", "Introduce la nueva contraseña");
+        pwdNewPass.putClientProperty("JTextField.placeholderText", "Introduce la nueva contraseña");
 
-        jPasswordField2.putClientProperty("JTextField.placeholderText", "Confirmar la nueva contraseña");
-        jPasswordField2.putClientProperty("FlatLaf.style",
+        pwdConfirmPass.putClientProperty("JTextField.placeholderText", "Confirmar la nueva contraseña");
+        pwdConfirmPass.putClientProperty("FlatLaf.style",
                 "showRevealButton: false;"
         );
 
-        jLabel19.setVisible(false);
-        jLabel20.setVisible(false);
+        lblNewPassErrorMessage.setVisible(false);
+        lblConfirmPassErrorMenssage.setVisible(false);
 
-        jButton5.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
+        btnRestore.setDisabledIcon(new ImageIcon(getClass().getResource("/main/assets/images/save-fff.png")));
 
         btnLogout.putClientProperty("FlatLaf.style",
                 "foreground: #FFF;"
@@ -105,11 +105,11 @@ public class ProfileView extends javax.swing.JPanel {
         lblErrorAddress = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel19 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel20 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        pwdNewPass = new javax.swing.JPasswordField();
+        lblNewPassErrorMessage = new javax.swing.JLabel();
+        pwdConfirmPass = new javax.swing.JPasswordField();
+        lblConfirmPassErrorMenssage = new javax.swing.JLabel();
+        btnRestore = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(246, 246, 248));
@@ -267,12 +267,22 @@ public class ProfileView extends javax.swing.JPanel {
         tbtEditAddress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png"))); // NOI18N
         tbtEditAddress.setText("Editar");
         tbtEditAddress.setIconTextGap(10);
+        tbtEditAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbtEditAddressActionPerformed(evt);
+            }
+        });
 
         btnSaveAddress.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnSaveAddress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
         btnSaveAddress.setText("Guardar");
         btnSaveAddress.setEnabled(false);
         btnSaveAddress.setIconTextGap(10);
+        btnSaveAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveAddressActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(126, 126, 146));
@@ -281,6 +291,11 @@ public class ProfileView extends javax.swing.JPanel {
         cmbDepartment.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento" }));
         cmbDepartment.setEnabled(false);
+        cmbDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDepartmentActionPerformed(evt);
+            }
+        });
 
         lblErrorDepartment.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblErrorDepartment.setForeground(new java.awt.Color(245, 29, 36));
@@ -384,23 +399,23 @@ public class ProfileView extends javax.swing.JPanel {
         jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel18.setText("Cambiar contraseña");
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pwdNewPass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel19.setText("Error message");
+        lblNewPassErrorMessage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblNewPassErrorMessage.setForeground(new java.awt.Color(245, 29, 36));
+        lblNewPassErrorMessage.setText("Error message");
 
-        jPasswordField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pwdConfirmPass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(245, 29, 36));
-        jLabel20.setText("Error message");
+        lblConfirmPassErrorMenssage.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        lblConfirmPassErrorMenssage.setForeground(new java.awt.Color(245, 29, 36));
+        lblConfirmPassErrorMenssage.setText("Error message");
 
-        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
-        jButton5.setText("Guardar cambios");
-        jButton5.setEnabled(false);
-        jButton5.setIconTextGap(10);
+        btnRestore.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/save-fff.png"))); // NOI18N
+        btnRestore.setText("Guardar cambios");
+        btnRestore.setEnabled(false);
+        btnRestore.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -413,17 +428,17 @@ public class ProfileView extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel19))
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNewPassErrorMessage))
+                            .addComponent(pwdNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel20))
+                                .addComponent(lblConfirmPassErrorMenssage))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pwdConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel18))
                 .addGap(15, 15, 15))
         );
@@ -435,15 +450,15 @@ public class ProfileView extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pwdNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel19))
+                        .addComponent(lblNewPassErrorMessage))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pwdConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel20)))
+                        .addComponent(lblConfirmPassErrorMenssage)))
                 .addGap(20, 20, 20))
         );
 
@@ -495,22 +510,32 @@ public class ProfileView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSaveAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveAddressActionPerformed
+
+    private void tbtEditAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtEditAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbtEditAddressActionPerformed
+
+    private void cmbDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDepartmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDepartmentActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnLogout;
+    public javax.swing.JButton btnRestore;
     public javax.swing.JButton btnSaveAddress;
     public javax.swing.JButton btnSavePersonal;
     public javax.swing.JComboBox<String> cmbCity;
     public javax.swing.JComboBox<String> cmbDepartment;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    public javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -518,9 +543,8 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    public javax.swing.JPasswordField jPasswordField1;
-    public javax.swing.JPasswordField jPasswordField2;
     public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lblConfirmPassErrorMenssage;
     public javax.swing.JLabel lblErrorAddress;
     public javax.swing.JLabel lblErrorCity;
     public javax.swing.JLabel lblErrorDepartment;
@@ -528,6 +552,9 @@ public class ProfileView extends javax.swing.JPanel {
     public javax.swing.JLabel lblErrorFirstName;
     public javax.swing.JLabel lblErrorLastName;
     public javax.swing.JLabel lblErrorPhone;
+    public javax.swing.JLabel lblNewPassErrorMessage;
+    public javax.swing.JPasswordField pwdConfirmPass;
+    public javax.swing.JPasswordField pwdNewPass;
     public javax.swing.JToggleButton tbtEditAddress;
     public javax.swing.JToggleButton tbtEditPersonal;
     public javax.swing.JTextField txtAddress;

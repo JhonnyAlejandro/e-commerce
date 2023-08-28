@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.prefs.Preferences;
 import application.views.ProfileView;
 import application.views.DashboardView;
+import database.Queries;
 import database.QueriesProfile;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -24,6 +25,7 @@ import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import utilities.ValidationsProfile;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class ProfileController {
 
@@ -33,6 +35,7 @@ public class ProfileController {
     UsersModel modelUsers = new UsersModel();
     ValidationsProfile validations = new ValidationsProfile();
     QueriesProfile consulta = new QueriesProfile();
+    Queries queries = new Queries();
     UsersModel upUser = new UsersModel();
     String citiesUser;
     ArrayList cities = new ArrayList();
@@ -59,6 +62,134 @@ public class ProfileController {
     }
 
     public void events() {
+        
+        view.btnRestore.setEnabled(true);
+        setColorNormal(null, null, null, view.btnRestore);
+        
+        view.btnRestore.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                boolean successPassword = false;
+                boolean successPasswordConfirm = false;
+                boolean successPasswordEquals = false;
+                boolean successPasswordlength = false;
+
+                if (validations.validateEmptyField(String.copyValueOf(view.pwdNewPass.getPassword()))) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+                   
+                    view.lblNewPassErrorMessage.setText("Ingresa tu nueva contraseña*");
+                    view.lblNewPassErrorMessage.setVisible(true);
+                    
+                    
+                } else {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    successPassword = true;
+                    view.lblNewPassErrorMessage.setVisible(false);
+                }
+
+                if (validations.validateEmptyField(String.copyValueOf(view.pwdConfirmPass.getPassword()))) {
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                            + "showRevealButton: false;"
+                    );
+
+                    view.lblConfirmPassErrorMenssage.setText("Confirma tu nueva contraseña*");
+                    view.lblConfirmPassErrorMenssage.setVisible(true);
+                    
+                } else {
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                            + "showRevealButton: false;"
+                    );
+                    successPasswordConfirm = true;
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
+                 
+
+                }
+
+                if (!view.pwdNewPass.getText().equals(view.pwdConfirmPass.getText())) {
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
+                    view.lblConfirmPassErrorMenssage.setText("Las contraseñas no coinciden");
+                    view.lblConfirmPassErrorMenssage.setVisible(true);
+               
+
+                } else {
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                            + "showRevealButton: false;"
+                    );
+                    view.pwdNewPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                            + "showRevealButton: false;"
+                    );
+                    successPasswordEquals = true;
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
+
+                }
+                
+                if (successPassword == true && successPasswordConfirm == true && successPasswordEquals == true) {
+                    
+                    if (String.copyValueOf(view.pwdNewPass.getPassword()).length() <= 7) {
+                        view.pwdNewPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                        );
+ 
+                        view.lblNewPassErrorMessage.setText("Ingresa una contraseña de maximo 8 caracteres");
+                        view.lblNewPassErrorMessage.setVisible(true);
+                        
+                    }else {
+                        view.pwdNewPass.putClientProperty("FlatLaf.style",
+                                "borderColor: #F3F6FB;"
+                        );
+  
+                        view.lblNewPassErrorMessage.setVisible(false);
+                    
+                    UsersModel user = new UsersModel();
+                    
+                    
+                    char[] pass = view.pwdConfirmPass.getPassword();
+                    System.out.print(pass);
+                    
+                    user.setPassword(pass);
+                    user.setEmail(view.txtEmail.getText());
+
+                    String passConfirm = queries.getUser(user);
+                    
+                    boolean confirm = queries.NewPass(user);
+                    
+                        if (!BCrypt.checkpw(view.pwdConfirmPass.getText(), passConfirm)) {
+
+                            if (confirm) {
+                                
+                                view.pwdNewPass.setText("");
+                                view.pwdConfirmPass.setText("");
+                                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                                prefs.remove("rememberPassword");
+                                prefs.remove("email");
+                                prefs.remove("password");
+
+                            }
+
+                        } else {
+                            view.pwdNewPass.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                            );
+                            view.lblNewPassErrorMessage.setText("Has usado esta contraseña recientemente");
+                            view.lblNewPassErrorMessage.setVisible(true);
+                           
+
+                        }
+                    }
+                }
+            }
+
+        });
 
         view.btnLogout.addActionListener(new ActionListener() {
             @Override
