@@ -12,6 +12,8 @@ import database.QueriesUsers;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
@@ -72,6 +74,13 @@ public class editUsersController {
             }
         });
 
+          view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
+                }
+            }
+        });
         view.btnSaveChange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {

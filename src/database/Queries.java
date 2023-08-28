@@ -39,6 +39,7 @@ public class Queries {
 
                         user.setFirstName(result.getString("first_name"));
                         user.setLastName(result.getString("last_name"));
+                        user.setIdUsers( result.getInt("id"));
                         
 
                         new Session(user);

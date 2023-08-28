@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import javax.annotation.processing.Generated;
 import org.mindrot.jbcrypt.BCrypt;
+import utilities.Session;
 
 public class QueriesUsers {
 
@@ -179,13 +180,15 @@ public class QueriesUsers {
     public ArrayList<UsersModel> consultUsers() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
         DatabaseConnection connection = new DatabaseConnection();
-        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name  "
+        int loggedInUserId = Session.userModel.getIdUsers();
+
+        String sql = "SELECT users.*, roles.id AS role_id, roles.name AS role_name, cities.id AS city_id, cities.name AS  city_name, cities.state AS city_state, departments.id AS department_id, departments.name AS department_name "
                 + "FROM users "
                 + "INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1";
+                + "WHERE users.state = 1 AND users.id !=" + loggedInUserId; // Excluye al usuario logueado
 
         ResultSet result = connection.consult(sql);
 
@@ -220,7 +223,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersLastWeek() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
@@ -229,7 +232,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+                + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)"
+                + "AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {
@@ -262,7 +266,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersOneDay() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
 
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
@@ -271,7 +275,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
+                + "WHERE users.state = 1 AND users.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)"
+                + "AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {
@@ -304,7 +309,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersLastMonth() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1 AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
 
@@ -313,7 +318,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
+                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)"
+                +"AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {
@@ -345,7 +351,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersLast6Months() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
@@ -354,7 +360,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)"
+                +"AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {
@@ -386,7 +393,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersLastYear() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
         //+String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1  AND DATE(users.created_at) >=  DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
@@ -395,7 +402,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+                + "WHERE users.state = 1 AND DATE (users.created_at) >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)"
+                +"AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {
@@ -428,7 +436,7 @@ public class QueriesUsers {
 
     public ArrayList<UsersModel> consultUsersMoreThanYear() {
         ArrayList<UsersModel> usersList = new ArrayList<>();
-
+        int loggedInUserId = Session.userModel.getIdUsers();
         DatabaseConnection connection = new DatabaseConnection();
         //String sql = "SELECT users.*, roles.name, users.created_at AS user_created_at FROM users INNER JOIN roles ON users.roles_id = roles.id WHERE users.state = 1   AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
 
@@ -437,7 +445,8 @@ public class QueriesUsers {
                 + "INNER JOIN roles ON model_has_roles.role_id = roles.id "
                 + "INNER JOIN cities ON users.city = cities.id "
                 + "INNER JOIN departments ON cities.department = departments.id "
-                + "WHERE users.state = 1 AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+                + "WHERE users.state = 1 AND users.created_at <= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)"
+                +"AND users.id != " + loggedInUserId;
 
         ResultSet result = connection.consult(sql);
         try {

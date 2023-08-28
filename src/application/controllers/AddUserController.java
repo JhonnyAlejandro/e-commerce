@@ -26,6 +26,8 @@ import java.util.logging.Logger;
 import application.models.RecuperationModel;
 import application.models.RolesModel;
 import application.views.UsersView;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.ThreadLocalRandom;
 import utilities.ValidationsUsers;
 
@@ -66,6 +68,14 @@ public class AddUserController {
                 if (selectedDepartmentId != 0) {
                     // Cargar ciudades solo si se selecciona un departamento válido
                     loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
+        
+        view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
                 }
             }
         });
@@ -201,8 +211,11 @@ public class AddUserController {
                 //Inicia validacion de City
                 if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                    ); 
+                            "borderColor: #F51D24;"
+                    );
+                      view.cmbCity.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
                     view.lblerrorDepartment.setText("Seleccione un departamento");
                     view.lblerrorDepartment.setVisible(true);
                     view.lblerrorCity.setText("Seleccione una ciudad");
@@ -395,7 +408,7 @@ public class AddUserController {
         view.txtLastNameAdd.setText("");
         view.txtEmailAdd.setText("");
         view.cmbDepartment.setSelectedIndex(0);
-        view.cmbCity.setSelectedIndex(0);
+        view.cmbCity.setSelectedIndex(-1);
         view.txtAdressAdd.setText("");
         view.txtPhoneAdd.setText("");
         view.cmbRoles.setSelectedIndex(0);
