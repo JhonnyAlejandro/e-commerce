@@ -204,6 +204,9 @@ public class EditProviderController {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
+                     view.cmbCity.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
 
                     view.lblerrorDepartment.setText("Ingresa el departamento correctamente");
                     view.lblerrorDepartment.setVisible(true);
@@ -214,6 +217,9 @@ public class EditProviderController {
                 } else {
 
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F3F6FB;"
                     );
 
