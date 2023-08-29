@@ -22,8 +22,6 @@ import javax.swing.JComboBox;
 import utilities.ManipulateText;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import utilities.ValidationsProfile;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -160,7 +158,6 @@ public class ProfileController {
                     setVisibleLblPersonal();
                     setColorNormal(view.txtFirstName, null, null, null);
                     setColorNormal(view.txtLastName, null, null, null);
-                    setColorNormal(view.txtEmail, null, null, null);
                     setColorNormal(view.txtPhone, null, null, null);
                     view.btnSavePersonal.setEnabled(false);
                     deshabilitarPersonal();
@@ -179,14 +176,9 @@ public class ProfileController {
                 setVisibleLblPersonal();
                 setColorNormal(view.txtFirstName, null, null, null);
                 setColorNormal(view.txtLastName, null, null, null);
-                setColorNormal(view.txtEmail, null, null, null);
                 setColorNormal(view.txtPhone, null, null, null);
                 //validación de nombre
-                if (view.txtFirstName.getText().length() > 40) {
-                    setColorRed(view.txtPhone, null, null);
-                    view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("El campo tiene no permite más de 40 carácteres.");
-                } else if (validations.validateEmptyField(view.txtFirstName.getText())) {
+                if (validations.validateEmptyField(view.txtFirstName.getText())) {
                     setColorRed(view.txtFirstName, null, null);
                     view.lblErrorFirstName.setVisible(true);
                     view.lblErrorFirstName.setText("No se puede dejar el campo vacío.");
@@ -199,11 +191,7 @@ public class ProfileController {
                 }
 
                 //validación de apellido
-                if (view.txtLastName.getText().length() > 40) {
-                    setColorRed(view.txtPhone, null, null);
-                    view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("El campo tiene no permite más de 40 carácteres.");
-                } else if (validations.validateEmptyField(view.txtLastName.getText())) {
+                if (validations.validateEmptyField(view.txtLastName.getText())) {
                     setColorRed(view.txtLastName, null, null);
                     view.lblErrorLastName.setVisible(true);
                     view.lblErrorLastName.setText("No se puede dejar el campo vacío.");
@@ -216,29 +204,8 @@ public class ProfileController {
                     lastName = true;
                 }
 
-                //validación de email
-                if (view.txtPhone.getText().length() > 95) {
-                    setColorRed(view.txtPhone, null, null);
-                    view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("El campo tiene no permite más de 95 carácteres.");
-                } else if (validations.validateEmptyField(view.txtEmail.getText())) {
-                    setColorRed(view.txtEmail, null, null);
-                    view.lblErrorEmail.setVisible(true);
-                    view.lblErrorEmail.setText("No se puede dejar el campo vacío.");
-                } else if (!validations.validateEmail(view.txtEmail.getText())) {
-                    setColorRed(view.txtEmail, null, null);
-                    view.lblErrorEmail.setVisible(true);
-                    view.lblErrorEmail.setText("Ingresa una dirección de correo electrónico válida.");
-                } else {
-                    email = true;
-                }
-
                 //validación de teléfono
-                if (view.txtPhone.getText().length() > 10) {
-                    setColorRed(view.txtPhone, null, null);
-                    view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("El campo tiene no permite más de 10 dígitos.");
-                } else if (!validations.validatePhone(view.txtPhone.getText())) {
+                if (!validations.validatePhone(view.txtPhone.getText())) {
                     setColorRed(view.txtPhone, null, null);
                     view.lblErrorPhone.setVisible(true);
                     view.lblErrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos).");
@@ -246,7 +213,7 @@ public class ProfileController {
                     phone = true;
                 }
                 //intento de guardado
-                if (firstName && lastName && email && phone) {
+                if (firstName && lastName && phone) {
                     UsersModel newModelo = new UsersModel();
                     newModelo.setFirstName(view.txtFirstName.getText());
                     newModelo.setLastName(view.txtLastName.getText());
@@ -314,11 +281,7 @@ public class ProfileController {
                 setColorNormal(null, view.cmbDepartment, null, null);
                 setColorNormal(null, view.cmbCity, null, null);
                 //validación de dirección de residencia
-                if (view.txtAddress.getText().length() > 10) {
-                    setColorRed(view.txtPhone, null, null);
-                    view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("El campo tiene no permite más de 10 dígitos.");
-                } else if (!validations.validateAddress(view.txtAddress.getText())) {
+                if (validations.validateAddress(view.txtAddress.getText())) {
                     setColorRed(view.txtAddress, null, null);
                     view.lblErrorAddress.setVisible(true);
                     view.lblErrorAddress.setText("La dirección tiene un formato incorrecto.");
@@ -369,6 +332,36 @@ public class ProfileController {
                     }
                 }
             }
+        });view.txtFirstName.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtFirstName.getText(), 39)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede
+                }
+            }
+        });
+        
+        view.txtLastName.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtLastName.getText(), 39)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede
+                }
+            }
+        });
+
+        view.txtPhone.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtPhone.getText(), 9)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede
+                }
+            }
+        });
+
+        view.txtAddress.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!validations.isTextLengthValid(view.txtAddress.getText(), 94)) {
+                    evt.consume(); // Consume el evento solo si la longitud excede 10
+                }
+            }
         });
 
         view.cmbDepartment.addItemListener(new ItemListener() {
@@ -380,22 +373,6 @@ public class ProfileController {
                     } else {
                         view.cmbCity.setModel(new DefaultComboBoxModel(new String[]{"Seleccione una ciudad"}));
                     }
-                }
-            }
-        });
-
-        view.txtPhone.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent evt) {
-                if (!validations.isTextLengthValid(view.txtPhone.getText(), 95)) {
-                    evt.consume(); // Consume el evento solo si la longitud excede 10
-                }
-            }
-        });
-
-        view.txtAddress.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent evt) {
-                if (!validations.isTextLengthValid(view.txtAddress.getText(), 95)) {
-                    evt.consume(); // Consume el evento solo si la longitud excede 10
                 }
             }
         });
@@ -459,14 +436,12 @@ public class ProfileController {
     public void deshabilitarPersonal() {
         view.txtFirstName.setEnabled(false);
         view.txtLastName.setEnabled(false);
-        view.txtEmail.setEnabled(false);
         view.txtPhone.setEnabled(false);
     }
 
     public void habilitarPersonal() {
         view.txtFirstName.setEnabled(true);
         view.txtLastName.setEnabled(true);
-        view.txtEmail.setEnabled(true);
         view.txtPhone.setEnabled(true);
     }
 
