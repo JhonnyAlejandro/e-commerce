@@ -74,7 +74,7 @@ public class editUsersController {
             }
         });
 
-          view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
+        view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
                     evt.consume(); // Consume el evento solo si la longitud excede 10
@@ -213,19 +213,27 @@ public class editUsersController {
                 //Termina validacion de phone 
 
                 //Inicia validacion de City 
-                if(view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")){
+                if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
+
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                    ); 
+                            "borderColor: #F51D24;"
+                    );
+                    view.cmbCity.putClientProperty("FlatLaf.style",
+                            "borderColor: #F51D24;"
+                    );
                     view.lblerrorDepartment.setText("Seleccione un departamento");
                     view.lblerrorDepartment.setVisible(true);
                     view.lblerrorCity.setText("Seleccione una ciudad");
                     view.lblerrorCity.setVisible(true);
-                }else{
-                     view.cmbCity.putClientProperty("FlatLaf.style",
+                } else {
+                    view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F3F6FB;"
                     );
                     view.lblerrorCity.setVisible(false);
+                    view.lblerrorDepartment.setVisible(false);
                     String selectedCityName = view.cmbCity.getSelectedItem().toString();
                     int selectedIndexCity = getCityByName(selectedCityName);
                     users.setCity(selectedIndexCity);
@@ -233,7 +241,7 @@ public class editUsersController {
                     Department = true;
                 }
                 //Termina validacion de city
-                
+
                 //Inicia validacion de address
                 if (!validation.addressCheck(view.txtAdressAdd.getText())) {
                     view.txtAdressAdd.putClientProperty("FlatLaf.style",
@@ -332,6 +340,7 @@ public class editUsersController {
         view.txtPhoneAdd.setText(users.getPhone());
         view.txtAdressAdd.setText(users.getAddress());
         view.txtEmailAdd.setText(users.getEmail());
+        view.txtEmailAdd.setEnabled(false);
         view.cmbRoles.setSelectedIndex(users.getRol());
         return users;
     }

@@ -71,7 +71,7 @@ public class AddUserController {
                 }
             }
         });
-        
+
         view.txtPhoneAdd.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validation.isTextLengthValid(view.txtPhoneAdd.getText(), 9)) {
@@ -185,8 +185,6 @@ public class AddUserController {
                         view.lblerrorEmail.setVisible(false);
 
                         users.setEmail(view.txtEmailAdd.getText());
-                        createPassword(modelo, users);
-
                         Email = true;
 
                     }
@@ -213,7 +211,7 @@ public class AddUserController {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
-                      view.cmbCity.putClientProperty("FlatLaf.style",
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
                     view.lblerrorDepartment.setText("Seleccione un departamento");
@@ -222,6 +220,9 @@ public class AddUserController {
                     view.lblerrorCity.setVisible(true);
                 } else {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
+                            "borderColor: #F3F6FB;"
+                    );
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F3F6FB;"
                     );
                     view.lblerrorDepartment.setVisible(false);
@@ -283,6 +284,7 @@ public class AddUserController {
                     if (queries.showifmailexists(email)) {
                         JOptionPane.showMessageDialog(usersView, "El correo ya existe");
                     } else {
+                        createPassword(modelo, users);
                         if (queries.insertUser(users)) {
                             JOptionPane.showMessageDialog(view, "Se creo el usuario");
                             usersController.loadTable();

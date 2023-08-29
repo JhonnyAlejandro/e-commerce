@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.CityModel;
+import application.models.DepartmentModel;
 import application.models.UsersModel;
 import application.views.LoginView;
 import java.awt.event.ActionEvent;
@@ -55,14 +56,31 @@ public class ProfileController {
         view.jScrollPane1.getVerticalScrollBar().setBlockIncrement(40);
 
         events();
+        loadDepartments();
         setPersonal();
-        setAddress();
+        setAddress2();
     }
 
     public void events() {
 
         view.btnRestore.setEnabled(true);
         setColorNormal(null, null, null, view.btnRestore);
+
+        view.cmbDepartment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                DepartmentModel department = new DepartmentModel();
+                int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+
+                // Limpiar las ciudades existentes antes de agregar nuevas
+                view.cmbCity.removeAllItems();
+
+                if (selectedDepartmentId != 0) {
+                    // Cargar ciudades solo si se selecciona un departamento válido
+                    loadCitiesByDepartment(selectedDepartmentId);
+                }
+            }
+        });
 
         view.btnRestore.addActionListener(new ActionListener() {
             @Override
@@ -75,7 +93,7 @@ public class ProfileController {
                 view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB; showRevealButton: false;");
                 view.lblNewPassErrorMessage.setVisible(false);
 
-                if(validations.validateEmptyField(nuevaContraseña) && validations.validateEmptyField(confirmarContraseña) ){
+                if (validations.validateEmptyField(nuevaContraseña) && validations.validateEmptyField(confirmarContraseña)) {
                     view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
                     view.lblNewPassErrorMessage.setText("Los campos son obligatorios*");
@@ -267,7 +285,7 @@ public class ProfileController {
                     view.tbtEditAddress.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
                     view.tbtEditAddress.setText("Editar");
                     setColorNormal(null, null, view.tbtEditAddress, null);
-                    setAddress();
+                    setAddress2();
                 }
 
             }
@@ -281,7 +299,7 @@ public class ProfileController {
                 setColorNormal(null, view.cmbDepartment, null, null);
                 setColorNormal(null, view.cmbCity, null, null);
                 //validación de dirección de residencia
-                if (validations.validateAddress(view.txtAddress.getText())) {
+                if (!validations.validateAddress(view.txtAddress.getText())) {
                     setColorRed(view.txtAddress, null, null);
                     view.lblErrorAddress.setVisible(true);
                     view.lblErrorAddress.setText("La dirección tiene un formato incorrecto.");
@@ -290,7 +308,7 @@ public class ProfileController {
                 }
 
                 //validación de departamento
-                if (view.cmbDepartment.getSelectedIndex() < 1) {
+                if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
                     setColorRed(null, view.cmbDepartment, null);
                     view.lblErrorDepartment.setVisible(true);
                     view.lblErrorDepartment.setText("Debes seleccionar un departamento.");
@@ -310,15 +328,18 @@ public class ProfileController {
                 if (address && city && department) {
                     UsersModel newModelo = new UsersModel();
                     CityModel cityModel = new CityModel();
-                    cityModel.setNameCity(view.cmbCity.getSelectedItem().toString());
-                    newModelo.setCityModel(cityModel);
+                    //cityModel.setNameCity(view.cmbCity.getSelectedItem().toString());
+                    String selectedCityName = view.cmbCity.getSelectedItem().toString();
+                    int selectedIndexCity = getCityByName(selectedCityName);
+                    newModelo.setCity(selectedIndexCity);
+                    //newModelo.setCityModel(cityModel);
                     newModelo.setAddress(view.txtAddress.getText());
                     if (consulta.updateAddress(newModelo)) {
                         deshabilitarAddress();
                         view.btnSaveAddress.setEnabled(false);
                         if (view.tbtEditAddress.isSelected() == true) {
                             view.btnSaveAddress.setEnabled(false);
-                            setAddress();
+                            setAddress2();
                             deshabilitarAddress();
                             view.tbtEditAddress.setIcon(new ImageIcon(getClass().getResource("/main/assets/images/edit-fff.png")));
                             view.tbtEditAddress.setText("Editar");
@@ -332,14 +353,15 @@ public class ProfileController {
                     }
                 }
             }
-        });view.txtFirstName.addKeyListener(new KeyAdapter() {
+        });
+        view.txtFirstName.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validations.isTextLengthValid(view.txtFirstName.getText(), 39)) {
                     evt.consume(); // Consume el evento solo si la longitud excede
                 }
             }
         });
-        
+
         view.txtLastName.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 if (!validations.isTextLengthValid(view.txtLastName.getText(), 39)) {
@@ -364,18 +386,18 @@ public class ProfileController {
             }
         });
 
-        view.cmbDepartment.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED) {
-                    if (view.cmbDepartment.getSelectedIndex() > 0) {
-                        view.cmbCity.setModel(new DefaultComboBoxModel(consulta.getCities(view.cmbDepartment.getSelectedIndex())));
-                    } else {
-                        view.cmbCity.setModel(new DefaultComboBoxModel(new String[]{"Seleccione una ciudad"}));
-                    }
-                }
-            }
-        });
+//        view.cmbDepartment.addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent event) {
+//                if (event.getStateChange() == ItemEvent.SELECTED) {
+//                    if (view.cmbDepartment.getSelectedIndex() > 0) {
+//                        view.cmbCity.setModel(new DefaultComboBoxModel(consulta.getCities(view.cmbDepartment.getSelectedIndex())));
+//                    } else {
+//                        view.cmbCity.setModel(new DefaultComboBoxModel(new String[]{"Seleccione una ciudad"}));
+//                    }
+//                }
+//            }
+//        });
     }
 
     public void setColorRed(JTextField txt, JComboBox cmb, JToggleButton tbt) {
@@ -465,21 +487,55 @@ public class ProfileController {
         view.txtPhone.setText(upUser.getPhone());
     }
 
-    public void setAddress() {
+//    public void setAddress() {
+//        upUser = consulta.getUser();
+//        //departmentUser = consulta.getDeparmentUser();
+//        if (departments.isEmpty()) {
+//            departments = consulta.getDeparments();
+//            for (int i = 0; i < departments.size(); i++) {
+//                view.cmbDepartment.addItem(departments.get(i).toString());
+//            }
+//        }
+//        view.txtAddress.setText(upUser.getAddress());
+//        if (upUser.getCityModel().getNameCity().isEmpty() || upUser.getCityModel().getNameCity() == null) {
+//            //
+//        } else {
+//            view.cmbDepartment.setSelectedItem(departmentUser);
+//            view.cmbCity.setSelectedItem(upUser.getCityModel().getNameCity());
+//        }
+//    }
+
+    public void setAddress2() {
         upUser = consulta.getUser();
-        departmentUser = consulta.getDeparmentUser();
-        if (departments.isEmpty()) {
-            departments = consulta.getDeparments();
-            for (int i = 0; i < departments.size(); i++) {
-                view.cmbDepartment.addItem(departments.get(i).toString());
+        int selectedIndexDepartment = upUser.getCityModel().getDepartmentId();
+        String selectedCityName = upUser.getCityModel().getNameCity();
+        view.cmbDepartment.setSelectedIndex(upUser.getCityModel().getDepartmentId());
+        view.cmbCity.setSelectedItem(upUser.getCityModel().getNameCity());
+        view.txtAddress.setText(upUser.getAddress());
+    }
+
+    public void loadCitiesByDepartment(int id) {
+        ArrayList<CityModel> cities = consulta.getDeparmentUser(id);
+        for (int i = 0; i < cities.size(); i++) {
+            view.cmbCity.addItem(cities.get(i).getNameCity());
+        }
+    }
+
+    public void loadDepartments() {
+        ArrayList<DepartmentModel> departments = consulta.getDeparments();
+        for (int i = 0; i < departments.size(); i++) {
+            view.cmbDepartment.addItem(departments.get(i).getNameDepartment());
+        }
+    }
+
+    public int getCityByName(String nameCity) {
+        int selectedDepartmentId = view.cmbDepartment.getSelectedIndex();
+        ArrayList<CityModel> cityList = consulta.getDeparmentUser(selectedDepartmentId);
+        for (CityModel cities : cityList) {
+            if (cities.getNameCity().equals(nameCity)) {
+                return cities.getIdCity();
             }
         }
-        view.txtAddress.setText(upUser.getAddress());
-        if (upUser.getCityModel().getNameCity().isEmpty() || upUser.getCityModel().getNameCity() == null) {
-            //
-        } else {
-            view.cmbDepartment.setSelectedItem(departmentUser);
-            view.cmbCity.setSelectedItem(upUser.getCityModel().getNameCity());
-        }
+        return 0;
     }
 }
