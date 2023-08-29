@@ -204,7 +204,7 @@ public class EditProviderController {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
-                    view.cmbCity.putClientProperty("FlatLaf.style",
+                     view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
@@ -222,6 +222,7 @@ public class EditProviderController {
                     view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F3F6FB;"
                     );
+
                     view.lblerrorDepartment.setVisible(false);
                     view.lblerrorCity.setVisible(false);
                     String selectedCityName = view.cmbCity.getSelectedItem().toString();

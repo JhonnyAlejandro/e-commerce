@@ -30,114 +30,71 @@ public class PasswordResetController {
         view.btnRestore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                boolean successPassword = false;
-                boolean successPasswordConfirm = false;
-                boolean successPasswordEquals = false;
-                boolean successPasswordlength = false;
+                char[] newPassChars = view.pwdNewPass.getPassword();
+                char[] confirmPassChars = view.pwdConfirmPass.getPassword();
 
-                if (validations.validateEmptyField(String.copyValueOf(view.pwdNewPass.getPassword()))) {
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                    );
+                String newPass = String.valueOf(newPassChars);
+                String confirmPass = String.valueOf(confirmPassChars);
 
+                if (validations.validateEmptyField(newPass)) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
                     view.lblNewPassErrorMessage.setText("Ingresa tu nueva contraseña*");
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
                     view.lblNewPassErrorMessage.setVisible(true);
                     view.jPanel1.setVisible(false);
-                } else {
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                    );
-                    successPassword = true;
-                    view.lblNewPassErrorMessage.setVisible(false);
-                }
-
-                if (validations.validateEmptyField(String.copyValueOf(view.pwdConfirmPass.getPassword()))) {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F51D24;"
-                            + "showRevealButton: false;"
-                    );
-
+                } else if (validations.validateEmptyField(confirmPass)) {
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor:  #F3F6FB;");
                     view.lblConfirmPassErrorMenssage.setText("Confirma tu nueva contraseña*");
                     view.lblConfirmPassErrorMenssage.setVisible(true);
+                    view.lblNewPassErrorMessage.setVisible(false);
                     view.jPanel1.setVisible(false);
-                } else {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    successPasswordConfirm = true;
-                    view.lblConfirmPassErrorMenssage.setVisible(false);
-                    view.jPanel1.setVisible(false);
-
-                }
-
-                if (!view.pwdNewPass.getText().equals(view.pwdConfirmPass.getText())) {
+                } else if (!newPass.equals(confirmPass)) {
                     view.lblCredentialsErrorMessage.setText("Las contraseñas no coinciden");
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.lblCredentialsErrorMessage.setVisible(true);
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
+                    view.lblNewPassErrorMessage.setVisible(false);
                     view.jPanel1.setVisible(true);
-
+                } else if (newPassChars.length <= 7) {
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                    view.lblCredentialsErrorMessage.setText("Ingresa una contraseña de máximo 8 caracteres");
+                    view.lblCredentialsErrorMessage.setVisible(true);
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
+                    view.lblNewPassErrorMessage.setVisible(false);
+                    view.jPanel1.setVisible(true);
                 } else {
-                    view.pwdConfirmPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    view.pwdNewPass.putClientProperty("FlatLaf.style",
-                            "borderColor: #F3F6FB;"
-                            + "showRevealButton: false;"
-                    );
-                    successPasswordEquals = true;
+                    view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                    view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F3F6FB;");
+                    view.lblNewPassErrorMessage.setVisible(false);
+                    view.lblConfirmPassErrorMenssage.setVisible(false);
                     view.lblCredentialsErrorMessage.setVisible(false);
 
-                }
-                
-                
-
-                if (successPassword == true && successPasswordConfirm == true && successPasswordEquals == true) {
-                    
-                    if (String.copyValueOf(view.pwdNewPass.getPassword()).length() <= 7) {
- 
-                        view.lblCredentialsErrorMessage.setText("Ingresa una contraseña de maximo 8 caracteres");
-                        view.lblCredentialsErrorMessage.setVisible(true);
-                        view.jPanel1.setVisible(true);  
-                        
-                    }else {
-                        view.pwdNewPass.putClientProperty("FlatLaf.style",
-                                "borderColor: #F3F6FB;"
-                        );
-  
-                        view.lblNewPassErrorMessage.setVisible(false);
-                        view.jPanel1.setVisible(false); 
-                    
-                    
-                    
-                    
                     char[] pass = view.pwdConfirmPass.getPassword();
                     user.setPassword(pass);
 
                     String passConfirm = queries.getUser(user);
-
                     boolean confirm = queries.NewPass(user);
-                    
-                        if (!BCrypt.checkpw(view.pwdConfirmPass.getText(), passConfirm)) {
 
-                            if (confirm) {
-                                LoginView viewLogin = new LoginView();
-                                UsersModel user = new UsersModel();
-                                LoginController controller = new LoginController(user, viewLogin);
-                                view.dispose();
-
-                            }
-
-                        } else {
-                            view.lblCredentialsErrorMessage.setText("Has usado esta contraseña recientemente");
-                            view.lblCredentialsErrorMessage.setVisible(true);
-                            view.jPanel1.setVisible(true);
-
+                    if (!BCrypt.checkpw(view.pwdConfirmPass.getText(), passConfirm)) {
+                        if (confirm) {
+                            LoginView viewLogin = new LoginView();
+                            UsersModel user = new UsersModel();
+                            LoginController controller = new LoginController(user, viewLogin);
+                            view.dispose();
                         }
+                    } else {
+                        view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                        view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
+                        view.lblCredentialsErrorMessage.setText("Has usado esta contraseña recientemente");
+                        view.lblCredentialsErrorMessage.setVisible(true);
+                        view.jPanel1.setVisible(true);
                     }
                 }
             }
-
         });
 
         view.btnCancel.addActionListener(new ActionListener() {
