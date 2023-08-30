@@ -257,10 +257,6 @@
                   <Font name="Segoe UI Semibold" size="14" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPhoneAddActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPhoneAddKeyTyped"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -302,29 +298,22 @@
                                   </Group>
                                   <Component id="cmbDepartment" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="lblerrorCity" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="cmbCity" min="-2" pref="357" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                      <Component id="lblerrorAdress" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblerrorCity" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtAdressAdd" alignment="0" min="-2" pref="730" max="-2" attributes="0"/>
+                                  <Component id="cmbCity" min="-2" pref="357" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="lblerrorAdress" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtAdressAdd" alignment="0" min="-2" pref="730" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

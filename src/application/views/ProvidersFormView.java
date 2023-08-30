@@ -122,11 +122,6 @@ public class ProvidersFormView extends javax.swing.JPanel {
         lblerrorEmail.setText("Error message");
 
         txtPhoneAdd.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        txtPhoneAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneAddActionPerformed(evt);
-            }
-        });
 
         lblerrorPhone.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lblerrorPhone.setForeground(new java.awt.Color(245, 29, 36));
@@ -220,21 +215,17 @@ public class ProvidersFormView extends javax.swing.JPanel {
                                 .addGap(5, 5, 5)
                                 .addComponent(lblerrorDepartment))
                             .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblerrorCity)
-                                .addGap(294, 294, 294))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(lblerrorAdress))
-                            .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))))
+                                .addComponent(lblerrorCity))
+                            .addComponent(cmbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(lblerrorAdress))
+                    .addComponent(txtAdressAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,10 +321,6 @@ public class ProvidersFormView extends javax.swing.JPanel {
     private void txtFirstNameAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameAddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameAddActionPerformed
-
-    private void txtPhoneAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneAddActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAdd;
