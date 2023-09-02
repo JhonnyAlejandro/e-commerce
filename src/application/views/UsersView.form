@@ -175,7 +175,7 @@
                         <Column editable="false" title="Dirreci&#xf3;n" type="java.lang.Object"/>
                         <Column editable="false" title="Correo" type="java.lang.Object"/>
                         <Column editable="false" title="Telefono" type="java.lang.Object"/>
-                        <Column editable="true" title="Rol" type="java.lang.Object"/>
+                        <Column editable="false" title="Rol" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="autoResizeMode" type="int" value="4"/>

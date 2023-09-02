@@ -492,5 +492,21 @@ public class QueriesProvider {
         connection.disconnect();
         return show;
     }
+    
+    public boolean relationship(ProviderModel provider) {
+        DatabaseConnection connection = new DatabaseConnection();
+        boolean relationship = false;
+
+        String sql = "SELECT providers.first_name AS nombre , providers.last_name AS apellido FROM providers JOIN products ON " +  provider.getId() +  " = products.provider";
+        ResultSet result = connection.consult(sql);
+        try {
+            if (result.next()) {
+                relationship = true;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al consultar la relacion del proveedor: " + e);
+        }
+        return relationship;
+    }
 
 }

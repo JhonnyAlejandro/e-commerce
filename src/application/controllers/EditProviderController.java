@@ -204,7 +204,7 @@ public class EditProviderController {
                     view.cmbDepartment.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
-                     view.cmbCity.putClientProperty("FlatLaf.style",
+                    view.cmbCity.putClientProperty("FlatLaf.style",
                             "borderColor: #F51D24;"
                     );
 
@@ -278,28 +278,27 @@ public class EditProviderController {
 
         });
 
-        view.btnDelete.addActionListener(
-                new ActionListener() {
+        view.btnDelete.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0
-            ) {
+            public void actionPerformed(ActionEvent arg0) {
+                Object[] opciones = {"Sí", "No"};
                 Object obj = providersView.tblProvider.getValueAt(providersView.tblProvider.getSelectedRow(), 0);
                 int id = (int) obj;
                 model.setId(id);
                 model.setState(0);
 
-                if (queries.eliminar(model)) {
-                    JOptionPane.showMessageDialog(null, "proveedor eliminado");
-                    ProvidersView providersView = new ProvidersView();
-                    new ProvidersController(providersView);
-                    providersView.setBounds(0, 0, 800, 700);
-                    view.removeAll();
-                    view.add(providersView);
-                    view.repaint();
-                    view.revalidate();
-
+                if (queries.relationship(model) == true) {
+                    if (JOptionPane.showOptionDialog(null, "Este proveedor ya está asociado a un producto, ¿está seguro que desea eliminarlo?", null, JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, opciones, opciones[0]) == JOptionPane.YES_OPTION) {
+                        System.out.println("Si");
+                        deleteProvider();
+                    } else {
+                        System.out.println("No");
+                    }
+                } else if (JOptionPane.showOptionDialog(null, "¿Está seguro que desea eliminar este proveedor?", null, JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, opciones, opciones[0]) == JOptionPane.YES_OPTION) {
+                    System.out.println("Si");
+                    deleteProvider();
                 } else {
-                    JOptionPane.showMessageDialog(null, "error al eliminar");
+                    System.out.println("No");
                 }
 
             }
@@ -324,6 +323,22 @@ public class EditProviderController {
         }
         );
 
+    }
+
+    private void deleteProvider() {
+        if (queries.eliminar(model)) {
+            JOptionPane.showMessageDialog(null, "proveedor eliminado");
+            ProvidersView providersView = new ProvidersView();
+            new ProvidersController(providersView);
+            providersView.setBounds(0, 0, 800, 700);
+            view.removeAll();
+            view.add(providersView);
+            view.repaint();
+            view.revalidate();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "error al eliminar");
+        }
     }
 
     private void changetitle() {
