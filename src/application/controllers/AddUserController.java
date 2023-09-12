@@ -98,7 +98,7 @@ public class AddUserController {
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorName.setText("No se puede dejar el campo vacio");
+                    view.lblerrorName.setText("Este campo no puede estar vacio");
                     view.lblerrorName.setVisible(true);
 
                     System.out.println("bandera 1");
@@ -132,7 +132,7 @@ public class AddUserController {
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorLastName.setText("No puedes dejar el campo vacio");
+                    view.lblerrorLastName.setText("Este campo no puede estar vacio");
                     view.lblerrorLastName.setVisible(true);
 
                     System.out.println("bandera 2");
@@ -142,7 +142,7 @@ public class AddUserController {
                                 "borderColor: #F51D24;"
                         );
 
-                        view.lblerrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?");
+                        view.lblerrorLastName.setText("El apellido tiene caracteres no permitidos (1-9,@,$,%,&,?)");
                         view.lblerrorLastName.setVisible(true);
 
                     } else {
@@ -167,7 +167,7 @@ public class AddUserController {
                             "borderColor: #F51D24;"
                     );
 
-                    view.lblerrorEmail.setText("No se puede dejar el campo vacio");
+                    view.lblerrorEmail.setText("Este campo no puede estar vacio");
                     view.lblerrorEmail.setVisible(true);
                 } else {
                     if (validation.emailDomain(view.txtEmailAdd.getText()) == false) {
