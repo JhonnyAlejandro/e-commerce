@@ -13,7 +13,7 @@ public class DatabaseConnection implements Configuration {
     public Connection connect() {
         try {
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection = DriverManager.getConnection(Configuration.URL, Configuration.USERNAME, Configuration.PASSWORD);
             if (connection != null) {
                 System.out.println("Successful connection");
             } else {

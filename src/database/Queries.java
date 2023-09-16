@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import org.mindrot.jbcrypt.BCrypt;
 import utilities.Session;
 import application.views.LoginView;
+import com.password4j.Password;
+
 
 public class Queries {
 
@@ -16,19 +18,22 @@ public class Queries {
         
 
         String pass = String.valueOf(user.getPassword());
+        
+       
 
         String sql = "SELECT users.* , roles.id AS role_id FROM users " 
                 + " INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
-                + " INNER JOIN roles ON model_has_roles.role_id = 1 "
+                + " INNER JOIN roles ON model_has_roles.role_id = 2 "
                 + "WHERE email = '" + user.getEmail() + "' AND users.state = '1'";
         
         boolean authentication = false;
+        
 
         try {
             result = databaseConnection.consult(sql);
             if (result.next()) {
-
-                if (BCrypt.checkpw(pass, result.getString("password"))) {
+                
+                if (Password.check(pass, result.getString("password")).withBcrypt()) {
                     if (pass.length() == 4) {
                         user.setEmail(result.getString("email"));
                         new PasswordResetController(user);
@@ -76,7 +81,7 @@ public class Queries {
     public boolean NewPass(UsersModel user) {
         
         String pass = String.valueOf(user.getPassword());
-
+        
         String pwHash = BCrypt.hashpw(pass, BCrypt.gensalt());
 
         DatabaseConnection connect = new DatabaseConnection();
