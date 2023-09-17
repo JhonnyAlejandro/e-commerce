@@ -16,6 +16,12 @@ public class DashboardView extends javax.swing.JFrame {
                 + "background: #FFF;"
                 + "hoverBackground: darken(#FFF,5%);"
         );
+        
+        btnHelp.putClientProperty("FlatLaf.style",
+                "foreground: #646675;"
+                + "background: #FFF;"
+                + "hoverBackground: darken(#FFF,5%);"
+        );
 
         jButton3.putClientProperty("FlatLaf.style",
                 "foreground: #646675;"
@@ -31,6 +37,7 @@ public class DashboardView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,6 +61,12 @@ public class DashboardView extends javax.swing.JFrame {
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.setIconTextGap(15);
 
+        btnHelp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/help-b8c0cb.png"))); // NOI18N
+        btnHelp.setText("Ayuda");
+        btnHelp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnHelp.setIconTextGap(15);
+
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/assets/images/profile-b8c0cb.png"))); // NOI18N
         jButton3.setText("Perfil");
@@ -67,6 +80,7 @@ public class DashboardView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -79,6 +93,8 @@ public class DashboardView extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -152,6 +168,7 @@ public class DashboardView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnHelp;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;

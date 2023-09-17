@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import utilities.ManipulateText;
 import utilities.PerformActions;
 import utilities.Session;
+import java.io.File;
 
 public class DashboardController {
 
@@ -95,6 +96,28 @@ public class DashboardController {
                 changeButtonColor(view.jButton2, "providers");
 
                 new ProvidersController(providers);
+            }
+        });
+        
+        view.btnHelp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                view.btnHelp.putClientProperty("icon", "help");
+
+                changeButtonColor(view.btnHelp, "help");
+                
+                File chmFile = new File("src/utilities/Help-workshop.chm");
+                
+                try {
+                    if (chmFile.exists()) {
+                        Process process = Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + chmFile.getAbsolutePath());
+                        process.waitFor();
+                    } else {
+                        System.out.println("No se encontró el taller de ayuda");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
