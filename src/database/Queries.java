@@ -23,7 +23,7 @@ public class Queries {
 
         String sql = "SELECT users.* , roles.id AS role_id FROM users " 
                 + " INNER JOIN model_has_roles ON users.id = model_has_roles.model_id "
-                + " INNER JOIN roles ON model_has_roles.role_id = 2 "
+                + " INNER JOIN roles ON model_has_roles.role_id = 1 "
                 + "WHERE email = '" + user.getEmail() + "' AND users.state = '1'";
         
         boolean authentication = false;
