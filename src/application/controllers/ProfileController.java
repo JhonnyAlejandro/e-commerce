@@ -101,17 +101,17 @@ public class ProfileController {
                 } else if (validations.validateEmptyField(nuevaContraseña)) {
                     view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
-                    view.lblNewPassErrorMessage.setText("Ingresa tu nueva contraseña*");
+                    view.lblNewPassErrorMessage.setText("Ingresa la nueva contraseña*");
                     view.lblNewPassErrorMessage.setVisible(true);
                 } else if (validations.validateEmptyField(confirmarContraseña)) {
                     view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
-                    view.lblNewPassErrorMessage.setText("Confirma tu nueva contraseña*");
+                    view.lblNewPassErrorMessage.setText("Confirma lu nueva contraseña*");
                     view.lblNewPassErrorMessage.setVisible(true);
                 } else if (nuevaContraseña.length() <= 7) {
                     view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                     view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
-                    view.lblNewPassErrorMessage.setText("Ingresa una contraseña de máximo 8 caracteres");
+                    view.lblNewPassErrorMessage.setText("Ingresa una contraseña de minimo 8 caracteres");
                     view.lblNewPassErrorMessage.setVisible(true);
                 } else if (!nuevaContraseña.equals(confirmarContraseña)) {
                     view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
@@ -140,7 +140,7 @@ public class ProfileController {
                     } else {
                         view.pwdNewPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24;");
                         view.pwdConfirmPass.putClientProperty("FlatLaf.style", "borderColor: #F51D24; showRevealButton: false;");
-                        view.lblNewPassErrorMessage.setText("Has usado esta contraseña recientemente");
+                        view.lblNewPassErrorMessage.setText("Ha usado esta contraseña recientemente");
                         view.lblNewPassErrorMessage.setVisible(true);
                     }
                 }
@@ -226,7 +226,7 @@ public class ProfileController {
                 if (!validations.validatePhone(view.txtPhone.getText())) {
                     setColorRed(view.txtPhone, null, null);
                     view.lblErrorPhone.setVisible(true);
-                    view.lblErrorPhone.setText("Ingresa un número de teléfono válido (solo dígitos).");
+                    view.lblErrorPhone.setText("El telefono tiene caracteres no permitidos (solo dígitos).");
                 } else {
                     phone = true;
                 }
@@ -311,7 +311,7 @@ public class ProfileController {
                 if (view.cmbDepartment.getSelectedItem().equals("Seleccione un departamento")) {
                     setColorRed(null, view.cmbDepartment, null);
                     view.lblErrorDepartment.setVisible(true);
-                    view.lblErrorDepartment.setText("Debes seleccionar un departamento.");
+                    view.lblErrorDepartment.setText("Debe seleccionar un departamento.");
                 } else {
                     department = true;
                 }
@@ -320,7 +320,7 @@ public class ProfileController {
                 if (view.cmbCity.getSelectedIndex() < 1) {
                     setColorRed(null, view.cmbCity, null);
                     view.lblErrorCity.setVisible(true);
-                    view.lblErrorCity.setText("Debes seleccionar una ciudad");
+                    view.lblErrorCity.setText("Debe seleccionar una ciudad");
                 } else {
                     city = true;
                 }
