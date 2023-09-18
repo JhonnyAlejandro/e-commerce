@@ -66,6 +66,10 @@ public class ProvidersView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblProvider.getColumnModel().getColumn(0).setMinWidth(0);
+        tblProvider.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblProvider.getColumnModel().getColumn(0).setWidth(0);
+
         jScrollPane1.setViewportView(tblProvider);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
